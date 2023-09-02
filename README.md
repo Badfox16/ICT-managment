@@ -1,2 +1,6 @@
-# ICT-managment
-OOoooooh Yeah
+
+# Sistema de Registro de Equipamentos de ICT 
+
+FORÇA DEVS
+
+ 
