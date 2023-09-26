@@ -81,9 +81,9 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
                 <table class="table table-striped-columns table-hover table-borderless mb-0">
                     <thead>
                         <tr>
-                            <th scope="col">
+                            <th scope="col m-0">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" />
+                                    <input class="form-check-input" type="checkbox" value="" checked/>
                                 </div>
                             </th>
                             <th scope="col">Id</th>
@@ -99,7 +99,7 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
                             <tr>
                                 <th scope="row">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="<?= $Patrimonio['Id_Patrimonio']; ?>" id="flexCheckDefault1" checked />
+                                        <input class="form-check-input" type="checkbox" value="<?= $Patrimonio['Id_Patrimonio']; ?>" />
                                     </div>
                                 </th>
                                 <td><?= $Patrimonio['Id_Patrimonio']; ?></td>
