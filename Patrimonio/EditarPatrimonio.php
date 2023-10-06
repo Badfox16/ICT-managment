@@ -18,31 +18,34 @@ try {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Patrimonio</title>
 </head>
+
 <body>
 
-<h2>Editar Patrimonio</h2>
+    <h2>Editar Patrimonio</h2>
     <form method="post" action="Controllers/Editar.php">
-    <label for="id">ID do Patrimonio a Atualizar:</label>
-    <input type="hidden" name="id" id="id" value="<?= $Patrimonio['Id_Patrimonio']; ?>">
-    <br> <br>
-    <label for="nome">Nome:</label>
-    <input type="text" name="nome" id="nome" value="<?= $Patrimonio['Nome']; ?>" required>
-    <br><br>
-    <label for="apelido">Apelido:</label>
-    <input type="text" name="apelido" id="apelido" value="<?= $Patrimonio['Apelido']; ?>" required>
-    <br><br>
-    <label for="contacto">Contacto:</label>
-    <input type="text" name="contacto" id="contacto" value="<?= $Patrimonio['Contacto']; ?>" required>
-    <br><br>
-    <label for="login">Login:</label>
-    <input type="text" name="login" id="login" value="<?= $Patrimonio['UsrLogin']; ?>" >
-    <br><br>
-    <input type="submit" value="Editar" >
+        <label for="id">ID do Patrimonio a Atualizar:</label>
+        <input type="hidden" name="id" id="id" value="<?= $Patrimonio['Id_Patrimonio']; ?>">
+        <br> <br>
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" id="nome" value="<?= $Patrimonio['Nome']; ?>" required>
+        <br><br>
+        <label for="apelido">Apelido:</label>
+        <input type="text" name="apelido" id="apelido" value="<?= $Patrimonio['Apelido']; ?>" required>
+        <br><br>
+        <label for="contacto">Contacto:</label>
+        <input type="text" name="contacto" id="contacto" value="<?= $Patrimonio['Contacto']; ?>" required>
+        <br><br>
+        <label for="login">Login:</label>
+        <input type="text" name="login" id="login" value="<?= $Patrimonio['UsrLogin']; ?>">
+        <br><br>
+        <input type="submit" value="Editar">
     </form>
 </body>
+
 </html>

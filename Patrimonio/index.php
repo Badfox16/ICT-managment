@@ -103,62 +103,6 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
       <div class="main-content">
         <div class="reporters container p-3">
           <h2 class="text-primary">Reporter</h2>
-
-          <div class="reporters-form">
-            <form action="">
-              <table class="table table-borderless">
-                <thead>
-                  <tr>
-                    <th>Categoria Equipamento</th>
-                    <th>Data Inicial</th>
-                    <th>Data Final</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="col-1">
-                      <select class="form-select">
-                        <option value="1">Hardware</option>
-                        <option value="2">Software</option>
-                        <option value="3" selected>Todos</option>
-                      </select>
-                    </td>
-                    <td class="col-1">
-                      <input type="date" class="form-control" />
-                    </td>
-                    <td class="col-sm-1">
-                      <input type="date" class="form-control" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="d-flex justify-content-around">
-                      <button class="search-btn bg-success">
-                        <i class="bi bi-download"></i>
-                        Gerar
-                      </button>
-                    </td>
-                    <td></td>
-                    <td>
-                      <button type="reset" class="reset-btn bg-danger">
-                        <i class="bi bi-trash3"></i>
-                        Limpar
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </form>
-          </div>
-          <div class="reports-pdf container p-1">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Reportes</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
         </div>
         <div class="managers container p-1">
           <div class="managers-title-add">
@@ -182,20 +126,21 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
                 <th>Email</th>
                 <th>Nome de Usuário</th>
                 <th>Estado</th>
+                <th>Editar</th>
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($Patrimonios as $usuarios) : ?>
+              <?php foreach ($Patrimonios as $patrimonio) : ?>
                 <tr>
-                  <td><?= $usuarios["Id_Patrimonio"] ?></td>
-                  <td><?= $usuarios["Nome"] ?></td>
-                  <td><?= $usuarios["Apelido"] ?></td>
-                  <td><?= $usuarios["Contacto"] ?></td>
-                  <td><?= $usuarios["Email"] ?></td>
-                  <td><?= $usuarios["UsrLogin"] ?></td>
+                  <td><?= $patrimonio["Id_Patrimonio"] ?></td>
+                  <td><?= $patrimonio["Nome"] ?></td>
+                  <td><?= $patrimonio["Apelido"] ?></td>
+                  <td><?= $patrimonio["Contacto"] ?></td>
+                  <td><?= $patrimonio["Email"] ?></td>
+                  <td><?= $patrimonio["UsrLogin"] ?></td>
                   <td>
                     <?php
-                    if ($usuarios["Estado"] == "Ativo") {
+                    if ($patrimonio["Estado"] == "Ativo") {
                       echo "<button disabled class='manager-actived'>Ativo</button>";
                     } else {
                       echo "<button disabled class='manager-disabled'>Inativo</button>";
@@ -203,7 +148,7 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
                     ?>
                   </td>
                   <td>
-                    <a href="./UsuarioAtualizar.php?usuarioTK=<?= $usuarios["id"] ?>">
+                    <a href="./EditarPatrimonio.php/Id=<?= $patrimonio["Id_Patrimonio"] ?>">
                       <button class="btn btn-danger">
                         <i class="bi bi-pencil-square"></i>
                       </button>
