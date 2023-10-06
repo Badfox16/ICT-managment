@@ -106,12 +106,28 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
           <!-- Adicionar membros do patrimonio -->
           <div class="register-form col-8">
             <h3 class="text-primary">Adicionar Membro ao Património</h3>
-            <form action="" class="form-register">
-              <div class="mb-3"><input type="text" class="form-control" placeholder="Nome" required></div>
-              <div class="mb-3"><input type="text" class="form-control" placeholder="Apelido" required></div>
-              <div class="mb-3"><input type="number" class="form-control" placeholder="Contacto" required></div>
-              <div class="mb-3"><input type="email" class="form-control" placeholder="Email" required></div>
-              <div class="mb-3"><input type="text" class="form-control" placeholder="Nome de Usuário" required></div>
+            <form action="./Controllers/Cadastrar.php" method="POST" class="form-register">
+              <div class="mb-3">
+                <input type="text" name="nome" class="form-control" placeholder="Nome" required>
+              </div>
+              <div class="mb-3">
+                <input type="text" name="apelido" class="form-control" placeholder="Apelido" required>
+              </div>
+              <div class="mb-3">
+                <input type="email" name="email" class="form-control" placeholder="Email" required>
+              </div>
+              <div class="mb-3">
+                <input type="number" name="contacto" class="form-control" placeholder="Contacto" required>
+              </div>
+              <div class="mb-3">
+                <input type="text" name="login" class="form-control" placeholder="Nome de Usuário" required>
+              </div>
+              <div class="mb-3">
+                <input type="text" name="senha" class="form-control" placeholder="Senha" required>
+              </div>
+              <div class="mb-3">
+                <input type="hidden" name="estado" value="Ativo" class="form-control" placeholder="estado" required>
+              </div>
               <button class="btn text-bg-success add-btn">
                 <i class="bi bi-person-fill-add"></i>
                 Adicionar
@@ -120,9 +136,10 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
           </div>
 
           <!-- Imprimir membros do patrimonio -->
-          <div class="print col-2 text-center">
+          <div class="print col-3 text-center">
             <br>
-            <h3 class="text-justify">Imprimir lista de membros do Património</h3>
+            <br> <!-- Cota Persson sabe das cenas yu! Br*2 tmlc!-->
+            <h3 class="h2-print">Imprimir lista de membros do Património</h3>
             <form action="">
               <button class="btn text-bg-secondary">
                 <i class="bi bi-file-earmark-arrow-down"></i>
