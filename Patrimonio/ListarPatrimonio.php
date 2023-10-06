@@ -25,9 +25,9 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
 
     <section class="d-flex">
     <div class="d-flex flex-column p-3 text-white bg-dark" style="width: 300px; height:100vh;">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-      <span class="fs-4">Equipamentos do ICT</span>
+    <a href="/" class="d-flex flex-column align-items-center mb-3 text-white text-decoration-none">
+      <span class="fs-4">Equipamentos</span>
+      <span class="fs-4">ICT</span>
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">

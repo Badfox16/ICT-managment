@@ -8,12 +8,14 @@ CREATE TABLE tbPatrimonio (
     Apelido VARCHAR (50),
     Contacto VARCHAR (13),
     UsrLogin VARCHAR (20),
+    Estado VARCHAR (20),
     Senha VARCHAR (20)
 );
 
 CREATE TABLE tbICT(
     Id_ICT INT AUTO_INCREMENT PRIMARY KEY,
     UsrLogin VARCHAR (20),
+    Estado VARCHAR (20),
     Senha VARCHAR (20)
 );
 
