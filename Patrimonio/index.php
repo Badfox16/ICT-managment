@@ -125,7 +125,7 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
                 <input type="text" name="senha" class="form-control" placeholder="Senha" required>
               </div>
               <div class="mb-3">
-                <input type="hidden" name="estado" value="Ativo" class="form-control" placeholder="estado" required>
+                <input type="hidden">
               </div>
               <button class="btn text-bg-success add-btn">
                 <i class="bi bi-person-fill-add"></i>
@@ -177,7 +177,7 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
                   <td><?= $patrimonio["UsrLogin"] ?></td>
                   <td>
                     <?php
-                    if ($patrimonio["Estado"] == "Ativo") {
+                    if ($patrimonio["Estado"]) {
                       echo "<button disabled class='manager-actived'>Ativo</button>";
                     } else {
                       echo "<button disabled class='manager-disabled'>Inativo</button>";
