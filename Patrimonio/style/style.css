@@ -1,8 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow-x: hidden;
 }
 body {
   width: 100vw;
@@ -25,6 +25,10 @@ body {
   width: 12rem;
   height: 2.79rem;
 }
+.h2-print {
+  font-size: 1.4rem;
+  font-family: "Poppins", sans-serif;
+}
 .managers-title-add {
   display: flex;
   justify-content: space-between;
@@ -44,10 +48,8 @@ body {
 .manager-actived {
   color: green;
   background-color: rgba(0, 128, 0, 0.247);
-  outline: green 1px solid;
 }
 .manager-disabled {
   color: orange;
   background-color: rgba(255, 166, 0, 0.247);
-  outline: orange 1px solid;
 }

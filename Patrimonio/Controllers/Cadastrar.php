@@ -8,15 +8,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $nome = $_POST["nome"];
     $apelido = $_POST["apelido"];
+    $email = $_POST["email"];
     $contacto = $_POST["contacto"];
     $usrlogin = $_POST["login"];
     $estado = $_POST["estado"];
     $senha = $_POST["senha"];
 
+
     $PatrimonioDTO = new PatrimonioDTO();
     $PatrimonioDTO->setNome($nome);
     $PatrimonioDTO->setApelido($apelido);
     $PatrimonioDTO->setContacto($contacto);
+    $PatrimonioDTO->setEmail($email);
     $PatrimonioDTO->setUsrlogin($usrlogin);
     $PatrimonioDTO->setEstado($estado);
     $PatrimonioDTO->setSenha($senha);
@@ -31,4 +34,3 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         echo "Erro ao inserir: " . $e->getMessage();
     }
 }
-
