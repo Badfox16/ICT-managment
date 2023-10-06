@@ -26,65 +26,63 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
   <main class="main container-fluid d-flex">
     <!-- Dashboard/ left content -->
     <section class="left-dashboard col-2">
-      <div class="fixed-top">
-        <div class="d-flex flex-column p-3 text-white bg-dark" style="width: 300px; height:100vh;">
-          <a href="/" class="d-flex flex-column align-items-center mb-3 text-white text-decoration-none">
-            <span class="fs-4">Equipamentos</span>
-            <span class="fs-4">ICT</span>
-          </a>
-          <hr>
-          <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-              <a href="#" class="nav-link active mt-4 mb-4" aria-current="page">
-                <svg class="bi me-2" width="16" height="16">
-                  <use xlink:href="#home"></use>
-                </svg>
-                Gerentes
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link text-white mb-4">
-                <svg class="bi me-2" width="16" height="16">
-                  <use xlink:href="#speedometer2"></use>
-                </svg>
-                Equipamentos
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link text-white mb-4">
-                <svg class="bi me-2" width="16" height="16">
-                  <use xlink:href="#table"></use>
-                </svg>
-                Relatórios
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link text-white mb-4">
-                <svg class="bi me-2" width="16" height="16">
-                  <use xlink:href="#grid"></use>
-                </svg>
-                Registros
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link text-white">
-
-            </li>
-          </ul>
-          <hr>
-          <div class="dropdown">
-            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-              <strong>Logout</strong>
+      <div class="d-flex flex-column p-3 text-white bg-dark" style="width: 300px; height:100vh;">
+        <a href="/" class="d-flex flex-column align-items-center mb-3 text-white text-decoration-none">
+          <span class="fs-4">Equipamentos</span>
+          <span class="fs-4">ICT</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a href="#" class="nav-link active mt-4 mb-4" aria-current="page">
+              <svg class="bi me-2" width="16" height="16">
+                <use xlink:href="#home"></use>
+              </svg>
+              Gerentes
             </a>
-            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-              <li><a class="dropdown-item" href="#">Definições</a></li>
-              <li><a class="dropdown-item" href="#">Ver Perfil</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Sair</a></li>
-            </ul>
-          </div>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-white mb-4">
+              <svg class="bi me-2" width="16" height="16">
+                <use xlink:href="#speedometer2"></use>
+              </svg>
+              Equipamentos
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-white mb-4">
+              <svg class="bi me-2" width="16" height="16">
+                <use xlink:href="#table"></use>
+              </svg>
+              Relatórios
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-white mb-4">
+              <svg class="bi me-2" width="16" height="16">
+                <use xlink:href="#grid"></use>
+              </svg>
+              Registros
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-white">
+
+          </li>
+        </ul>
+        <hr>
+        <div class="dropdown">
+          <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <strong>Logout</strong>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+            <li><a class="dropdown-item" href="#">Definições</a></li>
+            <li><a class="dropdown-item" href="#">Ver Perfil</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Sair</a></li>
+          </ul>
         </div>
       </div>
     </section>
@@ -134,9 +132,9 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
                   </tr>
                   <tr>
                     <td class="d-flex justify-content-around">
-                      <button class="search-btn bg-primary">
-                        <i class="bi bi-search"></i>
-                        Pesquisar
+                      <button class="search-btn bg-success">
+                        <i class="bi bi-download"></i>
+                        Gerar
                       </button>
                     </td>
                     <td></td>
@@ -180,7 +178,8 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
                 <th>Id</th>
                 <th>Nome</th>
                 <th>Apelido</th>
-                <th>Telefone</th>
+                <th>Contato</th>
+                <th>Email</th>
                 <th>Nome de Usuário</th>
                 <th>Estado</th>
               </tr>
@@ -192,6 +191,7 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
                   <td><?= $usuarios["Nome"] ?></td>
                   <td><?= $usuarios["Apelido"] ?></td>
                   <td><?= $usuarios["Contacto"] ?></td>
+                  <td><?= $usuarios["Email"] ?></td>
                   <td><?= $usuarios["UsrLogin"] ?></td>
                   <td>
                     <?php

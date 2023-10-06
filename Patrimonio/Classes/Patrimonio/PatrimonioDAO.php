@@ -13,15 +13,15 @@ class PatrimonioDAO {
     }
 
     public function inserir(PatrimonioDTO $Patrimonio) {
-        $sql = "INSERT INTO tbPatrimonio (Nome, Apelido, Contacto, UsrLogin, Estado, Senha) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO tbPatrimonio (Nome, Apelido, Contacto,Email, UsrLogin, Estado, Senha) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $this->conexao->prepare($sql);
-        $stmt->execute([$Patrimonio->getNome(), $Patrimonio->getApelido(), $Patrimonio->getContacto(), $Patrimonio->getUsrLogin(), $Patrimonio->getEstado(), $Patrimonio->getSenha()]);
+        $stmt->execute([$Patrimonio->getNome(), $Patrimonio->getApelido(), $Patrimonio->getContacto(), $Patrimonio->getEmail(),$Patrimonio->getUsrLogin(), $Patrimonio->getEstado(), $Patrimonio->getSenha()]);
     }
 
     public function atualizar(PatrimonioDTO $Patrimonio) {
-        $sql = "UPDATE tbPatrimonio SET Nome = ?, Apelido = ?, Contacto = ?, UsrLogin = ? Estado = ?, WHERE Id_Patrimonio = ?";
+        $sql = "UPDATE tbPatrimonio SET Nome = ?, Apelido = ?, Contacto = ?,Email=?, UsrLogin = ? Estado = ?, WHERE Id_Patrimonio = ?";
         $stmt = $this->conexao->prepare($sql);
-        $stmt->execute([$Patrimonio->getNome(), $Patrimonio->getApelido(), $Patrimonio->getContacto(), $Patrimonio->getUsrLogin(), $Patrimonio->getEstado(), $Patrimonio->getId()]);
+        $stmt->execute([$Patrimonio->getNome(), $Patrimonio->getApelido(), $Patrimonio->getContacto(),$Patrimonio->getEmail(), $Patrimonio->getUsrLogin(), $Patrimonio->getEstado(), $Patrimonio->getId()]);
     }
 
     public function remover($id) {
