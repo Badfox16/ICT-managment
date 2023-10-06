@@ -101,19 +101,40 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
       </div>
 
       <div class="main-content">
-        <div class="reporters container p-3">
-          <h2 class="text-primary">Reporter</h2>
+        <div class="register-print d-flex">
+
+          <!-- Adicionar membros do patrimonio -->
+          <div class="register-form col-8">
+            <h3 class="text-primary">Adicionar Membro ao Património</h3>
+            <form action="" class="form-register">
+              <div class="mb-3"><input type="text" class="form-control" placeholder="Nome" required></div>
+              <div class="mb-3"><input type="text" class="form-control" placeholder="Apelido" required></div>
+              <div class="mb-3"><input type="number" class="form-control" placeholder="Contacto" required></div>
+              <div class="mb-3"><input type="email" class="form-control" placeholder="Email" required></div>
+              <div class="mb-3"><input type="text" class="form-control" placeholder="Nome de Usuário" required></div>
+              <button class="btn text-bg-success add-btn">
+                <i class="bi bi-person-fill-add"></i>
+                Adicionar
+              </button>
+            </form>
+          </div>
+
+          <!-- Imprimir membros do patrimonio -->
+          <div class="print col-2 text-center">
+            <br>
+            <h3 class="text-justify">Imprimir lista de membros do Património</h3>
+            <form action="">
+              <button class="btn text-bg-secondary">
+                <i class="bi bi-file-earmark-arrow-down"></i>
+                Imprimir</button>
+            </form>
+          </div>
         </div>
-        <div class="managers container p-1">
+
+        <div class="managers container-fluid p-1">
           <div class="managers-title-add">
             <div class="manager-title text-uppercase">
               <p>Membros do Património</p>
-            </div>
-            <div class="manager-add">
-              <button class="btn btn-success text-white">
-                <i class="bi bi-person-plus"></i>
-                Adicionar membro
-              </button>
             </div>
           </div>
           <table class="table table-striped">
@@ -122,7 +143,7 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
                 <th>Id</th>
                 <th>Nome</th>
                 <th>Apelido</th>
-                <th>Contato</th>
+                <th>Contacto</th>
                 <th>Email</th>
                 <th>Nome de Usuário</th>
                 <th>Estado</th>
