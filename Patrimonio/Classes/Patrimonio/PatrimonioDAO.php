@@ -19,11 +19,11 @@ class PatrimonioDAO {
     }
 
     public function atualizar(PatrimonioDTO $Patrimonio) {
-        $sql = "UPDATE tbPatrimonio SET Nome = ?, Apelido = ?, Contacto = ?,Email=?, UsrLogin = ? Estado = ?, WHERE Id_Patrimonio = ?";
+        $sql = "UPDATE tbPatrimonio SET Nome = ?, Apelido = ?, Contacto = ?, Email = ?, UsrLogin = ?, Estado = ? WHERE Id_Patrimonio = ?";
         $stmt = $this->conexao->prepare($sql);
-        $stmt->execute([$Patrimonio->getNome(), $Patrimonio->getApelido(), $Patrimonio->getContacto(),$Patrimonio->getEmail(), $Patrimonio->getUsrLogin(), $Patrimonio->getEstado(), $Patrimonio->getId()]);
+        $stmt->execute([$Patrimonio->getNome(), $Patrimonio->getApelido(), $Patrimonio->getContacto(), $Patrimonio->getEmail(), $Patrimonio->getUsrLogin(), $Patrimonio->getEstado(), $Patrimonio->getId()]);
     }
-
+    
     public function remover($id) {
         $sql = "DELETE FROM tbPatrimonio WHERE Id_Patrimonio = ?";
         $stmt = $this->conexao->prepare($sql);

@@ -128,14 +128,12 @@ try {
                                 <input type="text" name="senha" value="<?= $Patrimonio["Senha"] ?>" class="form-control" placeholder="Senha" required>
                             </div>
                             <div class="mb-3">
-                                <?php
-                                if ($Patrimonio["Estado"] == "Ativo") {
-                                    echo "<input type='radio' name='estado' value='Ativo' checked> Ativo 
-                                    &nbsp;&nbsp;";
-                                    echo "<input type='radio' name='estado' value='Inativo' > Inativo";
+                                <?php if ($Patrimonio["Estado"]) {
+                                    echo "<input type='checkbox' id='estado' name='estado' checked/> &nbsp;";
+                                    echo "<label for='estado'>Ativo</label>";
                                 } else {
-                                    echo "<input type='radio' name='estado' value='Ativo' > Ativo &nbsp;&nbsp;";
-                                    echo "<input type='radio' name='estado' value='Inativo' checked> Inativo";
+                                    echo "<input type='checkbox' id='estado' name='estado'/> &nbsp;";
+                                    echo "<label for='estado'>Ativo</label>";
                                 }
                                 ?>
                             </div>

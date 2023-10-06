@@ -9,6 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nome = $_POST["nome"];
     $apelido = $_POST["apelido"];
     $contacto = $_POST["contacto"];
+    $email = $_POST["email"];
     $usrlogin = $_POST["login"];
     $estado = $_POST["estado"];
     $senha = $_POST["senha"];
@@ -22,8 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $PatrimonioDTO->setNome($nome);
         $PatrimonioDTO->setApelido($apelido);
         $PatrimonioDTO->setContacto($contacto);
+        $PatrimonioDTO->setEmail($email);
         $PatrimonioDTO->setUsrlogin($usrlogin);
-        $PatrimonioDTO->setEstado($estado);
+        isset($estado) ? $PatrimonioDTO->setEstado(1) : $PatrimonioDTO->setEstado(0);
         $PatrimonioDTO->setSenha($senha);
 
         $PatrimonioDAO->atualizar($PatrimonioDTO);
