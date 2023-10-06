@@ -186,7 +186,7 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
                     ?>
                   </td>
                   <td>
-                    <a href="./EditarPatrimonio.php/Id=<?= $patrimonio["Id_Patrimonio"] ?>">
+                    <a href="./EditarPatrimonio.php/patrimonioId=<?= $patrimonio["Id_Patrimonio"] ?>">
                       <button class="btn btn-danger">
                         <i class="bi bi-pencil-square"></i>
                       </button>
