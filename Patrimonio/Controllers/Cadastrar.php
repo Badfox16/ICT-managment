@@ -29,7 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $conexao = ConexaoBD::conectar();
         $PatrimonioDAO = new PatrimonioDAO($conexao);
         $PatrimonioDAO->inserir($PatrimonioDTO);
-        echo "Inserção bem-sucedida!";
+        header("Location: ../index.php");
+        exit();
     } catch (Exception $e) {
         echo "Erro ao inserir: " . $e->getMessage();
     }

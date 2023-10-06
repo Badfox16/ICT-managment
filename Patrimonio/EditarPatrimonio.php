@@ -6,46 +6,140 @@ require_once 'Classes/Patrimonio/PatrimonioDTO.php';
 
 $conexao = ConexaoBD::conectar();
 $PatrimonioDAO = new PatrimonioDAO($conexao);
-$id = filter_input(INPUT_GET, 'Id');
-echo "ID recebido: $id";
 
-try {
-    $Patrimonio = $PatrimonioDAO->buscarPorId($id);
-} catch (PDOException $e) {
-    echo "Erro no banco de dados: " . $e->getMessage();
-}
+$Patrimonios = $PatrimonioDAO->listarTodos();
+
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Patrimonio</title>
+    <title>Ver Patrimonios</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="./style/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style/style.css" />
 </head>
 
 <body>
+    <main class="main container-fluid d-flex">
+        <!-- Dashboard/ left content -->
+        <section class="left-dashboard col-2">
+            <div class="d-flex flex-column p-3 text-white bg-dark" style="width: 300px; height:100vh;">
+                <a href="/" class="d-flex flex-column align-items-center mb-3 text-white text-decoration-none">
+                    <span class="fs-4">Equipamentos</span>
+                    <span class="fs-4">ICT</span>
+                </a>
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active mt-4 mb-4" aria-current="page">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#home"></use>
+                            </svg>
+                            Gerentes
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white mb-4">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#speedometer2"></use>
+                            </svg>
+                            Equipamentos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white mb-4">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#table"></use>
+                            </svg>
+                            Relatórios
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white mb-4">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#grid"></use>
+                            </svg>
+                            Registros
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white">
 
-    <h2>Editar Patrimonio</h2>
-    <form method="post" action="Controllers/Editar.php">
-        <label for="id">ID do Patrimonio a Atualizar:</label>
-        <input type="hidden" name="id" id="id" value="<?= $Patrimonio['Id_Patrimonio']; ?>">
-        <br> <br>
-        <label for="nome">Nome:</label>
-        <input type="text" name="nome" id="nome" value="<?= $Patrimonio['Nome']; ?>" required>
-        <br><br>
-        <label for="apelido">Apelido:</label>
-        <input type="text" name="apelido" id="apelido" value="<?= $Patrimonio['Apelido']; ?>" required>
-        <br><br>
-        <label for="contacto">Contacto:</label>
-        <input type="text" name="contacto" id="contacto" value="<?= $Patrimonio['Contacto']; ?>" required>
-        <br><br>
-        <label for="login">Login:</label>
-        <input type="text" name="login" id="login" value="<?= $Patrimonio['UsrLogin']; ?>">
-        <br><br>
-        <input type="submit" value="Editar">
-    </form>
+                    </li>
+                </ul>
+                <hr>
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <strong>Logout</strong>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                        <li><a class="dropdown-item" href="#">Definições</a></li>
+                        <li><a class="dropdown-item" href="#">Ver Perfil</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Sair</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right content -->
+        <section class="right-content container-fluid bg-muted pt-4">
+            <div class="header d-flex justify-content-between text-muted">
+                <div class="system-name">
+                    <h3 class="text-uppercase mx-4 text-dark">Ict-patrimorio</h3>
+                </div>
+
+                <div class="manager-name">
+                    <h5 class="text-black">Seja bem vindo de volta</h5>
+                    <p class="text-end text-dark">Felizardo Carlos</p>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <div class="register-print d-flex">
+
+                    <!-- Editar membros do patrimonio -->
+                    <?php foreach ($Patrimonios as $patrimonio) : ?>
+                        <div class="register-form col-8">
+                            <h3 class="text-primary">Editar Membro do Património</h3>
+                            <form action="./Controllers/Cadastrar.php" method="POST" class="form-register">
+                                <div class="mb-3">
+                                    <input type="text" name="nome" value="<?= $patrimonio["Nome"] ?>" class="form-control" placeholder="Nome" required>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" name="apelido" value="<?= $patrimonio["Apelido"] ?>" class="form-control" placeholder="Apelido" required>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="email" name="email" value="<?= $patrimonio["Email"] ?>" class="form-control" placeholder="Email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="number" name="contacto" value="<?= $patrimonio["Contacto"] ?>" class="form-control" placeholder="Contacto" required>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" name="login" value="<?= $patrimonio["UsrLogin"] ?>" class="form-control" placeholder="Nome de Usuário" required>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" name="senha" value="<?= $patrimonio["Senha"] ?>" class="form-control" placeholder="Senha" required>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="hidden" name="estado" value="Ativo" class="form-control" placeholder="estado" required>
+                                </div>
+                                <button class="btn text-bg-success add-btn">
+                                    <i class="bi bi-person-fill-add"></i>
+                                    Adicionar
+                                </button>
+                            </form>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
 
 </html>

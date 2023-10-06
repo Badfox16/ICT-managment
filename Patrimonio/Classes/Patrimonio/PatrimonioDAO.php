@@ -13,7 +13,7 @@ class PatrimonioDAO {
     }
 
     public function inserir(PatrimonioDTO $Patrimonio) {
-        $sql = "INSERT INTO tbPatrimonio (Nome, Apelido, Contacto,Email, UsrLogin, Estado, Senha) VALUES (?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO tbPatrimonio (Nome, Apelido, Contacto,Email, UsrLogin, Estado, Senha) VALUES (?, ?, ?, ?,?, ?, ?)";
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute([$Patrimonio->getNome(), $Patrimonio->getApelido(), $Patrimonio->getContacto(), $Patrimonio->getEmail(),$Patrimonio->getUsrLogin(), $Patrimonio->getEstado(), $Patrimonio->getSenha()]);
     }
