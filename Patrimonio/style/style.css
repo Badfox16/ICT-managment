@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+body {
+  width: 100vw;
+  height: 100%;
+}
+.search-btn,
+.reset-btn {
+  width: 7rem;
+  height: 2rem;
+  color: white;
+  border: 0;
+  border-radius: 10px;
+}
+.managers-title-add {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.manager-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.manager-actived,
+.manager-disabled {
+  width: 4.5rem;
+  height: 1.5rem;
+  border: 0;
+  border-radius: 50px;
+}
+.manager-actived {
+  color: green;
+  background-color: rgba(0, 128, 0, 0.247);
+  outline: green 1px solid;
+}
+.manager-disabled {
+  color: orange;
+  background-color: rgba(255, 166, 0, 0.247);
+  outline: orange 1px solid;
+}
