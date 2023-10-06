@@ -17,8 +17,8 @@ $ICTs = $ICTDAO->listarTodos();
 <head>
     <title>Admin - ICT</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 
 <body>
@@ -28,13 +28,13 @@ $ICTs = $ICTDAO->listarTodos();
                 <svg class="bi me-2" width="40" height="32">
                     <use xlink:href="#bootstrap"></use>
                 </svg>
-                <span class="fs-4">Equipamentos do ICT</span>
+                <span class="fs-4">Equipamentos ICT</span>
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item flex ">
-                    <a href="#" class="nav-link active mt-4 mb-4" aria-current="page">
-                        Gerentes
+                    <a href="#" class="nav-link my-4 text-white">
+                        Patrimonio
                     </a>
                 </li>
                 <li>
@@ -53,8 +53,9 @@ $ICTs = $ICTDAO->listarTodos();
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white">
-
+                    <a href="#" class="nav-link active mb-4" aria-current="page">
+                        ICT
+                    </a>
                 </li>
             </ul>
             <hr>
@@ -85,23 +86,22 @@ $ICTs = $ICTDAO->listarTodos();
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="alert" role="alert">
-
-                            <td class="d-flex align-items-center">
-                                <div class="pl-3 email">
-                                    <span>markotto@email.com</span>
-                                </div>
-                            </td>
-                            <td>Markotto89</td>
-                            <td class="status"><span class="active">Ativo</span></td>
-                            <td>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span style="font-size: 2rem;" aria-hidden="true">
-                                        <i class="fa fa-edit"></i>
-                                    </span>
-                                </button>
-                            </td>
-                        </tr>
+                        <?php foreach ($ICTs as $ICT) : ?>
+                            <tr>
+                                <td>
+                                    <span><b><?= $ICT['Email']; ?></b></span>
+                                </td>
+                                <td><?= $ICT['UsrLogin']; ?></td>
+                                <td class="status"><span class="active"><?= $ICT['Estado']; ?></span></td>
+                                <td>
+                                    <a href="./EditarICT.php?Id=<?= $ICT['Id_ICT']; ?>">
+                                        <span style="font-size: 1.5rem; color:#343A40;" aria-hidden="true">
+                                            <i class="fa fa-edit"></i>
+                                        </span>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
