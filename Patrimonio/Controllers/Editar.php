@@ -29,8 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $PatrimonioDTO->setSenha($senha);
 
         $PatrimonioDAO->atualizar($PatrimonioDTO);
-        echo "Dados do Patrimonio atualizados com sucesso!";
+        header("Location: ../index.php");
+        exit();
     } catch (Exception $e) {
         echo "Erro ao atualizar dados do Patrimonio: " . $e->getMessage();
+        exit();
     }
 }
