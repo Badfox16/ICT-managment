@@ -8,7 +8,6 @@ $conexao = ConexaoBD::conectar();
 $PatrimonioDAO = new PatrimonioDAO($conexao);
 
 $Patrimonios = $PatrimonioDAO->listarTodos();
-
 ?>
 
 <!DOCTYPE html>
@@ -186,7 +185,7 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
                     ?>
                   </td>
                   <td>
-                    <a href="./EditarPatrimonio.php/patrimonioId=<?= $patrimonio["Id_Patrimonio"] ?>">
+                    <a href="./EditarPatrimonio.php?id=<?= $patrimonio["Id_Patrimonio"] ?>">
                       <button class="btn btn-danger">
                         <i class="bi bi-pencil-square"></i>
                       </button>
