@@ -19,6 +19,8 @@
     <br><br>
     <input type="text" name="login" placeholder="login" required>
     <br><br>
+    <input type="text" name="estado" value="Ativo" hidden required>
+    <br><br>
     <input type="text" name="senha" placeholder="senha" required>
     <br><br>
     <input type="submit" value="Cadastrar">

@@ -8,6 +8,7 @@ class PatrimonioDTO {
     private $apelido;
     private $contacto;
     private $usrLogin;
+    private $estado;
     private $senha;
  
 
@@ -58,6 +59,22 @@ class PatrimonioDTO {
 	
 	public function setSenha($senha): self {
 		$this->senha = $senha;
+		return $this;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getEstado() {
+		return $this->estado;
+	}
+	
+	/**
+	 * @param mixed $estado 
+	 * @return self
+	 */
+	public function setEstado($estado): self {
+		$this->estado = $estado;
 		return $this;
 	}
 }

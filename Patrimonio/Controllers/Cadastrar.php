@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $apelido = $_POST["apelido"];
     $contacto = $_POST["contacto"];
     $usrlogin = $_POST["login"];
+    $estado = $_POST["estado"];
     $senha = $_POST["senha"];
 
     $PatrimonioDTO = new PatrimonioDTO();
@@ -17,7 +18,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $PatrimonioDTO->setApelido($apelido);
     $PatrimonioDTO->setContacto($contacto);
     $PatrimonioDTO->setUsrlogin($usrlogin);
+    $PatrimonioDTO->setEstado($estado);
     $PatrimonioDTO->setSenha($senha);
+
 
     try {
         $conexao = ConexaoBD::conectar();
