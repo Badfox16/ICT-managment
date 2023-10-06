@@ -6,11 +6,15 @@ require_once 'Classes/Patrimonio/PatrimonioDTO.php';
 
 $conexao = ConexaoBD::conectar();
 $PatrimonioDAO = new PatrimonioDAO($conexao);
+$id = filter_input(INPUT_GET, 'Id');
+echo "ID recebido: $id";
 
-$Patrimonios = $PatrimonioDAO->listarTodos();
-
+try {
+    $Patrimonio = $PatrimonioDAO->buscarPorId($id);
+} catch (PDOException $e) {
+    echo "Erro no banco de dados: " . $e->getMessage();
+}
 ?>
-
 <!DOCTYPE html>
 <html>
 
