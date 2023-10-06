@@ -6,8 +6,8 @@ require_once 'Classes/Patrimonio/PatrimonioDTO.php';
 
 $conexao = ConexaoBD::conectar();
 $PatrimonioDAO = new PatrimonioDAO($conexao);
-$id = filter_input(INPUT_GET, 'Id');
-echo "ID recebido: $id";
+$id = filter_input(INPUT_GET, 'PatrimonioId');
+echo "ID recebido $id";
 
 try {
     $Patrimonio = $PatrimonioDAO->buscarPorId($id);
@@ -107,39 +107,37 @@ try {
             <div class="main-content">
                 <div class="register-print d-flex">
 
-                    <!-- Editar membros do patrimonio -->
-                    <?php foreach ($Patrimonios as $patrimonio) : ?>
-                        <div class="register-form col-8">
-                            <h3 class="text-primary">Editar Membro do Património</h3>
-                            <form action="./Controllers/Cadastrar.php" method="POST" class="form-register">
-                                <div class="mb-3">
-                                    <input type="text" name="nome" value="<?= $patrimonio["Nome"] ?>" class="form-control" placeholder="Nome" required>
-                                </div>
-                                <div class="mb-3">
-                                    <input type="text" name="apelido" value="<?= $patrimonio["Apelido"] ?>" class="form-control" placeholder="Apelido" required>
-                                </div>
-                                <div class="mb-3">
-                                    <input type="email" name="email" value="<?= $patrimonio["Email"] ?>" class="form-control" placeholder="Email" required>
-                                </div>
-                                <div class="mb-3">
-                                    <input type="number" name="contacto" value="<?= $patrimonio["Contacto"] ?>" class="form-control" placeholder="Contacto" required>
-                                </div>
-                                <div class="mb-3">
-                                    <input type="text" name="login" value="<?= $patrimonio["UsrLogin"] ?>" class="form-control" placeholder="Nome de Usuário" required>
-                                </div>
-                                <div class="mb-3">
-                                    <input type="text" name="senha" value="<?= $patrimonio["Senha"] ?>" class="form-control" placeholder="Senha" required>
-                                </div>
-                                <div class="mb-3">
-                                    <input type="hidden" name="estado" value="Ativo" class="form-control" placeholder="estado" required>
-                                </div>
-                                <button class="btn text-bg-success add-btn">
-                                    <i class="bi bi-person-fill-add"></i>
-                                    Adicionar
-                                </button>
-                            </form>
-                        </div>
-                    <?php endforeach; ?>
+                    <!-- Editar membros do Patrimonio -->
+                    <div class="register-form col-8">
+                        <h3 class="text-primary">Editar Membro do Património</h3>
+                        <form action="./Controllers/Cadastrar.php" method="POST" class="form-register">
+                            <div class="mb-3">
+                                <input type="text" name="nome" value="<?= $Patrimonio["Nome"] ?>" class="form-control" placeholder="Nome" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" name="apelido" value="<?= $Patrimonio["Apelido"] ?>" class="form-control" placeholder="Apelido" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" name="email" value="<?= $Patrimonio["Email"] ?>" class="form-control" placeholder="Email" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="number" name="contacto" value="<?= $Patrimonio["Contacto"] ?>" class="form-control" placeholder="Contacto" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" name="login" value="<?= $Patrimonio["UsrLogin"] ?>" class="form-control" placeholder="Nome de Usuário" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" name="senha" value="<?= $Patrimonio["Senha"] ?>" class="form-control" placeholder="Senha" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="hidden" name="estado" value="Ativo" class="form-control" placeholder="estado" required>
+                            </div>
+                            <button class="btn text-bg-success add-btn">
+                                <i class="bi bi-person-fill-add"></i>
+                                Adicionar
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
