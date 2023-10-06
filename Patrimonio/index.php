@@ -188,13 +188,14 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
             <tbody>
               <?php foreach ($Patrimonios as $usuarios) : ?>
                 <tr>
-                  <td><?= $usuarios["nome"] ?></td>
-                  <td><?= $usuarios["id"] ?></td>
-                  <td>adrianojeremias1@gmail.com</td>
-                  <td>855271154</td>
+                  <td><?= $usuarios["Id_Patrimonio"] ?></td>
+                  <td><?= $usuarios["Nome"] ?></td>
+                  <td><?= $usuarios["Apelido"] ?></td>
+                  <td><?= $usuarios["Contacto"] ?></td>
+                  <td><?= $usuarios["UsrLogin"] ?></td>
                   <td>
                     <?php
-                    if ($usuarios["isAdmin"]) {
+                    if ($usuarios["Estado"] == "Ativo") {
                       echo "<button disabled class='manager-actived'>Ativo</button>";
                     } else {
                       echo "<button disabled class='manager-disabled'>Inativo</button>";
