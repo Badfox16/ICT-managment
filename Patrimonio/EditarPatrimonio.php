@@ -6,9 +6,7 @@ require_once 'Classes/Patrimonio/PatrimonioDTO.php';
 
 $conexao = ConexaoBD::conectar();
 $PatrimonioDAO = new PatrimonioDAO($conexao);
-$id = filter_input(INPUT_GET, 'PatrimonioId');
-echo "ID recebido $id";
-
+$id = $_GET["id"];
 try {
     $Patrimonio = $PatrimonioDAO->buscarPorId($id);
 } catch (PDOException $e) {
