@@ -177,12 +177,12 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>Nome</th>
                 <th>Id</th>
-                <th>Email</th>
+                <th>Nome</th>
+                <th>Apelido</th>
                 <th>Telefone</th>
+                <th>Nome de Usuário</th>
                 <th>Estado</th>
-                <th>Perfil</th>
               </tr>
             </thead>
             <tbody>
