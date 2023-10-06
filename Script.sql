@@ -7,6 +7,7 @@ CREATE TABLE tbPatrimonio (
     Nome VARCHAR (50),
     Apelido VARCHAR (50),
     Contacto VARCHAR (13),
+    Email VARCHAR(120),
     UsrLogin VARCHAR (20),
     Estado VARCHAR (20),
     Senha VARCHAR (20)
@@ -15,6 +16,7 @@ CREATE TABLE tbPatrimonio (
 CREATE TABLE tbICT(
     Id_ICT INT AUTO_INCREMENT PRIMARY KEY,
     UsrLogin VARCHAR (20),
+    Email VARCHAR (120),
     Estado VARCHAR (20),
     Senha VARCHAR (20)
 );

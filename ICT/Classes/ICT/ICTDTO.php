@@ -5,6 +5,9 @@ class ICTDTO {
 
     private $id;
     private $usrLogin;
+
+    private $email;
+    private $estado;
     private $senha;
  
 
@@ -31,6 +34,38 @@ class ICTDTO {
 	
 	public function setSenha($senha): self {
 		$this->senha = $senha;
+		return $this;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getEmail() {
+		return $this->email;
+	}
+	
+	/**
+	 * @param mixed $email 
+	 * @return self
+	 */
+	public function setEmail($email): self {
+		$this->email = $email;
+		return $this;
+	}
+	
+	/**
+	 * @return mixed
+	 */
+	public function getEstado() {
+		return $this->estado;
+	}
+	
+	/**
+	 * @param mixed $estado 
+	 * @return self
+	 */
+	public function setEstado($estado): self {
+		$this->estado = $estado;
 		return $this;
 	}
 }
