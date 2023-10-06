@@ -108,7 +108,7 @@ try {
                     <!-- Editar membros do Patrimonio -->
                     <div class="register-form col-8">
                         <h3 class="text-primary">Editar Membro do Património</h3>
-                        <form action="./Controllers/Cadastrar.php" method="POST" class="form-register">
+                        <form action="./Controllers/Editar.php" method="POST" class="form-register">
                             <div class="mb-3">
                                 <input type="text" name="nome" value="<?= $Patrimonio["Nome"] ?>" class="form-control" placeholder="Nome" required>
                             </div>
@@ -128,12 +128,22 @@ try {
                                 <input type="text" name="senha" value="<?= $Patrimonio["Senha"] ?>" class="form-control" placeholder="Senha" required>
                             </div>
                             <div class="mb-3">
-                                <input type="hidden" name="estado" value="Ativo" class="form-control" placeholder="estado" required>
+                                <?php
+                                if ($Patrimonio["Estado"] == "Ativo") {
+                                    echo "<input type='radio' name='estado' value='Ativo' checked> Ativo 
+                                    &nbsp;&nbsp;";
+                                    echo "<input type='radio' name='estado' value='Inativo' > Inativo";
+                                } else {
+                                    echo "<input type='radio' name='estado' value='Ativo' > Ativo &nbsp;&nbsp;";
+                                    echo "<input type='radio' name='estado' value='Inativo' checked> Inativo";
+                                }
+                                ?>
                             </div>
-                            <button class="btn text-bg-success add-btn">
-                                <i class="bi bi-person-fill-add"></i>
-                                Adicionar
+                            <button class="btn text-bg-primary add-btn">
+                                <i class="bi bi-person-fill-up"></i>
+                                Atualizar
                             </button>
+                            <input type="hidden" name="id" value="<?= $Patrimonio["Id_Patrimonio"] ?>">
                         </form>
                     </div>
                 </div>
