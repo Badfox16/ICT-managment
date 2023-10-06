@@ -24,11 +24,9 @@ $ICTs = $ICTDAO->listarTodos();
 <body>
     <section class="d-flex">
         <div class="d-flex flex-column p-3 text-white bg-dark" style="width: 300px; height:100vh;">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                <svg class="bi me-2" width="40" height="32">
-                    <use xlink:href="#bootstrap"></use>
-                </svg>
-                <span class="fs-4">Equipamentos ICT</span>
+            <a href="/" class="d-flex flex-column align-items-center mb-3 text-white text-decoration-none">
+                <span class="fs-4">Equipamentos</span>
+                <span class="fs-4">ICT</span>
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
@@ -74,8 +72,8 @@ $ICTs = $ICTDAO->listarTodos();
             </div>
         </div>
         <div class="card-body">
-            <h2 class="pd-4 m-5">Gerentes do ICTs</h2>
-            <div class="table-responsive mt-auto">
+            <h2 class="pd-4 m-5">Administradores do ICT</h2>
+            <div class="">
                 <table class="table table-responsive-lg table-hover table-borderless mb-0">
                     <thead>
                         <tr>
@@ -87,7 +85,7 @@ $ICTs = $ICTDAO->listarTodos();
                     </thead>
                     <tbody>
                         <?php foreach ($ICTs as $ICT) : ?>
-                            <tr>
+                            <tr style="height: 16px;">
                                 <td>
                                     <span><b><?= $ICT['Email']; ?></b></span>
                                 </td>
