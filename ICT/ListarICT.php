@@ -17,8 +17,8 @@ $ICTs = $ICTDAO->listarTodos();
 <head>
     <title>Admin - ICT</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -75,37 +75,33 @@ $ICTs = $ICTDAO->listarTodos();
         <div class="card-body">
             <h2 class="pd-4 m-5">Gerentes do ICTs</h2>
             <div class="table-responsive mt-auto">
-                <table class="table table-striped-columns table-hover table-borderless mb-0">
+                <table class="table table-responsive-lg table-hover table-borderless mb-0">
                     <thead>
                         <tr>
-                            <th scope="col m-0">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked />
-                                </div>
-                            </th>
-                            <th scope="col">Id</th>
-                            <th scope="col">Login</th>
-                            <th scope="col">Senha</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Ações</th>
+                            <th>Email</th>
+                            <th>Nome de Usuário</th>
+                            <th>Estado</th>
+                            <th>Editar</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($ICTs as $ICT) : ?> <tr>
-                                <th scope="row">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="<?= $Patrimonio['Id_Patrimonio']; ?>" />
-                                    </div>
-                                </th>
-                                <td><?= $ICT['Id_ICT']; ?></td>
-                                <td><?= $ICT['UsrLogin']; ?></td>
-                                <td><?= $ICT['Senha']; ?></td>
-                                <td>Ativo</td>
-                                <td>
-                                    <a href="EditarICT.php?Id=<?= $ICT['Id_ICT']; ?>">[Editar]</a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
+                        <tr class="alert" role="alert">
+
+                            <td class="d-flex align-items-center">
+                                <div class="pl-3 email">
+                                    <span>markotto@email.com</span>
+                                </div>
+                            </td>
+                            <td>Markotto89</td>
+                            <td class="status"><span class="active">Ativo</span></td>
+                            <td>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span style="font-size: 2rem;" aria-hidden="true">
+                                        <i class="fa fa-edit"></i>
+                                    </span>
+                                </button>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -113,7 +109,10 @@ $ICTs = $ICTDAO->listarTodos();
     </section>
 
     <h2></h2>
-
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
