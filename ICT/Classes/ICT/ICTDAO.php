@@ -43,4 +43,13 @@ class ICTDAO {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function login($email, $senha) {
+        $sql = "SELECT * FROM tbICT WHERE Email = ? AND Senha = ?";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->execute([$email, $senha]);
+        $ICT = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $ICT ? $ICT : null;
+    }
 }

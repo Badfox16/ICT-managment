@@ -22,10 +22,10 @@
                                 <h4 id="titulo">Bem vindo</h4>
                                 <span >Faça login para acessar ao sistema</span>
                             </div>
-							<form method="POST" class="my-login-validation" novalidate="">
+							<form action="./Controllers/Login.php" method="post" class="my-login-validation" novalidate="">
 								<div class="form-group my-4 py-3">
 									<label for="email">Endereço de e-mail</label>
-									<input id="email" type="email" class="form-control" name="email" value="" required autofocus>
+									<input id="email" type="text" class="form-control" name="email" value="" required autofocus>
 									<div class="invalid-feedback">
 										Email invalido
 									</div>
@@ -37,7 +37,7 @@
 											Esqueceu a sua senha?
 										</a>
 									</label>
-									<input id="password" type="password" class="form-control" name="password" required data-eye>
+									<input id="password" type="password" class="form-control" name="senha" required data-eye>
 								    <div class="invalid-feedback">
 								    	A senha é obrigatória
 							    	</div>

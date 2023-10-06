@@ -21,6 +21,9 @@ CREATE TABLE tbICT(
     Senha VARCHAR (20)
 );
 
+INSERT INTO tbICT(UsrLogin, Email, Estado, Senha)
+VALUES("admin","admin","Ativo","admin");
+
 CREATE TABLE tbEdificio (
     Id_Edificio INT AUTO_INCREMENT PRIMARY KEY,
     NomeEdificio VARCHAR(20)
