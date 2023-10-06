@@ -7,6 +7,7 @@ class PatrimonioDTO {
     private $nome;
     private $apelido;
     private $contacto;
+    private $email;
     private $usrLogin;
     private $estado;
     private $senha;
@@ -43,6 +44,14 @@ class PatrimonioDTO {
 
     public function getContacto(){
         return $this->contacto;
+    }
+    
+    public function getEmail(){
+        return $this->email;
+    }
+
+    public function setEmail($email){
+        $this->email = $email;
     }
 
     public function setUsrLogin($usrLogin){
