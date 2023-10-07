@@ -3,6 +3,7 @@
 require_once '../Classes/Database/ConexaoBD.php';
 require_once '../Classes/Patrimonio/PatrimonioDAO.php';
 require_once '../Classes/Patrimonio/PatrimonioDTO.php';
+require_once '../Classes/Logs/LogsDTO.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $id = $_POST["id"];
@@ -28,7 +29,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         isset($estado) ? $PatrimonioDTO->setEstado(1) : $PatrimonioDTO->setEstado(0);
         $PatrimonioDTO->setSenha($senha);
 
-        $PatrimonioDAO->atualizar($PatrimonioDTO);
+        // Logs
+        $LogsDTO = new LogsDTO();
+        $LogsDTO->setUsuario("Usuario");
+        $LogsDTO->setAtividade("Atualizou $nome no patrimonio");
+        $LogsDTO->setHora(date("Y-m-d H:i:s"));
+
+        $PatrimonioDAO->atualizar($PatrimonioDTO, $LogsDTO);
         header("Location: ../index.php");
         exit();
     } catch (Exception $e) {
