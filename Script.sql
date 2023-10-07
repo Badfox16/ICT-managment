@@ -130,3 +130,19 @@ CREATE TABLE tbSoftware (
     DiaExpiracao DATE,
     FOREIGN KEY(Id_Computador) REFERENCES tbComputador(Id_Computador)
 );
+
+CREATE TABLE tbManutencao (
+    Id_Manutencao INT AUTO_INCREMENT PRIMARY KEY,
+    Titulo VARCHAR(255),
+    Descricao TEXT,
+    Id_Computador INT,
+    Id_Impressora INT,
+    Id_Switch INT,
+    Id_AntenasPA INT,
+    Id_Projetor INT,
+    FOREIGN KEY (Id_Computador) REFERENCES tbComputador(Id_Computador),
+    FOREIGN KEY (Id_Impressora) REFERENCES tbImpressora(Id_Impressora),
+    FOREIGN KEY (Id_Switch) REFERENCES tbSwitch(Id_Switch),
+    FOREIGN KEY (Id_AntenasPA) REFERENCES tbAntenasPA(Id_AntenasPA),
+    FOREIGN KEY (Id_Projetor) REFERENCES tbProjetor(Id_Projetor)
+);
