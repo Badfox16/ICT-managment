@@ -146,3 +146,10 @@ CREATE TABLE tbManutencao (
     FOREIGN KEY (Id_AntenasPA) REFERENCES tbAntenasPA(Id_AntenasPA),
     FOREIGN KEY (Id_Projetor) REFERENCES tbProjetor(Id_Projetor)
 );
+
+CREATE TABLE tbLogs (
+    Id_logs INT AUTO_INCREMENT PRIMARY KEY,
+    Usuario VARCHAR(255) NOT NULL,
+    Atividade VARCHAR(255) NOT NULL,
+    Hora DATE DEFAULT CURRENT_TIMESTAMP
+);
