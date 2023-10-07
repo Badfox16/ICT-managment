@@ -1,26 +1,26 @@
 <?php
 
 require_once '../Classes/Database/ConexaoBD.php';
-require_once '../Classes/ICT/ICTDAO.php';
-require_once '../Classes/ICT/ICTDTO.php';
+require_once '../Classes/Manutencao/ManutencaoDAO.php';
+require_once '../Classes/Manutencao/ManutencaoDTO.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $id = $_POST["id"];
-    $usrlogin = $_POST["login"];
-    $senha = $_POST["senha"];
+    $titulo = $_POST["titulo"];
+    $descricao = $_POST["descricao"];
 
     $conexao = ConexaoBD::conectar();
-    $ICTDAO = new ICTDAO($conexao);
+    $ManutencaoDAO = new ManutencaoDAO($conexao);
 
     try {
-        $ICTDTO = new ICTDTO();
-        $ICTDTO->setId($id);
-        $ICTDTO->setUsrlogin($usrlogin);
-        $ICTDTO->setSenha($senha);
+        $ManutencaoDTO = new ManutencaoDTO();
+        $ManutencaoDTO->setIdManutencao($id);
+        $ManutencaoDTO->setTitulo($titulo);
+        $ManutencaoDTO->setDescricao($descricao);
 
-        $ICTDAO->atualizar($ICTDTO);
-        echo "Dados do ICT atualizados com sucesso!";
+        $ManutencaoDAO->atualizar($ManutencaoDTO);
+        echo "Dados do Manutencao atualizados com sucesso!";
     } catch (Exception $e) {
-        echo "Erro ao atualizar dados do ICT: " . $e->getMessage();
+        echo "Erro ao atualizar dados do Manutencao: " . $e->getMessage();
     }
 }

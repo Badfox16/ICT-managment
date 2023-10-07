@@ -1,44 +1,79 @@
 <?php
 
-require_once 'CTDITO.php'; 
-require_once __DIR__ . '/../Database/ConexaoBD.php';  
+require_once 'ManutencaoDTO.php';
+require_once __DIR__ . '/../Database/ConexaoBD.php';
 
 
-class ICTDAO {
+class ManutencaoDAO
+{
 
     private $conexao;
 
-    public function __construct($conexao) {
+    public function __construct($conexao)
+    {
         $this->conexao = $conexao;
     }
 
-    public function inserir(ICTDTO $ICT) {
-        $sql = "INSERT INTO tbICT (UsrLogin, Senha) VALUES (?, ?)";
+    public function inserirComputador(ManutencaoDTO $Manutencao)
+    {
+        $sql = "INSERT INTO tbManutencao (Titulo, Descricao, Id_Computador) VALUES (?, ?, ?)";
         $stmt = $this->conexao->prepare($sql);
-        $stmt->execute([$ICT->getUsrLogin(), $ICT->getSenha()]);
+        $stmt->execute([$Manutencao->getTitulo(), $Manutencao->getDescricao(), $Manutencao->getIdComputador()]);
     }
 
-    public function atualizar(ICTDTO $ICT) {
-        $sql = "UPDATE tbICT SET UsrLogin = ?, Senha = ? WHERE Id_ICT = ?";
+    public function inserirImpressora(ManutencaoDTO $Manutencao)
+    {
+        $sql = "INSERT INTO tbManutencao (Titulo, Descricao, Id_Impressora) VALUES (?, ?, ?)";
         $stmt = $this->conexao->prepare($sql);
-        $stmt->execute([$ICT->getUsrLogin(), $ICT->getSenha(), $ICT->getId()]);
+        $stmt->execute([$Manutencao->getTitulo(), $Manutencao->getDescricao(), $Manutencao->getIdImpressora()]);
     }
 
-    public function remover($id) {
-        $sql = "DELETE FROM tbICT WHERE Id_ICT = ?";
+    public function inserirSwitch(ManutencaoDTO $Manutencao)
+    {
+        $sql = "INSERT INTO tbManutencao (Titulo, Descricao, Id_Switch) VALUES (?, ?, ?)";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->execute([$Manutencao->getTitulo(), $Manutencao->getDescricao(), $Manutencao->getIdSwitch()]);
+    }
+
+    public function inserirAntenasPA(ManutencaoDTO $Manutencao)
+    {
+        $sql = "INSERT INTO tbManutencao (Titulo, Descricao, Id_AntenasPA) VALUES (?, ?, ?)";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->execute([$Manutencao->getTitulo(), $Manutencao->getDescricao(), $Manutencao->getIdAntenasPA()]);
+    }
+
+    public function inserirProjetor(ManutencaoDTO $Manutencao)
+    {
+        $sql = "INSERT INTO tbManutencao (Titulo, Descricao, Id_Projetor) VALUES (?, ?, ?)";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->execute([$Manutencao->getTitulo(), $Manutencao->getDescricao(), $Manutencao->getIdProjetor()]);
+    }
+
+    public function atualizar(ManutencaoDTO $Manutencao)
+    {
+        $sql = "UPDATE tbManutencao SET Titulo = ?, Descricao = ? WHERE Id_Manutencao = ?";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->execute([$Manutencao->getTitulo(), $Manutencao->getDescricao(), $Manutencao->getIdManutencao()]);
+    }
+
+    public function remover($id)
+    {
+        $sql = "DELETE FROM tbManutencao WHERE Id_Manutencao = ?";
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute([$id]);
     }
 
-    public function buscarPorId($id) {
-        $sql = "SELECT * FROM tbICT WHERE Id_ICT = ?";
+    public function buscarPorId($id)
+    {
+        $sql = "SELECT * FROM tbManutencao WHERE Id_Manutencao = ?";
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function listarTodos() {
-        $sql = "SELECT * FROM tbICT";
+    public function listarTodos()
+    {
+        $sql = "SELECT * FROM tbManutencao";
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
