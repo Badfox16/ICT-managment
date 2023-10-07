@@ -3,6 +3,7 @@
 require_once '../Classes/Database/ConexaoBD.php';
 require_once '../Classes/Patrimonio/PatrimonioDAO.php';
 require_once '../Classes/Patrimonio/PatrimonioDTO.php';
+require_once '../Classes/Logs/LogsDTO.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -13,6 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $usrlogin = $_POST["login"];
     $senha = $_POST["senha"];
 
+    // Logs
+    $usuario = $_POST["usuario"];
 
     $PatrimonioDTO = new PatrimonioDTO();
     $PatrimonioDTO->setNome($nome);
@@ -23,11 +26,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $PatrimonioDTO->setEstado(1);
     $PatrimonioDTO->setSenha($senha);
 
+    $LogsDTO = new LogsDTO();
+    $LogsDTO->setUsuario("Usuario");
+    $LogsDTO->setAtividade("Cadastrou um novo patrimonio");
+    $LogsDTO->setHora(date("Y-m-d H:i:s"));
 
     try {
         $conexao = ConexaoBD::conectar();
         $PatrimonioDAO = new PatrimonioDAO($conexao);
-        $PatrimonioDAO->inserir($PatrimonioDTO);
+        $PatrimonioDAO->inserir($PatrimonioDTO, $LogsDTO);
         header("Location: ../index.php");
         exit();
     } catch (Exception $e) {
