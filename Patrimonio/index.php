@@ -25,7 +25,7 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
   <main class="main container-fluid d-flex">
     <!-- Dashboard/ left content -->
     <section class="left-dashboard col-2">
-      <div class="d-flex flex-column p-3 text-white bg-dark" style="width: 300px; height:100vh;">
+      <div class="d-flex flex-column p-3 text-white bg-dark fixed-top" style="width: 300px; height:100vh;">
         <a href="/" class="d-flex flex-column align-items-center mb-3 text-white text-decoration-none">
           <span class="fs-4">Equipamentos</span>
           <span class="fs-4">ICT</span>
@@ -186,7 +186,7 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
                   </td>
                   <td>
                     <a href="./EditarPatrimonio.php?id=<?= $patrimonio["Id_Patrimonio"] ?>">
-                      <button class="btn btn-danger">
+                      <button class="btn btn-secondary">
                         <i class="bi bi-pencil-square"></i>
                       </button>
                     </a>
