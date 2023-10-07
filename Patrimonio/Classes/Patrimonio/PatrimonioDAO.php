@@ -22,15 +22,21 @@ class PatrimonioDAO
         $stmt->execute([$Patrimonio->getNome(), $Patrimonio->getApelido(), $Patrimonio->getContacto(), $Patrimonio->getEmail(), $Patrimonio->getUsrLogin(), $Patrimonio->getEstado(), $Patrimonio->getSenha()]);
 
         //Logs
-        $sql = "INSERT INTO tbLog (Usuario, Hora, Atividade) VALUES (?, ?, ?)";
-        $stmt->execute([$Logs->getUsuario(), $Logs->getHora(), $Logs->getAtividade()]);
+        $sql = "INSERT INTO tbLogs (Usuario, Hora, Atividade) VALUES (?, ?, ?)";
+        $stmtLogs = $this->conexao->prepare($sql);
+        $stmtLogs->execute([$Logs->getUsuario(), $Logs->getHora(), $Logs->getAtividade()]);
     }
 
-    public function atualizar(PatrimonioDTO $Patrimonio)
+    public function atualizar(PatrimonioDTO $Patrimonio, LogsDTO $Logs)
     {
         $sql = "UPDATE tbPatrimonio SET Nome = ?, Apelido = ?, Contacto = ?, Email = ?, UsrLogin = ?, Estado = ? WHERE Id_Patrimonio = ?";
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute([$Patrimonio->getNome(), $Patrimonio->getApelido(), $Patrimonio->getContacto(), $Patrimonio->getEmail(), $Patrimonio->getUsrLogin(), $Patrimonio->getEstado(), $Patrimonio->getId()]);
+
+        //Logs
+        $sql = "INSERT INTO tbLogs (Usuario, Hora, Atividade) VALUES (?, ?, ?)";
+        $stmtLogs = $this->conexao->prepare($sql);
+        $stmtLogs->execute([$Logs->getUsuario(), $Logs->getHora(), $Logs->getAtividade()]);
     }
 
     public function remover($id)

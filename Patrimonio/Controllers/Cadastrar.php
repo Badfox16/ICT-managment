@@ -14,9 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $usrlogin = $_POST["login"];
     $senha = $_POST["senha"];
 
-    // Logs
-    $usuario = $_POST["usuario"];
-
     $PatrimonioDTO = new PatrimonioDTO();
     $PatrimonioDTO->setNome($nome);
     $PatrimonioDTO->setApelido($apelido);
@@ -26,9 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $PatrimonioDTO->setEstado(1);
     $PatrimonioDTO->setSenha($senha);
 
+    // Logs
     $LogsDTO = new LogsDTO();
     $LogsDTO->setUsuario("Usuario");
-    $LogsDTO->setAtividade("Cadastrou um novo patrimonio");
+    $LogsDTO->setAtividade("Cadastrou $nome no patrimonio");
     $LogsDTO->setHora(date("Y-m-d H:i:s"));
 
     try {
