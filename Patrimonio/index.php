@@ -1,13 +1,18 @@
 <?php
+session_start();
+if (isset($_SESSION['patrimonio_id']) && isset($_SESSION['patrimonio_email']) && isset($_SESSION['patrimonio_login'])) {
+  require_once 'Classes/Database/ConexaoBD.php';
+  require_once 'Classes/Patrimonio/PatrimonioDAO.php';
+  require_once 'Classes/Patrimonio/PatrimonioDTO.php';
 
-require_once 'Classes/Database/ConexaoBD.php';
-require_once 'Classes/Patrimonio/PatrimonioDAO.php';
-require_once 'Classes/Patrimonio/PatrimonioDTO.php';
+  $conexao = ConexaoBD::conectar();
+  $PatrimonioDAO = new PatrimonioDAO($conexao);
 
-$conexao = ConexaoBD::conectar();
-$PatrimonioDAO = new PatrimonioDAO($conexao);
-
-$Patrimonios = $PatrimonioDAO->listarTodos();
+  $Patrimonios = $PatrimonioDAO->listarTodos();
+} else {
+  header("Location: ./Login.php");
+  exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -71,17 +76,9 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
         </ul>
         <hr>
         <div class="dropdown">
-          <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+          <a href="./Controllers/Logout.php" class="d-flex align-items-center text-white text-decoration-none aria-expanded="false">
             <strong>Logout</strong>
           </a>
-          <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-            <li><a class="dropdown-item" href="#">Definições</a></li>
-            <li><a class="dropdown-item" href="#">Ver Perfil</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="#">Sair</a></li>
-          </ul>
         </div>
       </div>
     </section>
@@ -95,7 +92,7 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
 
         <div class="manager-name">
           <h5 class="text-black">Seja bem vindo de volta</h5>
-          <p class="text-end text-dark">Felizardo Carlos</p>
+          <p class="text-end text-dark"><?= $_SESSION['patrimonio_login'] ?></p>
         </div>
       </div>
 
@@ -199,6 +196,7 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
       </div>
     </section>
   </main>
+
 </body>
 
 </html>

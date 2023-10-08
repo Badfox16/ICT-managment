@@ -2,6 +2,7 @@
 require_once '../Classes/Database/ConexaoBD.php';
 require_once '../Classes/Patrimonio/PatrimonioDAO.php';
 require_once '../Classes/Patrimonio/PatrimonioDTO.php';
+require_once '../Classes/Logs/LogsDTO.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $_POST["email"];
@@ -19,6 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $Patrimonio = $PatrimonioDAO->login($email, $senha, $LogsDTO);
 
     if ($Patrimonio) {
+        session_start();
+
+        $_SESSION['patrimonio_id'] = $Patrimonio['Id_Patrimonio'];
+        $_SESSION['patrimonio_email'] = $Patrimonio['Email'];
+        $_SESSION['patrimonio_login'] = $Patrimonio['UsrLogin'];
+
         header("Location: ../index.php");
         exit();
     } else {
