@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  width: 100vw;
+  height: 100%;
+}
+.left-dashboard {
+  position: relative;
+  left: -0.8rem;
+}
+
+.form-register {
+  display: grid;
+  grid-template-columns: 40% 50%;
+  column-gap: 2rem;
+}
+.form-register input {
+  padding: 1.3%;
+}
+.print {
+  float: right;
+}
