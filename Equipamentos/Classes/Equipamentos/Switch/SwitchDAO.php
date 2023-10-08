@@ -4,7 +4,7 @@ require_once 'SwitchDTO.php';
 require_once __DIR__ . '/../../Database/ConexaoBD.php';
 
 
-class PatrimonioDAO
+class SwitchDAO
 {
 
     private $conexao;
