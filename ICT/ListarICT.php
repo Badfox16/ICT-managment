@@ -1,13 +1,22 @@
 <?php
+session_start();
+if (isset($_SESSION['user_id']) && isset($_SESSION['user_email']) && isset($_SESSION['user_login'])) {
+    require_once 'Classes/Database/ConexaoBD.php';
+    require_once 'Classes/ICT/ICTDAO.php';
+    require_once 'Classes/ICT/ICTDTO.php';
 
-require_once 'Classes/Database/ConexaoBD.php';
-require_once 'Classes/ICT/ICTDAO.php';
-require_once 'Classes/ICT/ICTDTO.php';
+    $conexao = ConexaoBD::conectar();
+    $ICTDAO = new ICTDAO($conexao);
 
-$conexao = ConexaoBD::conectar();
-$ICTDAO = new ICTDAO($conexao);
+    $ICTs = $ICTDAO->listarTodos();
+} else {
 
-$ICTs = $ICTDAO->listarTodos();
+    header("Location: ./LoginICT.php");
+    exit();
+}
+
+
+
 
 ?>
 

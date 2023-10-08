@@ -13,11 +13,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $ICT = $ICTDAO->login($email, $senha);
 
     if ($ICT) {
+        session_start();
+
+        $_SESSION['user_id'] = $ICT['Id_ICT'];
+        $_SESSION['user_email'] = $ICT['Email'];
+        $_SESSION['user_login'] = $ICT['UsrLogin'];
+
         header("Location: ../ListarICT.php");
         exit();
     } else {
         echo "Credenciais inválidas";
-        header("Location: ../LoginICT.php");
+        header("Location: ../index.php");
         exit();
     }
 }
