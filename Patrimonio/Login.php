@@ -22,7 +22,7 @@
                                 <h4 id="titulo">Bem vindo</h4>
                                 <span >Faça login para acessar ao sistema</span>
                             </div>
-							<form method="POST" action="" class="my-login-validation" novalidate="">
+							<form method="POST" action="./Controllers/LoginPatrimonio.php" class="my-login-validation" novalidate="">
 								<div class="form-group my-4 py-3">
 									<label for="email">Endereço de e-mail</label>
 									<input id="email" type="email" class="form-control" name="email" value="" required autofocus>

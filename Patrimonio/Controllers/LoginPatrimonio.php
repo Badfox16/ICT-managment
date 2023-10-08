@@ -1,7 +1,7 @@
 <?php
 require_once '../Classes/Database/ConexaoBD.php';
 require_once '../Classes/Patrimonio/PatrimonioDAO.php';
-require_once '../Classes/Patrimonio/ICTDTO.php';
+require_once '../Classes/Patrimonio/PatrimonioDTO.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $_POST["email"];
@@ -10,14 +10,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $conexao = ConexaoBD::conectar();
     $PatrimonioDAO = new PatrimonioDAO($conexao);
 
-    $Patrimonio = $PatrimonioDAO->login($email, $senha);
+     // Logs
+     $LogsDTO = new LogsDTO();
+     $LogsDTO->setUsuario("Usuario");
+     $LogsDTO->setAtividade("O email: $email logou no sistema");
+     $LogsDTO->setHora(date("Y-m-d H:i:s"));
+
+    $Patrimonio = $PatrimonioDAO->login($email, $senha, $LogsDTO);
 
     if ($Patrimonio) {
-        header("Location: ../ListarPatirmonio.php");
+        header("Location: ../index.php");
         exit();
     } else {
         echo "Credenciais inválidas";
-        header("Location: ../LoginICT.php");
+        header("Location: ../Login.php");
         exit();
     }
 }

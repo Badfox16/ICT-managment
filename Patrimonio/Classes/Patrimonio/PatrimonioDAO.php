@@ -61,4 +61,19 @@ class PatrimonioDAO
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function login($email, $senha, LogsDTO $Logs)
+    {
+        $sql = "SELECT * FROM tbPatrimonio WHERE Email = ? AND Senha = ?";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->execute([$email, $senha]);
+        $Patrimonio = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        //Logs
+        $sql = "INSERT INTO tbLogs (Usuario, Hora, Atividade) VALUES (?, ?, ?)";
+        $stmtLogs = $this->conexao->prepare($sql);
+        $stmtLogs->execute([$Logs->getUsuario(), $Logs->getHora(), $Logs->getAtividade()]);
+
+        return $Patrimonio ? $Patrimonio : null;
+    }
 }
