@@ -1,14 +1,9 @@
 <?php
 
-require_once './Database/ConexaoBD.php';
-require_once './Logs/LogsDAO.php';
-require_once './Logs/LogsDTO.php';
+require_once './Classes/Database/ConexaoBD.php';
+require_once './Classes/Log/LogsDAO.php';
 
-$conexao = ConexaoBD::conectar();
-$LogsDAO = new LogsDAO($conexao);
-$Logs = $LogsDAO->listarTodos();
 ?>
-
 <!DOCTYPE html>
 <html>
 
@@ -101,37 +96,48 @@ $Logs = $LogsDAO->listarTodos();
             <div class="main-content">
                 <div class="reporter-print d-flex">
                     <!-- Adicionar membros do patrimonio -->
-                    <div class="reporter-form container col-6">
-                        <h3 class="text-primary">Ver Relatórios</h3>
-                        <form action="" method="POST" class="form-reporter">
-                            <div class="mb-3">
-                                <input type="checkbox" name="Switch" id="switch" class="form-check-input">
-                                <label for="switch" class="form-check-label">Switch</label>&nbsp;&nbsp;
-                                <input type="checkbox" name="Antenas" id="antenas" class="form-check-input">
-                                <label for="antenas" class="form-check-label">Antenas</label>&nbsp;&nbsp;
-                                <input type="checkbox" name="Projetor" id="projetor" class="form-check-input">
-                                <label for="projetor" class="form-check-label">Projetor</label>&nbsp;&nbsp;
-                                <input type="checkbox" name="Camera" id="camera" class="form-check-input">
-                                <label for="camera" class="form-check-label">Camera</label>&nbsp;&nbsp;
-                                <input type="checkbox" name="Computador" id="computador" class="form-check-input">
-                                <label for="computador" class="form-check-label">Computador</label>&nbsp;&nbsp;
-                                <input type="checkbox" name="Todos" id="todos" class="form-check-input">
-                                <label for="todos" class="form-check-label">Todos</label>
-                            </div>
-                            <div class="mb-3">
-                                <input type="date" name="nome" class="form-control" required>
-                            </div>
-                            <div class="mb-3">
-                                <input type="date" name="nome" class="form-control" required>
-                            </div>
-                            <div class="print">
-                                <button class="btn text-bg-secondary">
-                                    <i class="bi bi-file-earmark-arrow-down"></i>
-                                    Gerar
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nome</th>
+                                <th>Apelido</th>
+                                <th>Contacto</th>
+                                <th>Email</th>
+                                <th>Nome de Usuário</th>
+                                <th>Estado</th>
+                                <th>Editar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($Patrimonios as $patrimonio) : ?>
+                                <tr>
+                                    <td><?= $patrimonio["Id_Patrimonio"] ?></td>
+                                    <td><?= $patrimonio["Nome"] ?></td>
+                                    <td><?= $patrimonio["Apelido"] ?></td>
+                                    <td><?= $patrimonio["Contacto"] ?></td>
+                                    <td><?= $patrimonio["Email"] ?></td>
+                                    <td><?= $patrimonio["UsrLogin"] ?></td>
+                                    <td>
+                                        <?php
+                                        if ($patrimonio["Estado"]) {
+                                            echo "<button disabled class='manager-actived'>Ativo</button>";
+                                        } else {
+                                            echo "<button disabled class='manager-disabled'>Inativo</button>";
+                                        }
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <a href="./EditarPatrimonio.php?id=<?= $patrimonio["Id_Patrimonio"] ?>">
+                                            <button class="btn btn-secondary">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>

@@ -1,6 +1,6 @@
 <?php
-require_once "../Database/ConexaoBD.php";
-require_once "../Logs/LogsDTO.php";
+require_once '../Database/ConexaoBD.php';
+
 class LogsDAO
 {
     private $conexao;
