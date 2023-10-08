@@ -12,7 +12,7 @@ class LogsDAO
 
     public function listarTodos()
     {
-        $sql = "SELECT * FROM tbPatrimonio";
+        $sql = "SELECT * FROM tbLogs";
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

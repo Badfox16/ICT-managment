@@ -1,12 +1,12 @@
 <?php
-    
-require_once 'Classes/Database/ConexaoBD.php';
-require_once 
+
+require_once './Database/ConexaoBD.php';
+require_once './Logs/LogsDAO.php';
+require_once './Logs/LogsDTO.php';
 
 $conexao = ConexaoBD::conectar();
-$PatrimonioDAO = new PatrimonioDAO($conexao);
-
-$Patrimonios = $PatrimonioDAO->listarTodos();
+$LogsDAO = new LogsDAO($conexao);
+$Logs = $LogsDAO->listarTodos();
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +14,7 @@ $Patrimonios = $PatrimonioDAO->listarTodos();
 
 <head>
     <title>Ver Patrimonios</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="styleshee    t" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="./style/bootstrap.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="./style/style.css" />
