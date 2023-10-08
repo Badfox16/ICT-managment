@@ -38,13 +38,14 @@ $antenas = $antenasPaDAO->listarTodos();
 <html>
 
 <head>
-  <title>Ver Patrimonios</title>
+  <title>Ver Equipamentos</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script defer src="./js/FiltroEquipamentos.js"></script>
+  <script defer src="./js/pesquisar.js"></script>
 
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -129,27 +130,100 @@ $antenas = $antenasPaDAO->listarTodos();
       </div>
 
       <div class="main-content">
+        <div class="d-flex align-items-center justify-content-between mb-4">
 
-        <div class="d-flex m-4">
-          <div class="dropdown">
-            <select class="form-select" id="categoryFilter">
-              <option value="">Todas Categorias</option>
-              <option value="Computador">Computador</option>
-              <option value="Impressora">Impressora</option>
-              <option value="Projetor">Projetor</option>
-              <option value="Switch">Switch</option>
-              <option value="AntenasPA">Antenas PA</option>
-            </select>
+          <div class="w-25 ">
+
+            <div class="flex-grow-1 ">
+              <input type="text" class="form-control" id="searchInput" placeholder="Pesquise por Nr Serie/Tipo/Marca/Modelo">
+            </div>
+          </div>
+
+          <div>
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <i class="bi bi-wrench-adjustable"></i>
+              ADICIONAR</button>
+          </div>
+
+          <!-- Imprimir membros do patrimonio -->
+          <div class="print col-3 ">
+            <form action="">
+              <button class="btn text-bg-secondary">
+                <i class="bi bi-file-earmark-arrow-down"></i>
+                Imprimir</button>
+            </form>
           </div>
         </div>
 
-        <div class="managers container-fluid p-1">
-          <div class="managers-title-add">
-            <div class="manager-title text-uppercase">
-              <p>Equipamentos</p>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title fw-bold " id="exampleModalLabel">Adicionar Equipamento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <!-- Equipment registration form -->
+                <form id="equipmentForm">
+                  <div class="mb-3">
+                    <label for="equipmentType" class="form-label">Tipo</label>
+                    <select class="form-select" id="equipmentType" required>
+                      <option value="" disabled selected>Seleciona o tipo de equipamento</option>
+                      <option value="computer">Computer</option>
+                      <option value="printer">Printer</option>
+                      <!-- Add more options for other equipment types -->
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="serialNumber" class="form-label">Serial Number</label>
+                    <input type="text" class="form-control" id="serialNumber" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="brand" class="form-label">Brand</label>
+                    <input type="text" class="form-control" id="brand" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="model" class="form-label">Model</label>
+                    <input type="text" class="form-control" id="model" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="status" class="form-label">Status</label>
+                    <select class="form-select" id="status" required>
+                      <option value="active">Active</option>
+                      <option value="inactive">Inactive</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Add Equipment</button>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success">Salvar</button>
+              </div>
             </div>
           </div>
-          <table class="table table-striped">
+        </div>
+
+
+        <div class="equipamentos container-fluid p-1">
+          <div class="equipamentos-title-add  ">
+            <div class="equipamento-title text-uppercase d-flex pt-3 ">
+              <p class="align-text-bottom ">Equipamentos</p>
+              <div class="dropdown ms-3">
+                <select class="form-select" id="categoryFilter">
+                  <option value="">Todas Categorias</option>
+                  <option value="Computador">Computador</option>
+                  <option value="Impressora">Impressora</option>
+                  <option value="Projetor">Projetor</option>
+                  <option value="Switch">Switch</option>
+                  <option value="AntenasPA">Antenas PA</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+          <table class="table table-hover ">
             <thead>
               <tr>
                 <th>#</th>
@@ -166,21 +240,13 @@ $antenas = $antenasPaDAO->listarTodos();
               <?php foreach ($computadores as $computador) : ?>
 
 
-                <tr class="equipment-row Computador">
+                <tr class="equipment-row Computador" id="equipamento<?= $computador["Id_Computador"] ?>">
                   <td><?= ++$count ?></td>
                   <td><?= $computador["NrDeSerie"] ?></td>
                   <td>Computador</td>
                   <td><?= $computador["Marca"] ?></td>
                   <td><?= $computador["Modelo"] ?></td>
-                  <td>
-                    <?php
-                    if ($computador["Estado"]) {
-                      echo "<button disabled class='manager-actived'>Ativo</button>";
-                    } else {
-                      echo "<button disabled class='manager-disabled'>Inativo</button>";
-                    }
-                    ?>
-                  </td>
+                  <td class="estado"><span class="badge rounded-pill bg-primary"><?= $computador["Estado"] ?></span></td>
                   <td>
                     <a href="./EditarPatrimonio.php?id=<?= $computador["Id_Computador"] ?>">
                       <button class="btn btn-secondary">
@@ -195,21 +261,13 @@ $antenas = $antenasPaDAO->listarTodos();
 
 
               <?php foreach ($impressoras as $impressora) : ?>
-                <tr class="equipment-row Impressora">
+                <tr class="equipment-row Impressora" id="equipamento<?= $impressora["Id_Impressora"] ?>">
                   <td><?= ++$count ?></td>
                   <td><?= $impressora["NrDeSerie"] ?></td>
                   <td>Impressora</td>
                   <td><?= $impressora["Marca"] ?></td>
                   <td><?= $impressora["Modelo"] ?></td>
-                  <td>
-                    <?php
-                    if ($impressora["Estado"]) {
-                      echo "<button disabled class='manager-actived'>Ativo</button>";
-                    } else {
-                      echo "<button disabled class='manager-disabled'>Inativo</button>";
-                    }
-                    ?>
-                  </td>
+                  <td class="estado"><span class="badge rounded-pill bg-primary"><?= $impressora["Estado"] ?></span></td>
                   <td>
                     <a href="./EditarPatrimonio.php?id=<?= $impressora["Id_Impressora"] ?>">
                       <button class="btn btn-secondary">
@@ -224,21 +282,13 @@ $antenas = $antenasPaDAO->listarTodos();
 
 
               <?php foreach ($projetores as $projetor) : ?>
-                <tr class="equipment-row Projetor">
+                <tr class="equipment-row Projetor" id="equipamento<?= $projetor["Id_Projetor"] ?>">
                   <td><?= ++$count ?></td>
                   <td><?= $projetor["NrDeSerie"] ?></td>
                   <td>Projetor</td>
                   <td><?= $projetor["Marca"] ?></td>
                   <td><?= $projetor["Modelo"] ?></td>
-                  <td>
-                    <?php
-                    if ($projetor["Estado"]) {
-                      echo "<button disabled class='manager-actived'>Ativo</button>";
-                    } else {
-                      echo "<button disabled class='manager-disabled'>Inativo</button>";
-                    }
-                    ?>
-                  </td>
+                  <td class="estado"><span class="badge rounded-pill bg-primary"><?= $projetor["Estado"] ?></span></td>
                   <td>
                     <a href="./EditarPatrimonio.php?id=<?= $projetor["Id_Projetor"] ?>">
                       <button class="btn btn-secondary">
@@ -251,21 +301,13 @@ $antenas = $antenasPaDAO->listarTodos();
               ?>
 
               <?php foreach ($switches as $switch) : ?>
-                <tr class="equipment-row Switch">
+                <tr class="equipment-row Switch" id="equipamento<?= $switch["Id_Switch"] ?>">
                   <td><?= ++$count ?></td>
                   <td><?= $switch["NrDeSerie"] ?></td>
                   <td>Switch</td>
                   <td><?= $switch["Marca"] ?></td>
                   <td><?= $switch["Modelo"] ?></td>
-                  <td>
-                    <?php
-                    if ($switch["Estado"]) {
-                      echo "<button disabled class='manager-actived'>Ativo</button>";
-                    } else {
-                      echo "<button disabled class='manager-disabled'>Inativo</button>";
-                    }
-                    ?>
-                  </td>
+                  <td class="estado"><span class="badge rounded-pill bg-primary"><?= $switch["Estado"] ?></span></td>
                   <td>
                     <a href="./EditarPatrimonio.php?id=<?= $switch["Id_Switch"] ?>">
                       <button class="btn btn-secondary">
@@ -278,27 +320,19 @@ $antenas = $antenasPaDAO->listarTodos();
               ?>
 
               <?php foreach ($antenas as $antena) : ?>
-                <tr class="equipment-row Switch">
+                <tr class="equipment-row AntenasPA" id="equipamento<?= $antena["Id_AntenasPA"] ?>">
                   <td><?= ++$count ?></td>
                   <td><?= $antena["NrDeSerie"] ?></td>
                   <td>Antena PA</td>
                   <td><?= $antena["Marca"] ?></td>
                   <td><?= $antena["Modelo"] ?></td>
-                  <td>
-                    <?php
-                    if ($antena["Estado"]) {
-                      echo "<button disabled class='manager-actived'>Ativo</button>";
-                    } else {
-                      echo "<button disabled class='manager-disabled'>Inativo</button>";
-                    }
-                    ?>
-                  </td>
+                  <td class="estado"><span class="badge rounded-pill bg-primary"><?= $antena["Estado"] ?></span></td>
                   <td>
                     <a href="./EditarPatrimonio.php?id=<?= $antena["Id_AntenasPA"] ?>">
                       <button class="btn btn-secondary">
                         <i class="bi bi-pencil-square"></i>
                       </button>
-                    </>
+                      </>
                   </td>
                 </tr>
               <?php endforeach;
