@@ -1,5 +1,7 @@
 <?php
-require_once '../Database/ConexaoBD.php';
+require_once __DIR__ . '/../Log/LogsDTO.php';
+require_once __DIR__ . '/../Database/ConexaoBD.php';
+
 
 class LogsDAO
 {

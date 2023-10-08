@@ -3,6 +3,11 @@
 require_once './Classes/Database/ConexaoBD.php';
 require_once './Classes/Log/LogsDAO.php';
 
+$conexao = ConexaoBD::conectar();
+$LogsDAO = new LogsDAO($conexao);
+
+$Logs = $LogsDAO->listarTodos();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -100,40 +105,18 @@ require_once './Classes/Log/LogsDAO.php';
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Nome</th>
-                                <th>Apelido</th>
-                                <th>Contacto</th>
-                                <th>Email</th>
-                                <th>Nome de Usuário</th>
-                                <th>Estado</th>
-                                <th>Editar</th>
+                                <th>Usuario</th>
+                                <th>Hora</th>
+                                <th>Atividade</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($Patrimonios as $patrimonio) : ?>
+                            <?php foreach ($Logs as $logs) : ?>
                                 <tr>
-                                    <td><?= $patrimonio["Id_Patrimonio"] ?></td>
-                                    <td><?= $patrimonio["Nome"] ?></td>
-                                    <td><?= $patrimonio["Apelido"] ?></td>
-                                    <td><?= $patrimonio["Contacto"] ?></td>
-                                    <td><?= $patrimonio["Email"] ?></td>
-                                    <td><?= $patrimonio["UsrLogin"] ?></td>
-                                    <td>
-                                        <?php
-                                        if ($patrimonio["Estado"]) {
-                                            echo "<button disabled class='manager-actived'>Ativo</button>";
-                                        } else {
-                                            echo "<button disabled class='manager-disabled'>Inativo</button>";
-                                        }
-                                        ?>
-                                    </td>
-                                    <td>
-                                        <a href="./EditarPatrimonio.php?id=<?= $patrimonio["Id_Patrimonio"] ?>">
-                                            <button class="btn btn-secondary">
-                                                <i class="bi bi-pencil-square"></i>
-                                            </button>
-                                        </a>
-                                    </td>
+                                    <td><?= $logs["Id_logs"] ?></td>
+                                    <td><?= $logs["Usuario"] ?></td>
+                                    <td><?= $logs["Hora"] ?></td>
+                                    <td><?= $logs["Atividade"] ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
