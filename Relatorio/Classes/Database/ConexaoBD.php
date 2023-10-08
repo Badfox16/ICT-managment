@@ -5,7 +5,7 @@ class ConexaoBD {
     private static $host = "localhost:3306";
     private static $dbname = "bdICT";
     private static $user = "root";
-    private static $password = "pedrinho2003";
+    private static $password = "Jeremias1";
 
     public static function conectar() {
         try {

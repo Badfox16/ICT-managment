@@ -1,5 +1,32 @@
 <?php
+require_once 'Classes/Database/ConexaoBD.php';
+require_once 'Classes/Equipamentos/Computador/ComputadorDAO.php';
+require_once 'Classes/Equipamentos/Computador/ComputadorDTO.php';
+require_once 'Classes/Equipamentos/AntenasPA/AntenasPaDAO.php';
+require_once 'Classes/Equipamentos/AntenasPA/AntenasPaDTO.php';
+require_once 'Classes/Equipamentos/Impressora/ImpressoraDAO.php';
+require_once 'Classes/Equipamentos/Impressora/ImpressoraDTO.php';
+require_once 'Classes/Equipamentos/Projetor/ProjetorDAO.php';
+require_once 'Classes/Equipamentos/Projetor/ProjetorDTO.php';
+require_once 'Classes/Equipamentos/Switch/SwitchDAO.php';
+require_once 'Classes/Equipamentos/Switch/SwitchDTO.php';
+require_once 'fpdf.php';
 
+$conexao = ConexaoBD::conectar();
+
+$computadorDAO = new ComputadorDAO($conexao);
+$antenasPaDAO = new AntenasPaDAO($conexao);
+$impressoraDAO = new ImpressoraDAO($conexao);
+$projetorDAO = new ProjetorDAO($conexao);
+$switchDAO = new SwitchDAO($conexao);
+
+
+
+$computadores = $computadorDAO->listarTodos();
+$impressoras = $impressoraDAO->listarTodos();
+$projetores = $projetorDAO->listarTodos();
+$switches = $switchDAO->listarTodos();
+$antenas = $antenasPaDAO->listarTodos();
 
 ?>
 <!DOCTYPE html>
