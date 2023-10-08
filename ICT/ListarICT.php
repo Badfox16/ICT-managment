@@ -66,18 +66,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_email']) && isset($_SES
                 </li>
             </ul>
             <hr>
-            <div class="dropdown">
-                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <strong>Opções</strong>
+            <div class="">
+                <a href="./Controllers/Logout.php" class="d-flex align-items-center text-white text-decoration-none" aria-expanded="false">
+                    <strong>Logout</strong>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" href="#">Definições</a></li>
-                    <li><a class="dropdown-item" href="#">Ver Perfil</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#">Sair</a></li>
-                </ul>
             </div>
         </div>
         <div class="card-body">
