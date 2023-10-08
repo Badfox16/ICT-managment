@@ -8206,8 +8206,8 @@ h1, h2, h3, h4, h5,
       border-bottom: 0; }
   .table tbody th, .table tbody td {
     border: none;
-    padding: 30px;
-    font-size: 14px;
+    padding: 8px 30px;
+    font-size: 14px ;
     background: #fff;
     vertical-align: middle; }
   .table tbody td.status span {
