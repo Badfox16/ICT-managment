@@ -37,7 +37,7 @@
 											Esqueceu a sua senha?
 										</a>
 									</label>
-									<input id="password" type="password" class="form-control" name="password" required data-eye>
+									<input id="password" type="password" class="form-control" name="senha" required data-eye>
 								    <div class="invalid-feedback">
 								    	A senha é obrigatória
 							    	</div>
