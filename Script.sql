@@ -1,7 +1,5 @@
 CREATE DATABASE `bdICT` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_esperanto_ci;
-
 USE bdICT;
-
 CREATE TABLE tbPatrimonio (
     Id_Patrimonio INT AUTO_INCREMENT PRIMARY KEY,
     Nome VARCHAR (50),
@@ -12,7 +10,6 @@ CREATE TABLE tbPatrimonio (
     Estado VARCHAR (20),
     Senha VARCHAR (20)
 );
-
 CREATE TABLE tbICT(
     Id_ICT INT AUTO_INCREMENT PRIMARY KEY,
     UsrLogin VARCHAR (20),
@@ -20,136 +17,64 @@ CREATE TABLE tbICT(
     Estado VARCHAR (20),
     Senha VARCHAR (20)
 );
-
 INSERT INTO tbICT(UsrLogin, Email, Estado, Senha)
-VALUES("admin","admin","Ativo","admin");
-
+VALUES("admin", "admin", "Ativo", "admin");
 CREATE TABLE tbEdificio (
     Id_Edificio INT AUTO_INCREMENT PRIMARY KEY,
     NomeEdificio VARCHAR(20)
 );
-
 -- INSERT INTO tbEdificio (NomeEdificio)
 -- VALUES("Novo Edificio"),
 -- ("Antigo Edificio");
-
 CREATE TABLE tbSala (
     Id_Sala INT AUTO_INCREMENT PRIMARY KEY,
     NomeSala VARCHAR(20),
     Id_Edificio INT,
     FOREIGN KEY (Id_Edificio) REFERENCES tbEdificio(Id_Edificio)
 );
-
 -- SELECT tbSala.DescricaoSala
 -- FROM tbSala
 -- INNER JOIN tbEdificio ON tbSala.Id_Edificio = tbEdificio.Id_Edificio
 -- WHERE tbEdificio.NomeEdificio = 'Nome do tal edificio';
-
-CREATE TABLE tbComputador (
-    Id_Computador INT AUTO_INCREMENT PRIMARY KEY,
-    DescricaoComputador VARCHAR(50),
-    Marca VARCHAR(50),
-    Modelo VARCHAR(50),
-    NrDeSerie VARCHAR(50),
-    Estado VARCHAR(50),
-    Localizacao VARCHAR(50),
-    Usuario VARCHAR(50),
-    MAC VARCHAR(50),
-    RAM INT (4),
-    ROM INT (6),
+CREATE TABLE tbEquipamento(
+    Id_Equipamento INT AUTO_INCREMENT PRIMARY KEY,
+    Tipo VARCHAR(255) NOT NULL,
+    Marca VARCHAR(150),
+    Modelo VARCHAR(150),
+    NrDeSerie VARCHAR(150),
+    Estado VARCHAR(150),
+    Localizacao VARCHAR(150),
+    Fornecedor VARCHAR(150),
+    DataFornecimento VARCHAR(50),
+    DescricaoEquipamento TEXT,
     Observacoes TEXT
-);
-
-CREATE TABLE tbImpressora (
-    Id_Impressora INT AUTO_INCREMENT PRIMARY KEY,
-    DescricaoImpressora VARCHAR(50),
-    Marca VARCHAR(50),
-    Modelo VARCHAR(50),
-    NrDeSerie VARCHAR(50),
-    Estado VARCHAR(50),
-    Localizacao VARCHAR(50),
-    MAC VARCHAR(50),
-    Observacoes TEXT
-);
-
-CREATE TABLE tbSwitch (
-    Id_Switch INT AUTO_INCREMENT PRIMARY KEY,
-    DescricaoSwitch VARCHAR(50),
-    Marca VARCHAR(50),
-    Modelo VARCHAR(50),
-    NrDeSerie VARCHAR(50),
-    Estado VARCHAR(50),
-    Localizacao VARCHAR(50),
-    MAC VARCHAR(50),
-    Observacoes TEXT
-);
-
-CREATE TABLE tbAntenasPA (
-    Id_AntenasPA INT AUTO_INCREMENT PRIMARY KEY,
-    DescricaoAntena VARCHAR(50),
-    Marca VARCHAR(50),
-    Modelo VARCHAR(50),
-    NrDeSerie VARCHAR(50),
-    Estado VARCHAR(50),
-    Localizacao VARCHAR(50),
-    MAC VARCHAR(50),
-    Observacoes TEXT
-);
-
-CREATE TABLE tbProjetor (
-    Id_Projetor INT AUTO_INCREMENT PRIMARY KEY,
-    DescricaoProjetor VARCHAR(50),
-    Marca VARCHAR(50),
-    Modelo VARCHAR(50),
-    NrDeSerie VARCHAR(50),
-    Estado VARCHAR(50),
-    Localizacao VARCHAR(50),
-    Observacoes TEXT
-);
+) 
 
 CREATE TABLE tbHardware (
     Id_Hardware INT AUTO_INCREMENT PRIMARY KEY,
-    Id_Computador INT,
-    Id_Impressora INT,
-    Id_Switch INT,
-    Id_AntenasPA INT,
-    Id_Projetor INT,
-    FOREIGN KEY (Id_Computador) REFERENCES tbComputador(Id_Computador),
-    FOREIGN KEY (Id_Impressora) REFERENCES tbImpressora(Id_Impressora),
-    FOREIGN KEY (Id_Switch) REFERENCES tbSwitch(Id_Switch),
-    FOREIGN KEY (Id_AntenasPA) REFERENCES tbAntenasPA(Id_AntenasPA),
-    FOREIGN KEY (Id_Projetor) REFERENCES tbProjetor(Id_Projetor)
+    Id_Equipamento INT,
+    FOREIGN KEY (Id_Equipamento) REFERENCES tbEquipamento(Id_Equipamento),
 );
-
 CREATE TABLE tbSoftware (
     Id_Software INT AUTO_INCREMENT PRIMARY KEY,
-    Id_Computador INT,
+    Id_Equipamento INT,
     NomeSoftware VARCHAR (255),
     Fabricante VARCHAR(255),
     Versao VARCHAR(255),
     Estado VARCHAR(255),
     Observacoes TEXT,
-    Categoria VARCHAR(50),
-    DiaInstalacao DATE DEFAULT CURRENT_DATE,
+    DiaInstalacao VARCHAR(50),
     PrazoSoftware INT,
     DiaExpiracao DATE,
-    FOREIGN KEY(Id_Computador) REFERENCES tbComputador(Id_Computador)
+    FOREIGN KEY(Id_Equipamento) REFERENCES tbEquipamento(Id_Equipamento)
 );
 
 CREATE TABLE tbManutencao (
     Id_Manutencao INT AUTO_INCREMENT PRIMARY KEY,
     Titulo VARCHAR(255),
     Descricao TEXT,
-    Id_Computador INT,
-    Id_Impressora INT,
-    Id_Switch INT,
-    Id_AntenasPA INT,
-    Id_Projetor INT,
-    FOREIGN KEY (Id_Computador) REFERENCES tbComputador(Id_Computador),
-    FOREIGN KEY (Id_Impressora) REFERENCES tbImpressora(Id_Impressora),
-    FOREIGN KEY (Id_Switch) REFERENCES tbSwitch(Id_Switch),
-    FOREIGN KEY (Id_AntenasPA) REFERENCES tbAntenasPA(Id_AntenasPA),
-    FOREIGN KEY (Id_Projetor) REFERENCES tbProjetor(Id_Projetor)
+    Id_Equipamento INT,
+    FOREIGN KEY (Id_Equipamento) REFERENCES tbEquipamento(Id_Equipamento),
 );
 
 CREATE TABLE tbLogs (
