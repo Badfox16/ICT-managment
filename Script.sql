@@ -36,6 +36,16 @@ CREATE TABLE tbSala (
 -- FROM tbSala
 -- INNER JOIN tbEdificio ON tbSala.Id_Edificio = tbEdificio.Id_Edificio
 -- WHERE tbEdificio.NomeEdificio = 'Nome do tal edificio';
+
+CREATE TABLE tbTipo(
+    Id_Tipo INT AUTO_INCREMENT PRIMARY KEY,
+    Tipo VARCHAR(255)
+)
+
+INSERT INTO tbTipo(Tipo) 
+VALUES("Computador", "Impressora", "Projetor", "Switch",
+"Roteador", "Cameras")
+
 CREATE TABLE tbEquipamento(
     Id_Equipamento INT AUTO_INCREMENT PRIMARY KEY,
     Tipo VARCHAR(255) NOT NULL,
