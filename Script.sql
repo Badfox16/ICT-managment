@@ -21,14 +21,14 @@ INSERT INTO tbICT(UsrLogin, Email, Estado, Senha)
 VALUES("admin", "admin", "Ativo", "admin");
 CREATE TABLE tbEdificio (
     Id_Edificio INT AUTO_INCREMENT PRIMARY KEY,
-    NomeEdificio VARCHAR(20)
+    NomeEdificio VARCHAR(120)
 );
 -- INSERT INTO tbEdificio (NomeEdificio)
 -- VALUES("Novo Edificio"),
 -- ("Antigo Edificio");
 CREATE TABLE tbSala (
     Id_Sala INT AUTO_INCREMENT PRIMARY KEY,
-    NomeSala VARCHAR(20),
+    NomeSala VARCHAR(120),
     Id_Edificio INT,
     FOREIGN KEY (Id_Edificio) REFERENCES tbEdificio(Id_Edificio)
 );
