@@ -44,6 +44,13 @@ class ICTDAO {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function listarPorEstado($estado) {
+        $sql = "SELECT * FROM tbICT WHERE Estado = ?";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->execute([$estado]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function login($email, $senha) {
         $sql = "SELECT * FROM tbICT WHERE Email = ? AND Senha = ?";
         $stmt = $this->conexao->prepare($sql);
