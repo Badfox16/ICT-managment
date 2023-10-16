@@ -55,7 +55,7 @@
           <hr>
           <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-              <a href="#" class="nav-link mt-4 mb-4" aria-current="page">
+              <a href="#" class="nav-link text-white mt-4 mb-4" aria-current="page">
                 <svg class="bi me-2" width="16" height="16">
                   <use xlink:href="#home"></use>
                 </svg>
