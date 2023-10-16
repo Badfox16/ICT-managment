@@ -28,13 +28,8 @@ body {
   font-size: 1.1rem;
 }
 
-/* Oculta a barra de rolagem do modal */
-.modal {
-  overflow-y: auto;
+.right-content {
+  margin-left: 75px; /* Largura do painel esquerdo */
 }
 
-/* Oculta a barra de rolagem do corpo do modal */
-.modal-body {
-  max-height: calc(100vh - 120px);
-  overflow-y: auto;
-}
+
