@@ -19,7 +19,7 @@ class TiposDAO
         $stmt->bindParam(':tipo', $tipo, PDO::PARAM_STR);
         return $stmt->execute();
     }
-    
+
     public function listarTodos()
     {
         $sql = "SELECT * FROM tbTipo";
@@ -53,5 +53,16 @@ class TiposDAO
         $stmt->bindParam(':tipo', $tipo, PDO::PARAM_STR);
         $stmt->bindParam(':idTipo', $idTipo, PDO::PARAM_INT);
         return $stmt->execute();
+    }
+
+    public function existeTipoComNome($nomeTipo)
+    {
+        $sql = "SELECT COUNT(*) FROM tbTipo WHERE Tipo = :nomeTipo";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bindParam(':nomeTipo', $nomeTipo, PDO::PARAM_STR);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+
+        return $count > 0;
     }
 }

@@ -40,7 +40,7 @@ $tipos = $tiposDAO->listarTodos()
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
- 
+
   <link rel="stylesheet" href="./css/styles.css" />
 </head>
 
@@ -142,15 +142,21 @@ $tipos = $tiposDAO->listarTodos()
           </div>
 
           <div>
-            <button class="btn btn-dark me-5 " data-bs-toggle="modal" data-bs-target="#adicionarTipoModal">
+            <button class="btn btn-dark " data-bs-toggle="modal" data-bs-target="#adicionarTipoModal">
               <i class="bi bi-pc-display"></i>
               ADICIONAR TIPO</button>
+          </div>
+
+          <div>
+            <button class="btn btn-warning me-2 fw-bold" data-bs-toggle="modal" data-bs-target="#editarTipoModal">
+              <i class="bi bi-pc-display"></i>
+              EDITAR TIPO</button>
           </div>
 
         </div>
 
         <!-- Modal para adicionar equipamento -->
-        <div class="modal fade needs-validation" id="adicionarEquipamentoModal" tabindex="-1" aria-labelledby="adicionarEquipamentoModalLabel" aria-hidden="true">
+        <div class="modal fade needs-validation" data-bs-backdrop="static" data-bs-keyboard="false" id="adicionarEquipamentoModal" tabindex="-1" aria-labelledby="adicionarEquipamentoModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
@@ -219,7 +225,7 @@ $tipos = $tiposDAO->listarTodos()
 
 
         <!-- Modal para adicionar tipo -->
-        <div class="modal fade needs-validation" id="adicionarTipoModal" tabindex="-1" aria-labelledby="adicionarTipoModalLabel" aria-hidden="true">
+        <div class="modal fade needs-validation" data-bs-backdrop="static" data-bs-keyboard="false" id="adicionarTipoModal" tabindex="-1" aria-labelledby="adicionarTipoModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
@@ -239,6 +245,46 @@ $tipos = $tiposDAO->listarTodos()
             </div>
           </div>
         </div>
+
+        <!-- Modal de edição do tipo -->
+        <div class="modal fade" id="editarTipoModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="editarTipoModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="editarTipoModalLabel">Editar Tipo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <!-- Formulário para editar tipo -->
+                <form id="editarTipoForm">
+                  <div class="mb-3">
+                    <label for="tipoExistente" class="form-label">Escolha um tipo existente:</label>
+                    <select class="form-select" id="tipoExistente" name="tipoExistente">
+                      <!-- Listar todos os tipos existentes -->
+                      <?php foreach ($tipos as $tipo) { ?>
+                        <option value="<?= $tipo->getIdTipo() ?>"><?= $tipo->getTipo() ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="novoTipo" class="form-label">Novo nome do tipo:</label>
+                    <input type="text" class="form-control" list="datalistOptions" id="novoTipoTipo" name="novoNomeTipo" required autocomplete="off">
+                    <datalist id="datalistOptions">
+                    <?php foreach ($tipos as $tipo) { ?>
+                        <option value="<?= $tipo->getTipo() ?>">
+                      <?php } ?>
+                    </datalist>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
 
         <!-- filtros-->
         <div class="equipamentos container-fluid p-1">
