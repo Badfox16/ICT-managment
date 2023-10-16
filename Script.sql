@@ -43,12 +43,12 @@ CREATE TABLE tbTipo(
 );
 
 INSERT INTO tbTipo(Tipo) 
-VALUES("Computador", "Impressora", "Projetor", "Switch",
-"Roteador", "Cameras");
+VALUES("Computador"), ("Impressora"), ("Projetor"), ("Switch"),
+("Roteador"), ("Cameras");
 
 CREATE TABLE tbEquipamento(
     Id_Equipamento INT AUTO_INCREMENT PRIMARY KEY,
-    Tipo VARCHAR(255) NOT NULL,
+    Tipo INT NOT NULL,
     Marca VARCHAR(150),
     Modelo VARCHAR(150),
     NrDeSerie VARCHAR(150),
@@ -57,8 +57,9 @@ CREATE TABLE tbEquipamento(
     Fornecedor VARCHAR(150),
     DataFornecimento VARCHAR(50),
     DescricaoEquipamento TEXT,
-    Observacoes TEXT
-) ;
+    Observacoes TEXT,
+    FOREIGN KEY(Tipo) REFERENCES tbTipo(Id_Tipo)
+);
 
 CREATE TABLE tbHardware (
     Id_Hardware INT AUTO_INCREMENT PRIMARY KEY,

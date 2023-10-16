@@ -99,7 +99,7 @@ function verDetalhesEquipamento(id) {
         dataType: 'json',
         success: function (response) {
             // Preenche os campos do modal de detalhes com os detalhes do equipamento
-            $('#tipoDetalhes').val(response.Tipo);
+            $('#tipoDetalhes').val(response.NomeTipo);
             $('#marcaDetalhes').val(response.Marca);
             $('#modeloDetalhes').val(response.Modelo);
             $('#nrDeSerieDetalhes').val(response.NrDeSerie);
@@ -154,6 +154,7 @@ $('#adicionarEquipamentoForm').submit(function (event) {
             // Adicione outros campos conforme necessário
         },
         success: function (response) {
+
             // Em caso de sucesso, você pode atualizar a tabela de equipamentos ou fazer outras ações necessárias
             // Por exemplo, recarregue a página para mostrar o novo equipamento na lista
             window.location.reload();
@@ -167,33 +168,43 @@ $('#adicionarEquipamentoForm').submit(function (event) {
 
 
 $('#adicionarTipoForm').submit(function (event) {
-    event.preventDefault(); // Evita o comportamento padrão do formulário
-
+    // Obtém o valor do campo de entrada
     var novoTipo = $('#novoTipo').val();
 
-    // Use AJAX para enviar os dados para o arquivo PHP que processa a adição do tipo
-    $.ajax({
-        url: '../Equipamentos/Controllers/AdicionarTipos.php',
-        method: 'POST',
-        data: {
-            novoTipo: novoTipo
-        },
-        dataType: 'json',
-        success: function (response) {
-            // Manipule a resposta do servidor conforme necessário
-            if (response.success) {
-                // Tipo adicionado com sucesso
-                alert('Tipo adicionado com sucesso!');
-                $('#adicionarTipoModal').modal('hide'); // Fecha o modal após adição bem-sucedida
-                window.location.reload();
-            } else {
-                // Erro ao adicionar tipo
-                alert('Erro ao adicionar tipo: ' + response.error);
+    // Expressão regular para verificar se o valor contém apenas letras e espaços
+    var regex = /^[A-Za-z\s]+$/;
+
+    // Testa se o valor corresponde à expressão regular
+    if (!regex.test(novoTipo)) {
+        // Se não corresponder, exibe uma mensagem de erro e impede o envio do formulário
+        alert("Por favor, insira apenas letras e espaços no campo de tipo.");
+        event.preventDefault();
+    } else {
+        // Se o valor for válido, continue com a submissão do formulário usando AJAX
+        $.ajax({
+            url: '../Equipamentos/Controllers/AdicionarTipos.php',
+            method: 'POST',
+            data: {
+                novoTipo: novoTipo
+            },
+            dataType: 'json',
+            success: function (response) {
+                // Manipule a resposta do servidor conforme necessário
+                if (response.success) {
+                    // Tipo adicionado com sucesso
+                    alert('Tipo adicionado com sucesso!');
+                    $('#adicionarTipoModal').modal('hide'); // Fecha o modal após adição bem-sucedida
+                    window.location.reload();
+                } else {
+                    // Erro ao adicionar tipo
+                    alert('Erro ao adicionar tipo: ' + response.error);
+                }
+            },
+            error: function () {
+                // Em caso de erro na requisição AJAX
+                alert('Erro ao enviar requisição para adicionar tipo.');
             }
-        },
-        error: function () {
-            // Em caso de erro na requisição AJAX
-            alert('Erro ao enviar requisição para adicionar tipo.');
-        }
-    });
+        });
+    }
 });
+    

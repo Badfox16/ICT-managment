@@ -35,25 +35,27 @@ class EquipamentoDAO
 
     public function buscarPorId($id)
     {
-        $sql = "SELECT * FROM tbEquipamento WHERE Id_Equipamento = ?";
+        $sql = "SELECT e.*, t.Tipo as NomeTipo FROM tbEquipamento e JOIN tbTipo t ON e.Tipo = t.Id_Tipo WHERE e.Id_Equipamento = ?";
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    
+    
 
     public function listarTodos()
     {
-        $sql = "SELECT * FROM tbEquipamento";
+        $sql = "SELECT e.*, t.Tipo FROM tbEquipamento e JOIN tbTipo t ON e.Tipo = t.Id_Tipo";
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute();
-
+    
         $equipamentos = [];
-
+    
         while ($resultado = $stmt->fetch(PDO::FETCH_ASSOC)) {
             // Criando um novo objeto EquipamentoDTO com os atributos básicos
             $equipamento = new EquipamentoDTO();
             $equipamento->setIdEquipamento($resultado['Id_Equipamento']);
-            $equipamento->setTipo($resultado['Tipo']);
+            $equipamento->setTipo($resultado['Tipo']); // Tipo agora é o nome do tipo
             $equipamento->setMarca($resultado['Marca']);
             $equipamento->setModelo($resultado['Modelo']);
             $equipamento->setNrDeSerie($resultado['NrDeSerie']);
@@ -63,11 +65,12 @@ class EquipamentoDAO
             $equipamento->setDataFornecimento($resultado['DataFornecimento']);
             $equipamento->setDescricaoEquipamento($resultado['DescricaoEquipamento']);
             $equipamento->setObservacoes($resultado['Observacoes']);
-
+    
             // Adicionando o objeto ao array
             $equipamentos[] = $equipamento;
         }
-
+    
         return $equipamentos;
     }
+    
 }
