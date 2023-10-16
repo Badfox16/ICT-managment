@@ -55,7 +55,7 @@
           <hr>
           <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-              <a href="#" class="nav-link active mt-4 mb-4" aria-current="page">
+              <a href="#" class="nav-link mt-4 mb-4" aria-current="page">
                 <svg class="bi me-2" width="16" height="16">
                   <use xlink:href="#home"></use>
                 </svg>
@@ -63,7 +63,7 @@
               </a>
             </li>
             <li>
-              <a href="#" class="nav-link text-white mb-4">
+              <a href="#" class="nav-link active text-white mb-4">
                 <svg class="bi me-2" width="16" height="16">
                   <use xlink:href="#speedometer2"></use>
                 </svg>
@@ -171,15 +171,15 @@
                     </div>
                     <div class="mb-3">
                       <label for="marcaNovo" class="form-label">Marca:</label>
-                      <input type="text" class="form-control" id="marcaNovo" name="marcaNovo" required>
+                      <input type="text" class="form-control" id="marcaNovo" name="marcaNovo" autocomplete="off" required>
                     </div>
                     <div class="mb-3">
                       <label for="modeloNovo" class="form-label">Modelo:</label>
-                      <input type="text" class="form-control" id="modeloNovo" name="modeloNovo" required>
+                      <input type="text" class="form-control" id="modeloNovo" name="modeloNovo" autocomplete="off" required>
                     </div>
                     <div class="mb-3">
                       <label for="nrDeSerieNovo" class="form-label">Número de Série:</label>
-                      <input type="text" class="form-control" id="nrDeSerieNovo" name="nrDeSerieNovo" required>
+                      <input type="text" class="form-control" id="nrDeSerieNovo" name="nrDeSerieNovo" autocomplete="off" required>
                     </div>
                     <div class="mb-3">
                       <label for="estadoNovo" class="form-label">Estado:</label>
@@ -194,19 +194,19 @@
                     </div>
                     <div class="mb-3">
                       <label for="fornecedorNovo" class="form-label">Fornecedor:</label>
-                      <input type="text" class="form-control" id="fornecedorNovo" name="fornecedorNovo" required>
+                      <input type="text" class="form-control" id="fornecedorNovo" name="fornecedorNovo" autocomplete="off" required>
                     </div>
                     <div class="mb-3">
                       <label for="dataFornecimentoNovo" class="form-label">Data de Fornecimento:</label>
-                      <input type="date" class="form-control" id="dataFornecimentoNovo" name="dataFornecimentoNovo" required>
+                      <input type="date" class="form-control" id="dataFornecimentoNovo" name="dataFornecimentoNovo" autocomplete="off" required>
                     </div>
                     <div class="mb-3">
                       <label for="descricaoEquipamentoNovo" class="form-label">Descrição do Equipamento:</label>
-                      <textarea class="form-control" id="descricaoEquipamentoNovo" name="descricaoEquipamentoNovo" rows="3" required></textarea>
+                      <textarea class="form-control" id="descricaoEquipamentoNovo" name="descricaoEquipamentoNovo" rows="3" autocomplete="off" required></textarea>
                     </div>
                     <div class="mb-3">
                       <label for="observacoesNovo" class="form-label">Observações:</label>
-                      <textarea class="form-control" id="observacoesNovo" name="observacoesNovo" rows="3" required></textarea>
+                      <textarea class="form-control" id="observacoesNovo" name="observacoesNovo" rows="3" autocomplete="off" required></textarea>
                     </div>
                     <!-- Adicione outros campos conforme necessário -->
                     <button type="submit" class="btn btn-primary">Adicionar Equipamento</button>
@@ -230,7 +230,7 @@
                   <form id="adicionarTipoForm">
                     <div class="mb-3">
                       <label for="novoTipo" class="form-label">Novo Tipo:</label>
-                      <input type="text" class="form-control" id="novoTipo" name="novoTipo" required>
+                      <input type="text" class="form-control" id="novoTipo" name="novoTipo" autocomplete="off" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Adicionar Tipo</button>
                   </form>

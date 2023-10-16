@@ -11,7 +11,8 @@ function editarEquipamento(id) {
         url: '../Equipamentos/Controllers/getEquipamentos.php',
         method: 'GET',
         data: {
-            equipamentoId: equipamentoId
+            equipamentoId: equipamentoId,
+            randomParam: new Date().getTime()
         },
         dataType: 'json',
         success: function (response) {
@@ -94,7 +95,8 @@ function verDetalhesEquipamento(id) {
         url: '../Equipamentos/Controllers/getEquipamentos.php',
         method: 'GET',
         data: {
-            equipamentoId: id
+            equipamentoId: id,
+            randomParam: new Date().getTime()
         },
         dataType: 'json',
         success: function (response) {
@@ -155,6 +157,9 @@ $('#adicionarEquipamentoForm').submit(function (event) {
         },
         success: function (response) {
 
+            // Em caso de sucesso, limpe os campos do formulário usando o método reset()
+            $('#adicionarEquipamentoForm')[0].reset();
+
             // Em caso de sucesso, você pode atualizar a tabela de equipamentos ou fazer outras ações necessárias
             // Por exemplo, recarregue a página para mostrar o novo equipamento na lista
             window.location.reload();
@@ -171,40 +176,36 @@ $('#adicionarTipoForm').submit(function (event) {
     // Obtém o valor do campo de entrada
     var novoTipo = $('#novoTipo').val();
 
-    // Expressão regular para verificar se o valor contém apenas letras e espaços
-    var regex = /^[A-Za-z\s]+$/;
+    // Se o valor for válido, continue com a submissão do formulário usando AJAX
+    $.ajax({
+        url: '../Equipamentos/Controllers/AdicionarTipos.php',
+        method: 'POST',
+        data: {
+            novoTipo: novoTipo
+        },
+        dataType: 'json',
+        success: function (response) {
+            // Manipule a resposta do servidor conforme necessário
+            if (response.success) {
+                // Tipo adicionado com sucesso
+                alert('Tipo adicionado com sucesso!');
+                $('#adicionarTipoModal').modal('hide'); // Fecha o modal após adição bem-sucedida
 
-    // Testa se o valor corresponde à expressão regular
-    if (!regex.test(novoTipo)) {
-        // Se não corresponder, exibe uma mensagem de erro e impede o envio do formulário
-        alert("Por favor, insira apenas letras e espaços no campo de tipo.");
-        event.preventDefault();
-    } else {
-        // Se o valor for válido, continue com a submissão do formulário usando AJAX
-        $.ajax({
-            url: '../Equipamentos/Controllers/AdicionarTipos.php',
-            method: 'POST',
-            data: {
-                novoTipo: novoTipo
-            },
-            dataType: 'json',
-            success: function (response) {
-                // Manipule a resposta do servidor conforme necessário
-                if (response.success) {
-                    // Tipo adicionado com sucesso
-                    alert('Tipo adicionado com sucesso!');
-                    $('#adicionarTipoModal').modal('hide'); // Fecha o modal após adição bem-sucedida
-                    window.location.reload();
-                } else {
-                    // Erro ao adicionar tipo
-                    alert('Erro ao adicionar tipo: ' + response.error);
-                }
-            },
-            error: function () {
-                // Em caso de erro na requisição AJAX
-                alert('Erro ao enviar requisição para adicionar tipo.');
+                // Em caso de sucesso, limpe os campos do formulário usando o método reset()
+                $('#adicionarTipoForm')[0].reset();
+
+                window.location.reload();
+            } else {
+                // Erro ao adicionar tipo
+                alert('Erro ao adicionar tipo: ' + response.error);
             }
-        });
-    }
+        },
+        error: function () {
+            // Em caso de erro na requisição AJAX
+            alert('Erro ao enviar requisição para adicionar tipo.');
+        }
+    });
+
+    // Impede o comportamento padrão do formulário, ou seja, o envio da requisição de formulário
+    event.preventDefault();
 });
-    
