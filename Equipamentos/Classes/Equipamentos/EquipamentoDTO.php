@@ -3,7 +3,7 @@
 class EquipamentoDTO
 {
     private $idEquipamento;
-    private $tipo; //se é computador,impressora etc
+    private $tipo; //se é computador,impressora etc {ID}
     private $marca;
     private $modelo;
     private $nrDeSerie;
@@ -13,6 +13,8 @@ class EquipamentoDTO
     private $dataFornecimento;
     private $descricaoEquipamento;
     private $observacoes;
+
+    private $nomeTipo;
 
     // Métodos de acesso (Getters e Setters)
     public function getIdEquipamento()
@@ -125,4 +127,14 @@ class EquipamentoDTO
         $this->observacoes = $observacoes;
     }
 
+    public function getNomeTipo()
+    {
+        return $this->nomeTipo;
+    }
+
+    public function setNomeTipo($nomeTipo)
+    {
+        $this->nomeTipo = $nomeTipo;
+    }
+    
 }

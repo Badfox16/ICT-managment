@@ -30,4 +30,3 @@ if ($equipamentoDetails) {
 }
 
 exit; // Interrompe a execução do script após enviar a resposta JSON
-
