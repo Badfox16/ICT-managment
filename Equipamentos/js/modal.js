@@ -209,3 +209,46 @@ $('#adicionarTipoForm').submit(function (event) {
     // Impede o comportamento padrão do formulário, ou seja, o envio da requisição de formulário
     event.preventDefault();
 });
+
+$('#editarTipoForm').submit(function (event) {
+    // Obtém os valores dos campos de entrada
+    var idTipo = $('#tipoExistente').val(); // Obtém o ID do tipo existente
+    var novoNomeTipo = $('#novoTipoTipo').val();
+
+    console.log(idTipo + " " + novoNomeTipo);
+
+    // Se os valores forem válidos, continue com a submissão do formulário usando AJAX
+    $.ajax({
+        url: '../Equipamentos/Controllers/editarTipo.php', // O arquivo PHP para processar a edição do tipo
+        method: 'POST',
+        data: {
+            tipoExistente: idTipo, // Passa o ID do tipo existente
+            novoNomeTipo: novoNomeTipo
+        },
+        dataType: 'json',
+        success: function (response) {
+            // Manipule a resposta do servidor conforme necessário
+            if (response.success) {
+                // Tipo editado com sucesso
+                alert('Tipo editado com sucesso!');
+                $('#editarTipoModal').modal('hide'); // Fecha o modal após edição bem-sucedida
+
+                
+                $('#editarTipoForm')[0].reset();
+
+                window.location.reload();
+
+            } else {
+                // Erro ao editar tipo
+                alert('Erro ao editar tipo: ' + response.error);
+            }
+        },
+        error: function () {
+            // Em caso de erro na requisição AJAX
+            alert('Erro ao enviar requisição para editar tipo.');
+        }
+    });
+
+    // Impede o comportamento padrão do formulário, ou seja, o envio da requisição de formulário
+    event.preventDefault();
+});

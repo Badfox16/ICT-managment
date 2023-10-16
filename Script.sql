@@ -18,7 +18,7 @@ CREATE TABLE tbICT(
     Senha VARCHAR (255)
 );
 INSERT INTO tbICT(UsrLogin, Email, Estado, Senha)
-VALUES("admin", "admin", "Ativo", "admin");
+VALUES('admin', 'admin', 'Ativo', 'admin');
 CREATE TABLE tbEdificio (
     Id_Edificio INT AUTO_INCREMENT PRIMARY KEY,
     NomeEdificio VARCHAR(120)
@@ -42,9 +42,9 @@ CREATE TABLE tbTipo(
     Tipo VARCHAR(255)
 );
 
-INSERT INTO tbTipo(Tipo) 
-VALUES("Computador"), ("Impressora"), ("Projetor"), ("Switch"),
-("Roteador"), ("Cameras");
+INSERT INTO tbTipo(Tipo)
+VALUES('Computador'), ('Impressora'), ('Projetor'), ('Switch'),
+('Roteador'), ('Cameras');
 
 CREATE TABLE tbEquipamento(
     Id_Equipamento INT AUTO_INCREMENT PRIMARY KEY,
