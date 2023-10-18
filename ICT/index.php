@@ -158,35 +158,36 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_email']) && isset($_SES
                                     <td class="status"><span class="active"><?= $ICT['Estado']; ?></span></td>
                                 <?php endif; ?>
                                 <td>
-                                <a href="#" data-toggle="modal" data-target="#userInfoModal<?= $ICT['ID']; ?>">
+                                    <a href="#" data-toggle="modal" data-target="#userInfoModal<?= $ICT['Id_ICT']; ?>">
                                         <span style="font-size: 1.5rem; color:#343A40; padding-left: 16px;" aria-hidden="true">
                                             <i class="fa fa-info-circle"></i>
                                         </span>
                                     </a>
                                 </td>
                             </tr>
-                            <!-- Modal -->
-                            <div class="modal fade" id="userInfoModal<?= $ICT['ID']; ?>" tabindex="-1" role="dialog" aria-labelledby="userInfoModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="userInfoModalLabel">Informações do Usuário</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p><b>Email: </b><?= $ICT['Email']; ?></p>
-                                            <p><b>Nome de Usuário: </b><?= $ICT['UsrLogin']; ?></p>
-                                            <p><b>Estado: </b><?= $ICT['Estado']; ?></p>
-                                            <!-- Adicione mais informações conforme necessário -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+                <!-- Modal -->
+                <?php foreach ($ICTs as $ICT) : ?>
+                    <div class="modal fade" id="userInfoModal<?= $ICT['Id_ICT']; ?>" tabindex="-1" role="dialog" aria-labelledby="userInfoModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="userInfoModalLabel">Informações do Usuário</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p><b>Email: </b><?= $ICT['Email']; ?></p>
+                                    <p><b>Nome de Usuário: </b><?= $ICT['UsrLogin']; ?></p>
+                                    <p><b>Estado: </b><?= $ICT['Estado']; ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>

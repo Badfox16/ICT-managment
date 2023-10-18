@@ -124,7 +124,7 @@ if (isset($_SESSION['user_id'])) {
                                 </div>
                                 <div class="form-group">
                                     <label for="senha">Senha</label>
-                                    <input type="text" class="form-control" required name="senha" value="" >
+                                    <input type="password" class="form-control" required name="senha" value="" >
                                 </div>
                                 <input hidden class="form-control" required name="id" value="<?= $ICT['Id_ICT']; ?>">
                                 <input hidden class="form-control" required name="estado" value="<?= $ICT['Estado']; ?>">
