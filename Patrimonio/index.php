@@ -76,7 +76,7 @@ if (isset($_SESSION['patrimonio_id']) && isset($_SESSION['patrimonio_email']) &&
         </ul>
         <hr>
         <div class="dropdown">
-          <a href="./Controllers/Logout.php" class="d-flex align-items-center text-white text-decoration-none aria-expanded="false">
+          <a href="./Controllers/Logout.php" class="d-flex align-items-center text-white text-decoration-none aria-expanded=" false">
             <strong>Logout</strong>
           </a>
         </div>
@@ -136,7 +136,7 @@ if (isset($_SESSION['patrimonio_id']) && isset($_SESSION['patrimonio_email']) &&
             <br>
             <br> <!-- Cota Persson sabe das cenas yu! Br*2 tmlc!-->
             <h3 class="h2-print">Imprimir lista de membros do Património</h3>
-            <form action="">
+            <form action="./Controllers/pdf/RelatórioICT_Patrimonio.php">
               <button class="btn text-bg-secondary">
                 <i class="bi bi-file-earmark-arrow-down"></i>
                 Imprimir</button>
