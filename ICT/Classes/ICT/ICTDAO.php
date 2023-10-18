@@ -13,15 +13,15 @@ class ICTDAO {
     }
 
     public function inserir(ICTDTO $ICT) {
-        $sql = "INSERT INTO tbICT (UsrLogin, Senha) VALUES (?, ?)";
+        $sql = "INSERT INTO tbICT (UsrLogin, Email, Estado, Senha) VALUES (?, ?, ?, SHA2(?, 256))";
         $stmt = $this->conexao->prepare($sql);
-        $stmt->execute([$ICT->getUsrLogin(), $ICT->getSenha()]);
+        $stmt->execute([$ICT->getUsrLogin(), $ICT->getEmail(), $ICT->getEstado(), $ICT->getSenha()]);
     }
 
     public function atualizar(ICTDTO $ICT) {
-        $sql = "UPDATE tbICT SET UsrLogin = ?, Senha = ? WHERE Id_ICT = ?";
+        $sql = "UPDATE tbICT SET UsrLogin = ?, Email=?, Estado=?, Senha = SHA2(?, 256) WHERE Id_ICT = ?";
         $stmt = $this->conexao->prepare($sql);
-        $stmt->execute([$ICT->getUsrLogin(), $ICT->getSenha(), $ICT->getId()]);
+        $stmt->execute([$ICT->getUsrLogin(), $ICT->getEmail(), $ICT->getEstado(), $ICT->getSenha(), $ICT->getId()]);
     }
 
     public function remover($id) {
@@ -42,5 +42,21 @@ class ICTDAO {
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function listarPorEstado($estado) {
+        $sql = "SELECT * FROM tbICT WHERE Estado = ?";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->execute([$estado]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function login($email, $senha) {
+        $sql = "SELECT * FROM tbICT WHERE Usrlogin = ? AND Senha = SHA2(?, 256)";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->execute([$email, $senha]);
+        $ICT = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $ICT ? $ICT : null;
     }
 }

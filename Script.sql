@@ -8,14 +8,14 @@ CREATE TABLE tbPatrimonio (
     Email VARCHAR(120),
     UsrLogin VARCHAR (20),
     Estado VARCHAR (20),
-    Senha VARCHAR (20)
+    Senha VARCHAR (255)
 );
 CREATE TABLE tbICT(
     Id_ICT INT AUTO_INCREMENT PRIMARY KEY,
-    UsrLogin VARCHAR (20),
-    Email VARCHAR (120),
+    UsrLogin VARCHAR (120),
+    Email VARCHAR (255),
     Estado VARCHAR (20),
-    Senha VARCHAR (20)
+    Senha VARCHAR (255)
 );
 INSERT INTO tbICT(UsrLogin, Email, Estado, Senha)
 VALUES("admin", "admin", "Ativo", "admin");
@@ -23,9 +23,9 @@ CREATE TABLE tbEdificio (
     Id_Edificio INT AUTO_INCREMENT PRIMARY KEY,
     NomeEdificio VARCHAR(120)
 );
--- INSERT INTO tbEdificio (NomeEdificio)
--- VALUES("Novo Edificio"),
--- ("Antigo Edificio");
+INSERT INTO tbEdificio (NomeEdificio)
+VALUES("Novo Edificio"),
+("Antigo Edificio");
 CREATE TABLE tbSala (
     Id_Sala INT AUTO_INCREMENT PRIMARY KEY,
     NomeSala VARCHAR(120),
@@ -40,11 +40,11 @@ CREATE TABLE tbSala (
 CREATE TABLE tbTipo(
     Id_Tipo INT AUTO_INCREMENT PRIMARY KEY,
     Tipo VARCHAR(255)
-)
+);
 
 INSERT INTO tbTipo(Tipo) 
 VALUES("Computador", "Impressora", "Projetor", "Switch",
-"Roteador", "Cameras")
+"Roteador", "Cameras");
 
 CREATE TABLE tbEquipamento(
     Id_Equipamento INT AUTO_INCREMENT PRIMARY KEY,
@@ -58,12 +58,12 @@ CREATE TABLE tbEquipamento(
     DataFornecimento VARCHAR(50),
     DescricaoEquipamento TEXT,
     Observacoes TEXT
-) 
+) ;
 
 CREATE TABLE tbHardware (
     Id_Hardware INT AUTO_INCREMENT PRIMARY KEY,
     Id_Equipamento INT,
-    FOREIGN KEY (Id_Equipamento) REFERENCES tbEquipamento(Id_Equipamento),
+    FOREIGN KEY (Id_Equipamento) REFERENCES tbEquipamento(Id_Equipamento)
 );
 CREATE TABLE tbSoftware (
     Id_Software INT AUTO_INCREMENT PRIMARY KEY,
@@ -84,7 +84,7 @@ CREATE TABLE tbManutencao (
     Titulo VARCHAR(255),
     Descricao TEXT,
     Id_Equipamento INT,
-    FOREIGN KEY (Id_Equipamento) REFERENCES tbEquipamento(Id_Equipamento),
+    FOREIGN KEY (Id_Equipamento) REFERENCES tbEquipamento(Id_Equipamento)
 );
 
 CREATE TABLE tbLogs (

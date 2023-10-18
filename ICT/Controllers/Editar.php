@@ -6,7 +6,9 @@ require_once '../Classes/ICT/ICTDTO.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $id = $_POST["id"];
-    $usrlogin = $_POST["login"];
+    $usrlogin = $_POST["usrLogin"];
+    $email = $_POST["email"];
+    $estado = $_POST["estado"];
     $senha = $_POST["senha"];
 
     $conexao = ConexaoBD::conectar();
@@ -16,10 +18,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $ICTDTO = new ICTDTO();
         $ICTDTO->setId($id);
         $ICTDTO->setUsrlogin($usrlogin);
+        $ICTDTO->setEstado($estado);
+        $ICTDTO->setEmail($email);
         $ICTDTO->setSenha($senha);
 
         $ICTDAO->atualizar($ICTDTO);
-        echo "Dados do ICT atualizados com sucesso!";
+        
+        header("Location: ../Perfil.php");
+        exit();
     } catch (Exception $e) {
         echo "Erro ao atualizar dados do ICT: " . $e->getMessage();
     }
