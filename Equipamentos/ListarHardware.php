@@ -237,12 +237,12 @@ $tipos = $tiposDAO->listarTodos()
                       <label for="novoTipo" class="form-label">Tipo:</label>
                       <select class="form-select" id="tipoNovo" name="tipoNovo" required>
                         <!-- Opções para tipos de equipamento -->
+                        <option value="todosEquipamentos" selected>Todos</option>
                         <?php foreach ($tipos as $tipo) { ?>
                           <option class="text-dark" value="<?= $tipo->getIdTipo() ?>"><?= $tipo->getTipo() ?></option>
                         <?php } ?>
                       </select>
                     </div>
-
                     <div class="d-flex mt-4 gap-4">
                       <div class="d-flex flex-column">
                         <label for="novoTipo" class="form-label">Início:</label>
