@@ -6,6 +6,7 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 // variáveis para conexão em LOCALHOST
 $conexao = mysqli_connect('localhost:3306', 'root', 'Jeremias1', 'bdICT');
+$estadoPDF = $_POST["estadoOption"];
 
 if (mysqli_connect_errno()) {
    echo "falha ao conectar: " . mysqli_connect_error();
@@ -32,9 +33,14 @@ $tabela .= '<th style="border: 1px solid black; padding: 8px;"><b>Nome de Usuár
 $tabela .= '<th style="border: 1px solid black; padding: 8px;"><b>Estado</b></th>';
 $tabela .= '</tr>';
 
-// Puxando dados do Banco de dados
-$sql = 'SELECT * FROM tbPatrimonio';
-
+if ($estadoPDF == "todos") {
+   // Puxando dados do Banco de dados
+   $sql = 'SELECT * FROM tbPatrimonio';
+} else if ($estadoPDF == "ativos") {
+   $sql = 'SELECT * FROM tbPatrimonio WHERE Estado=1';
+} else {
+   $sql = 'SELECT * FROM tbPatrimonio WHERE Estado=0';
+}
 $resultado = mysqli_query($conexao, $sql);
 
 while ($dados = mysqli_fetch_array($resultado)) {
