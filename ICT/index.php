@@ -115,18 +115,24 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_email']) && isset($_SES
                     </form>
                 </div>
                 <div>
-                    <h3>Filtro de Pesquisa</h3>
-                    <form method="GET">
-                        <div class="mb-3">
-                            <label for="filtroEstado" class="form-label">Filtrar por Estado</label>
-                            <select class="form-select largura" name="filtroEstado" onchange="this.form.submit()">
-                                <option value="" disabled selected>Selecione o Estado</option>
-                                <option value="Todos">Todos</option>
-                                <option value="Ativo">Ativo</option>
-                                <option value="Inativo">Inativo</option>
-                            </select>
-                        </div>
-                    </form>
+                    <div>
+                        <h3>Filtro de Pesquisa</h3>
+                        <form method="GET">
+                            <div class="mb-3">
+                                <label for="filtroEstado" class="form-label">Filtrar por Estado</label>
+                                <select class="form-select largura" name="filtroEstado" onchange="this.form.submit()">
+                                    <option value="" disabled selected>Selecione o Estado</option>
+                                    <option value="Todos">Todos</option>
+                                    <option value="Ativo">Ativo</option>
+                                    <option value="Inativo">Inativo</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="mt-5">
+                        <h3>Relatório:</h3>
+                        <button class="btn btn-secondary">Imprimir</button>
+                    </div>
                 </div>
             </div>
             <div class="">
@@ -152,18 +158,32 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_email']) && isset($_SES
                                     <td class="status"><span class="active"><?= $ICT['Estado']; ?></span></td>
                                 <?php endif; ?>
                                 <td>
-                                    <a href="#" role="button">
-                                        <span style="font-size: 1.5rem; color:#343A40;" aria-hidden="true">
-                                            <i class="fa fa-edit"></i>
-                                        </span>
-                                    </a>      
-                                    <a href="#" role="button">
+                                <a href="#" data-toggle="modal" data-target="#userInfoModal<?= $ICT['ID']; ?>">
                                         <span style="font-size: 1.5rem; color:#343A40; padding-left: 16px;" aria-hidden="true">
                                             <i class="fa fa-info-circle"></i>
                                         </span>
                                     </a>
                                 </td>
                             </tr>
+                            <!-- Modal -->
+                            <div class="modal fade" id="userInfoModal<?= $ICT['ID']; ?>" tabindex="-1" role="dialog" aria-labelledby="userInfoModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="userInfoModalLabel">Informações do Usuário</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p><b>Email: </b><?= $ICT['Email']; ?></p>
+                                            <p><b>Nome de Usuário: </b><?= $ICT['UsrLogin']; ?></p>
+                                            <p><b>Estado: </b><?= $ICT['Estado']; ?></p>
+                                            <!-- Adicione mais informações conforme necessário -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
