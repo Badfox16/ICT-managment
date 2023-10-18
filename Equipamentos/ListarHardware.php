@@ -134,11 +134,9 @@ $tipos = $tiposDAO->listarTodos()
 
           <!-- Imprimir membros do patrimonio -->
           <div class="print  ">
-            <form action="">
-              <button class="btn bg-danger text-light">
-                <i class="bi bi-file-earmark-arrow-down"></i>
-                <span class="text-light fw-bold">Imprimir</span></button>
-            </form>
+            <button class="btn bg-danger text-light" data-bs-toggle="modal" data-bs-target="#imprimirModalLabel">
+              <i class="bi bi-file-earmark-arrow-down"></i>
+              <span class="text-light fw-bold">Imprimir</span></button>
           </div>
 
           <div>
@@ -223,6 +221,53 @@ $tipos = $tiposDAO->listarTodos()
           </div>
         </div>
 
+        <!-- Modal para immprimir tipo -->
+        <div class="modal fade needs-validation" data-bs-backdrop="static" data-bs-keyboard="false" id="imprimirModalLabel" tabindex="-1" aria-labelledby="imprimirModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="imprimirModalLabelLabel">Imprimir Relatórios</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <!-- Formulário para gerar relatórios -->
+                <form>
+                  <div class="mb-3">
+                    <div class="d-flex flex-column">
+                      <label for="novoTipo" class="form-label">Tipo:</label>
+                      <select class="form-select" id="tipoNovo" name="tipoNovo" required>
+                        <!-- Opções para tipos de equipamento -->
+                        <?php foreach ($tipos as $tipo) { ?>
+                          <option class="text-dark" value="<?= $tipo->getIdTipo() ?>"><?= $tipo->getTipo() ?></option>
+                        <?php } ?>
+                      </select>
+                    </div>
+
+                    <div class="d-flex mt-4 gap-4">
+                      <div class="d-flex flex-column">
+                        <label for="novoTipo" class="form-label">Início:</label>
+                        <input type="date" class="form-control" name="dataInicio">
+                      </div>
+                      <div class="d-flex flex-column">
+                        <label for="novoTipo" class="form-label">Fim:</label>
+                        <input type="date" class="form-control" name="dataInicio">
+                      </div>
+                      <div class="d-flex flex-column">
+                        <label for="novoTipo" class="form-label">Estado:</label>
+                        <select name="opcoesEstado" class="form-select">
+                          <option value="todos">Todos</option>
+                          <option value="ativos">Ativos</option>
+                          <option value="inativos">Inativos</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Adicionar Tipo</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- Modal para adicionar tipo -->
         <div class="modal fade needs-validation" data-bs-backdrop="static" data-bs-keyboard="false" id="adicionarTipoModal" tabindex="-1" aria-labelledby="adicionarTipoModalLabel" aria-hidden="true">
@@ -271,9 +316,9 @@ $tipos = $tiposDAO->listarTodos()
                     <label for="novoTipo" class="form-label">Novo nome do tipo:</label>
                     <input type="text" class="form-control" list="datalistOptions" id="novoTipoTipo" name="novoNomeTipo" required autocomplete="off">
                     <datalist id="datalistOptions">
-                    <?php foreach ($tipos as $tipo) { ?>
+                      <?php foreach ($tipos as $tipo) { ?>
                         <option value="<?= $tipo->getTipo() ?>">
-                      <?php } ?>
+                        <?php } ?>
                     </datalist>
                   </div>
 
