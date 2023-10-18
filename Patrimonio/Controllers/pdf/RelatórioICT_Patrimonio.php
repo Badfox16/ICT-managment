@@ -6,7 +6,7 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 // variáveis para conexão em LOCALHOST
 $conexao = mysqli_connect('localhost:3306', 'root', 'Jeremias1', 'bdICT');
-$estadoPDF = $_POST["estadoOption"];
+$estadoPDF = $_POST["opcoesEstado"];
 
 if (mysqli_connect_errno()) {
    echo "falha ao conectar: " . mysqli_connect_error();

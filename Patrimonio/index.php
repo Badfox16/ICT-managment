@@ -138,7 +138,7 @@ if (isset($_SESSION['patrimonio_id']) && isset($_SESSION['patrimonio_email']) &&
             <h3 class="h2-print">Imprimir lista de membros do Património</h3>
             <form action="./Controllers/pdf/RelatórioICT_Patrimonio.php" method="POST">
               <div class="d-flex mb-3">
-                <select name="estadoOption" class="form-control">
+                <select name="opcoesEstado" class="form-control">
                   <option value="todos" selected>Todos</option>
                   <option value="ativos">Ativos</option>
                   <option value="inativos">Inativos</option>
