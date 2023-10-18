@@ -34,7 +34,7 @@ $tabela .= '<th style="padding-left: 5px;"><b>Descrição do equipamento</b></th
 $tabela .= '<th style="padding-left: 5px;"><b>Observações</b></th>';
 $tabela .= '</tr>';
 
-if ($dataInicio > date("Y-m-d H:i:s") || $dataFinal < date("Y-m-d H:i:s")) {
+if ($dataInicio > date("Y-m-d H:i:s")) {
    echo "<h1>Error: a data inserida é inválida!<h1>";
 } else {
    // Puxando dados do Banco de dados
