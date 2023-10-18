@@ -19,10 +19,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['user_email'] = $ICT['Email'];
         $_SESSION['user_login'] = $ICT['UsrLogin'];
 
-        header("Location: ../ListarICT.php");
+        header("Location: ../index.php");
         exit();
     } else {
-        echo "Credenciais inválidas";
         header("Location: ../index.php");
         exit();
     }

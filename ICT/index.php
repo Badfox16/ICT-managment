@@ -152,14 +152,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_email']) && isset($_SES
                                     <td class="status"><span class="active"><?= $ICT['Estado']; ?></span></td>
                                 <?php endif; ?>
                                 <td>
-                                    <a href="#" role="button" onclick="openEditModal(<?= $ICT['Id_ICT']; ?>)">
+                                    <a href="#" role="button">
                                         <span style="font-size: 1.5rem; color:#343A40;" aria-hidden="true">
                                             <i class="fa fa-edit"></i>
                                         </span>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="#" role="button" onclick="openViewModal(<?= $ICT['Id_ICT']; ?>)">
+                                    </a>      
+                                    <a href="#" role="button">
                                         <span style="font-size: 1.5rem; color:#343A40; padding-left: 16px;" aria-hidden="true">
                                             <i class="fa fa-info-circle"></i>
                                         </span>

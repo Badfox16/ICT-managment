@@ -13,13 +13,13 @@ class ICTDAO {
     }
 
     public function inserir(ICTDTO $ICT) {
-        $sql = "INSERT INTO tbICT (UsrLogin, Email, Estado, Senha) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO tbICT (UsrLogin, Email, Estado, Senha) VALUES (?, ?, ?, SHA2(?, 256))";
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute([$ICT->getUsrLogin(), $ICT->getEmail(), $ICT->getEstado(), $ICT->getSenha()]);
     }
 
     public function atualizar(ICTDTO $ICT) {
-        $sql = "UPDATE tbICT SET UsrLogin = ?, Email=?, Estado=?, Senha = ? WHERE Id_ICT = ?";
+        $sql = "UPDATE tbICT SET UsrLogin = ?, Email=?, Estado=?, Senha = SHA2(?, 256) WHERE Id_ICT = ?";
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute([$ICT->getUsrLogin(), $ICT->getEmail(), $ICT->getEstado(), $ICT->getSenha(), $ICT->getId()]);
     }
@@ -52,7 +52,7 @@ class ICTDAO {
     }
 
     public function login($email, $senha) {
-        $sql = "SELECT * FROM tbICT WHERE Email = ? AND Senha = ?";
+        $sql = "SELECT * FROM tbICT WHERE Usrlogin = ? AND Senha = SHA2(?, 256)";
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute([$email, $senha]);
         $ICT = $stmt->fetch(PDO::FETCH_ASSOC);
