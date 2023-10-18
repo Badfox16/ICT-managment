@@ -34,17 +34,20 @@ $tabela .= '<th style="padding-left: 5px;"><b>Descrição do equipamento</b></th
 $tabela .= '<th style="padding-left: 5px;"><b>Observações</b></th>';
 $tabela .= '</tr>';
 
-// Puxando dados do Banco de dados
-if ($tipoEquipamentos == "todosEquipamentos" && $opcoesEstado == "todos") {
-   $sql = "SELECT e.*, t.Tipo FROM tbEquipamento e JOIN tbTipo t ON e.Tipo = t.Id_Tipo WHERE DataFornecimento BETWEEN '$dataInicio' AND '$dataFinal'";
-} else if ($tipoEquipamentos != "todosEquipamentos" && $opcoesEstado == "todos") {
-   $sql = "SELECT e.*, t.Tipo FROM tbEquipamento e JOIN tbTipo t ON e.Tipo = t.Id_Tipo WHERE DataFornecimento BETWEEN '$dataInicio' AND '$dataFinal' AND t.Tipo='$tipoEquipamentos'";
-} else if ($tipoEquipamentos == "todosEquipamentos" && $opcoesEstado != "todos") {
-   $sql = "SELECT e.*, t.Tipo FROM tbEquipamento e JOIN tbTipo t ON e.Tipo = t.Id_Tipo WHERE DataFornecimento BETWEEN '$dataInicio' AND '$dataFinal' AND Estado='$opcoesEstado'";
+if ($dataInicio > date("Y-m-d H:i:s") || $dataFinal < date("Y-m-d H:i:s")) {
+   echo "<h1>Error: a data inserida é inválida!<h1>";
 } else {
-   $sql = "SELECT e.*, t.Tipo FROM tbEquipamento e JOIN tbTipo t ON e.Tipo = t.Id_Tipo WHERE DataFornecimento BETWEEN '$dataInicio' AND '$dataFinal' AND t.Tipo='$tipoEquipamentos'AND Estado='$opcoesEstado'";
+   // Puxando dados do Banco de dados
+   if ($tipoEquipamentos == "todosEquipamentos" && $opcoesEstado == "todos") {
+      $sql = "SELECT e.*, t.Tipo FROM tbEquipamento e JOIN tbTipo t ON e.Tipo = t.Id_Tipo WHERE DataFornecimento BETWEEN '$dataInicio' AND '$dataFinal'";
+   } else if ($tipoEquipamentos != "todosEquipamentos" && $opcoesEstado == "todos") {
+      $sql = "SELECT e.*, t.Tipo FROM tbEquipamento e JOIN tbTipo t ON e.Tipo = t.Id_Tipo WHERE DataFornecimento BETWEEN '$dataInicio' AND '$dataFinal' AND t.Tipo='$tipoEquipamentos'";
+   } else if ($tipoEquipamentos == "todosEquipamentos" && $opcoesEstado != "todos") {
+      $sql = "SELECT e.*, t.Tipo FROM tbEquipamento e JOIN tbTipo t ON e.Tipo = t.Id_Tipo WHERE DataFornecimento BETWEEN '$dataInicio' AND '$dataFinal' AND Estado='$opcoesEstado'";
+   } else {
+      $sql = "SELECT e.*, t.Tipo FROM tbEquipamento e JOIN tbTipo t ON e.Tipo = t.Id_Tipo WHERE DataFornecimento BETWEEN '$dataInicio' AND '$dataFinal' AND t.Tipo='$tipoEquipamentos'AND Estado='$opcoesEstado'";
+   }
 }
-
 $resultado = mysqli_query($conexao, $sql);
 
 while ($dados = mysqli_fetch_array($resultado)) {
