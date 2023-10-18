@@ -33,8 +33,8 @@ $tabela .= '<th style="border: 1px solid black; padding: 8px;"><b>Nome de Usuár
 $tabela .= '<th style="border: 1px solid black; padding: 8px;"><b>Estado</b></th>';
 $tabela .= '</tr>';
 
+// Puxando dados do Banco de dados
 if ($estadoPDF == "todos") {
-   // Puxando dados do Banco de dados
    $sql = 'SELECT * FROM tbPatrimonio';
 } else if ($estadoPDF == "ativos") {
    $sql = 'SELECT * FROM tbPatrimonio WHERE Estado=1';

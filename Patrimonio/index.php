@@ -139,7 +139,7 @@ if (isset($_SESSION['patrimonio_id']) && isset($_SESSION['patrimonio_email']) &&
             <form action="./Controllers/pdf/RelatórioICT_Patrimonio.php" method="POST">
               <div class="d-flex mb-3">
                 <select name="estadoOption" class="form-control">
-                  <option value="todos">Todos</option>
+                  <option value="todos" selected>Todos</option>
                   <option value="ativos">Ativos</option>
                   <option value="inativos">Inativos</option>
                 </select>
