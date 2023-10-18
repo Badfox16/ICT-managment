@@ -230,39 +230,41 @@ $tipos = $tiposDAO->listarTodos()
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
+
                 <!-- Formulário para gerar relatórios -->
-                <form>
+                <form action="./Controllers/pdf/RelatórioICT_Equipamentos.php" method="POST">
                   <div class="mb-3">
                     <div class="d-flex flex-column">
                       <label for="novoTipo" class="form-label">Tipo:</label>
-                      <select class="form-select" id="tipoNovo" name="tipoNovo" required>
+                      <select class="form-select" name="tipoEquipamentos" id="novoTipo" required>
                         <!-- Opções para tipos de equipamento -->
                         <option value="todosEquipamentos" selected>Todos</option>
                         <?php foreach ($tipos as $tipo) { ?>
-                          <option class="text-dark" value="<?= $tipo->getIdTipo() ?>"><?= $tipo->getTipo() ?></option>
+                          <option class="text-dark" value="<?= $tipo->getTipo() ?>"><?= $tipo->getTipo() ?></option>
                         <?php } ?>
                       </select>
                     </div>
+
                     <div class="d-flex mt-4 gap-4">
                       <div class="d-flex flex-column">
-                        <label for="novoTipo" class="form-label">Início:</label>
-                        <input type="date" class="form-control" name="dataInicio">
+                        <label for="inicio" class="form-label">Início:</label>
+                        <input type="date" id="inicio" class="form-control" name="dataInicio">
                       </div>
                       <div class="d-flex flex-column">
-                        <label for="novoTipo" class="form-label">Fim:</label>
-                        <input type="date" class="form-control" name="dataInicio">
+                        <label for="fim" class="form-label">Fim:</label>
+                        <input type="date" id="fim" class="form-control" name="dataFinal">
                       </div>
                       <div class="d-flex flex-column">
-                        <label for="novoTipo" class="form-label">Estado:</label>
-                        <select name="opcoesEstado" class="form-select">
+                        <label for="estado" class="form-label">Estado:</label>
+                        <select name="opcoesEstado" class="form-select" id="estado">
                           <option value="todos">Todos</option>
-                          <option value="ativos">Ativos</option>
-                          <option value="inativos">Inativos</option>
+                          <option value="Ativo">Ativos</option>
+                          <option value="Inativo">Inativos</option>
                         </select>
                       </div>
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-primary">Adicionar Tipo</button>
+                  <button type="submit" class="btn btn-primary">Gerar</button>
                 </form>
               </div>
             </div>
