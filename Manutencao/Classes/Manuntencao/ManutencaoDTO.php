@@ -1,36 +1,74 @@
 <?php
 
-class ICTDTO {
+class ManutencaoDTO
+{
 
+    private $id_manutencao;
+    private $id_equipamento;
+    private $titulo;
+    private $descricao;
 
-    private $id;
-    private $usrLogin;
-    private $senha;
- 
-
-
-    public function setId($id){
-        $this->id = $id;
-    }
-
-    public function getId(){
-        return $this->id;
-    }
-
-    public function setUsrLogin($usrLogin){
-        $this->usrLogin = $usrLogin;
-    }
-
-    public function getUsrLogin(){
-        return $this->usrLogin;
-    }
-
-	public function getSenha() {
-		return $this->senha;
+	/**
+	 * @return mixed
+	 */
+	public function getId_manutencao() {
+		return $this->id_manutencao;
 	}
 	
-	public function setSenha($senha): self {
-		$this->senha = $senha;
+	/**
+	 * @param mixed $id_manutencao 
+	 * @return self
+	 */
+	public function setId_manutencao($id_manutencao): self {
+		$this->id_manutencao = $id_manutencao;
+		return $this;
+	}
+	
+	/**
+	 * @return mixed
+	 */
+	public function getId_equipamento() {
+		return $this->id_equipamento;
+	}
+	
+	/**
+	 * @param mixed $id_equipamento 
+	 * @return self
+	 */
+	public function setId_equipamento($id_equipamento): self {
+		$this->id_equipamento = $id_equipamento;
+		return $this;
+	}
+	
+	/**
+	 * @return mixed
+	 */
+	public function getTitulo() {
+		return $this->titulo;
+	}
+	
+	/**
+	 * @param mixed $titulo 
+	 * @return self
+	 */
+	public function setTitulo($titulo): self {
+		$this->titulo = $titulo;
+		return $this;
+	}
+	
+	/**
+	 * @return mixed
+	 */
+	public function getDescricao() {
+		return $this->descricao;
+	}
+	
+	/**
+	 * @param mixed $descricao 
+	 * @return self
+	 */
+	public function setDescricao($descricao): self {
+		$this->descricao = $descricao;
 		return $this;
 	}
 }
