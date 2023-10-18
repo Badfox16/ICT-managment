@@ -17,7 +17,7 @@ class PatrimonioDAO
 
     public function inserir(PatrimonioDTO $Patrimonio, LogsDTO $Logs)
     {
-        $sql = "INSERT INTO tbPatrimonio (Nome, Apelido, Contacto,Email, UsrLogin, Estado, Senha) VALUES (?, ?, ?, ?,?, ?, ?)";
+        $sql = "INSERT INTO tbPatrimonio (Nome, Apelido, Contacto,Email, UsrLogin, Estado, Senha) VALUES (?, ?, ?, ?,?, ?, SHA2(?, 256))";
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute([$Patrimonio->getNome(), $Patrimonio->getApelido(), $Patrimonio->getContacto(), $Patrimonio->getEmail(), $Patrimonio->getUsrLogin(), $Patrimonio->getEstado(), $Patrimonio->getSenha()]);
 
@@ -64,7 +64,7 @@ class PatrimonioDAO
 
     public function login($email, $senha, LogsDTO $Logs)
     {
-        $sql = "SELECT * FROM tbPatrimonio WHERE Email = ? AND Senha = ?";
+        $sql = "SELECT * FROM tbPatrimonio WHERE Email = ? AND Senha = SHA2(?, 256)";
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute([$email, $senha]);
         $Patrimonio = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -75,5 +75,17 @@ class PatrimonioDAO
         $stmtLogs->execute([$Logs->getUsuario(), $Logs->getHora(), $Logs->getAtividade()]);
 
         return $Patrimonio ? $Patrimonio : null;
+    }
+
+    public function atualizarPerfil(PatrimonioDTO $Patrimonio, LogsDTO $Logs)
+    {
+        $sql = "UPDATE tbPatrimonio SET Nome = ?, Apelido = ?, Contacto = ?, Email = ?, UsrLogin = ?, Senha = SHA2(?, 256) WHERE Id_Patrimonio = ?";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->execute([$Patrimonio->getNome(), $Patrimonio->getApelido(), $Patrimonio->getContacto(), $Patrimonio->getEmail(), $Patrimonio->getUsrLogin(), $Patrimonio->getSenha(), $Patrimonio->getId()]);
+
+        //Logs
+        $sql = "INSERT INTO tbLogs (Usuario, Hora, Atividade) VALUES (?, ?, ?)";
+        $stmtLogs = $this->conexao->prepare($sql);
+        $stmtLogs->execute([$Logs->getUsuario(), $Logs->getHora(), $Logs->getAtividade()]);
     }
 }
