@@ -32,7 +32,7 @@ if (isset($_SESSION['patrimonio_id']) && isset($_SESSION['patrimonio_email']) &&
   $salas[] = $salaDao->listarTodos();
   $equipamentos[] = $equipamentoDao->listarTodos();
   $softwares[] = $softwareDao->listarTodos();
-  $hardwares[] = $hardwareDao->listarTodos();
+  $hardwares = $hardwareDao->contarHardwares();
   $manutencoes[] = $manutencaoDao->listarTodos();
   $tipos[] = $tiposDao->listarTodos();
 } else {
@@ -137,7 +137,9 @@ if (isset($_SESSION['patrimonio_id']) && isset($_SESSION['patrimonio_email']) &&
                 <img src="./img/hardware.png" alt="Imagem do Hardware">
               </div>
               <h5>Hardware</h5>
-              <p>85</p>
+              <p>
+                <?= $hardwares ?>
+              </p>
             </div>
             <div class="card-equipment">
               <div class="card-equimpment-img">
