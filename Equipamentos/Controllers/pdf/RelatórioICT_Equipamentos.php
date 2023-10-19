@@ -5,7 +5,7 @@ require 'dompdf/vendor/autoload.php';
 use Dompdf\Dompdf;
 use Dompdf\Options;
 // variáveis para conexão em LOCALHOST
-$conexao = mysqli_connect('localhost:3306', 'root', 'pedrinho2003', 'bdICT');
+$conexao = mysqli_connect('localhost:3306', 'root', 'B@dF0x16', 'bdICT');
 
 if (mysqli_connect_errno()) {
    echo "falha ao conectar: " . mysqli_connect_error();
