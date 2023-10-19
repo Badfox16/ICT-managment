@@ -111,6 +111,7 @@ if (isset($_SESSION['user_id'])) {
                             </button>
                         </div>
                         <div class="modal-body">
+
                             <form method="post" action="./Controllers/Editar.php">
                                 <div class="form-group">
                                     <label for="usrLogin">Nome do Usuário</label>
@@ -140,3 +141,4 @@ if (isset($_SESSION['user_id'])) {
 </body>
 
 </html>
+
