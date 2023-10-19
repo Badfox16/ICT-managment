@@ -1,32 +1,29 @@
 <?php
 
 require_once '../Classes/Database/ConexaoBD.php';
-require_once '../Classes/ICT/ICTDAO.php';
-require_once '../Classes/ICT/ICTDTO.php';
+require_once '../Classes/Sala/SalaDAO.php';
+require_once '../Classes/Sala/SalaDTO.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $id = $_POST["id"];
-    $usrlogin = $_POST["usrLogin"];
-    $email = $_POST["email"];
-    $estado = $_POST["estado"];
-    $senha = $_POST["senha"];
+    $id = $_POST["salaId"];
+    $nomeSala = $_POST["sala"];
+    $idEdificio = $_POST["edificio"];
 
     $conexao = ConexaoBD::conectar();
-    $ICTDAO = new ICTDAO($conexao);
+    $SalaDAO = new SalaDAO($conexao);
 
     try {
-        $ICTDTO = new ICTDTO();
-        $ICTDTO->setId($id);
-        $ICTDTO->setUsrlogin($usrlogin);
-        $ICTDTO->setEstado($estado);
-        $ICTDTO->setEmail($email);
-        $ICTDTO->setSenha($senha);
+        $SalaDTO = new SalaDTO();
+        $SalaDTO->setId($id);
+        $SalaDTO->setNomeSala($nomeSala);
+        $SalaDTO->setId_edificio($idEdificio);
 
-        $ICTDAO->atualizar($ICTDTO);
+
+        $SalaDAO->atualizar($SalaDTO);
         
-        header("Location: ../Perfil.php");
+        header("Location: ../index.php");
         exit();
     } catch (Exception $e) {
-        echo "Erro ao atualizar dados do ICT: " . $e->getMessage();
+        echo "Erro ao atualizar dados do Sala: " . $e->getMessage();
     }
 }

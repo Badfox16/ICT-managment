@@ -183,7 +183,7 @@ if (isset($_GET['filtroSala'])) {
                                 </div>
                                 <div class="modal-body">
                                     <p><b>Sala: </b><?= $Sala['NomeSala']; ?></p>
-                                    <p><b>Nome de Edificio: </b><?= $Sala['NomeEdificio']; ?></p>
+                                    <p><b>Edificio: </b><?= $Sala['NomeEdificio']; ?></p>
                                 </div>
                             </div>
                         </div>
