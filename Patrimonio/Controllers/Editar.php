@@ -3,12 +3,14 @@
 require_once '../Classes/Database/ConexaoBD.php';
 require_once '../Classes/Patrimonio/PatrimonioDAO.php';
 require_once '../Classes/Patrimonio/PatrimonioDTO.php';
+require_once '../Classes/Logs/LogsDTO.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $id = $_POST["id"];
     $nome = $_POST["nome"];
     $apelido = $_POST["apelido"];
     $contacto = $_POST["contacto"];
+    $email = $_POST["email"];
     $usrlogin = $_POST["login"];
     $estado = $_POST["estado"];
     $senha = $_POST["senha"];
@@ -22,13 +24,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $PatrimonioDTO->setNome($nome);
         $PatrimonioDTO->setApelido($apelido);
         $PatrimonioDTO->setContacto($contacto);
+        $PatrimonioDTO->setEmail($email);
         $PatrimonioDTO->setUsrlogin($usrlogin);
-        $PatrimonioDTO->setEstado($estado);
+        isset($estado) ? $PatrimonioDTO->setEstado(1) : $PatrimonioDTO->setEstado(0);
         $PatrimonioDTO->setSenha($senha);
 
-        $PatrimonioDAO->atualizar($PatrimonioDTO);
-        echo "Dados do Patrimonio atualizados com sucesso!";
+        // Logs
+        $LogsDTO = new LogsDTO();
+        $LogsDTO->setUsuario("Usuario");
+        $LogsDTO->setAtividade("Atualizou $nome no patrimonio");
+        $LogsDTO->setHora(date("Y-m-d H:i:s"));
+
+        $PatrimonioDAO->atualizar($PatrimonioDTO, $LogsDTO);
+        header("Location: ../index.php");
+        exit();
     } catch (Exception $e) {
         echo "Erro ao atualizar dados do Patrimonio: " . $e->getMessage();
+        exit();
     }
 }

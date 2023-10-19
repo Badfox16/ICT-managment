@@ -111,8 +111,7 @@ if (isset($_SESSION['user_id'])) {
                             </button>
                         </div>
                         <div class="modal-body">
-                            <!-- Seu formulário de edição de perfil aqui -->
-                            <!-- Exemplo de formulário: -->
+
                             <form method="post" action="./Controllers/Editar.php">
                                 <div class="form-group">
                                     <label for="usrLogin">Nome do Usuário</label>
@@ -143,17 +142,3 @@ if (isset($_SESSION['user_id'])) {
 
 </html>
 
-
-<!-- <h2>Editar admin ICT</h2>
-        <form method="post" action="./Controllers/Editar.php">
-            <label for="id">ID do ICT a Atualizar:</label>
-            <input type="hidden" name="id" id="id" value="<?= $ICT['Id_ICT']; ?>">
-            <br> <br>
-            <label for="login">Login:</label>
-            <input type="text" name="login" id="login" value="<?= $ICT['UsrLogin']; ?>">
-            <br><br>
-            <label for="login">Senha:</label>
-            <input type="text" name="senha" id="senha" value="<?= $ICT['Senha']; ?>">
-            <br><br>
-            <input type="submit" value="Atualizar">
-        </form> -->
