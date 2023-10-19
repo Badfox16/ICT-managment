@@ -164,7 +164,7 @@ function verDetalhesSoftware(id) {
         dataType: 'json',
         success: function (response) {
             // Preencha os campos do modal de detalhes com os dados obtidos
-            $('#computadorDetalhes').val(response.Id_Equipamento);
+            $('#computadorDetalhes').val(response.NrComputador + " - " + response.MarcaComputador + " - " + response.ModeloComputador);
             $('#nomeDetalhes').val(response.NomeSoftware);
             $('#fabricanteDetalhes').val(response.Fabricante);
             $('#versaoDetalhes').val(response.Versao);

@@ -64,11 +64,15 @@ class SoftwareDAO
 
     public function buscarPorId($idSoftware)
     {
-        $sql = "SELECT * FROM tbSoftware WHERE Id_Software = ?";
+        $sql = "SELECT s.*, e.Marca AS MarcaComputador ,e.Modelo AS ModeloComputador,e.NrDeSerie AS NrComputador
+                FROM tbSoftware s
+                LEFT JOIN tbEquipamento e ON s.Id_Equipamento = e.Id_Equipamento
+                WHERE s.Id_Software = ?";
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute([$idSoftware]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
 
     public function listarTodos()
     {
