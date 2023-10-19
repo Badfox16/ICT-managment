@@ -13,7 +13,9 @@ require_once 'Classes/Manutencao/ManutencaoDTO.php';
 //Tipos
 require_once 'Classes/Tipos/TiposDAO.php';
 require_once 'Classes/Tipos/TiposDTO.php';
-
+//Salas
+require_once 'Classes/Sala/SalaDAO.php';
+require_once 'Classes/Sala/SalaDTO.php';
 
 
 $count = 0;
@@ -24,10 +26,12 @@ $equipamentoDAO = new EquipamentoDAO($conexao);
 $hardwareDAO = new HardwareDAO($conexao);
 $manutencaoDAO = new ManutencaoDAO($conexao);
 $tiposDAO = new TiposDAO($conexao);
+$SalaDAO = new SalaDAO($conexao);
 
 // Chamar o método para listar todos os equipamentos com informações extras
 $equipamentos = $equipamentoDAO->listarTodos();
-$tipos = $tiposDAO->listarTodos()
+$tipos = $tiposDAO->listarTodos();
+$Salas = $SalaDAO->listarTodos(); 
 
 ?>
 

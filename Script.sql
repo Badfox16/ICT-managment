@@ -1,5 +1,7 @@
 CREATE DATABASE `bdICT` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_esperanto_ci;
+
 USE bdICT;
+
 CREATE TABLE tbPatrimonio (
     Id_Patrimonio INT AUTO_INCREMENT PRIMARY KEY,
     Nome VARCHAR (50),
@@ -10,6 +12,7 @@ CREATE TABLE tbPatrimonio (
     Estado VARCHAR (20),
     Senha VARCHAR (255)
 );
+
 CREATE TABLE tbICT(
     Id_ICT INT AUTO_INCREMENT PRIMARY KEY,
     UsrLogin VARCHAR (120),
@@ -17,25 +20,25 @@ CREATE TABLE tbICT(
     Estado VARCHAR (20),
     Senha VARCHAR (255)
 );
+
 INSERT INTO tbICT(UsrLogin, Email, Estado, Senha)
 VALUES('admin', 'admin', 'Ativo', 'admin');
 CREATE TABLE tbEdificio (
     Id_Edificio INT AUTO_INCREMENT PRIMARY KEY,
     NomeEdificio VARCHAR(120)
 );
+
 INSERT INTO tbEdificio (NomeEdificio)
 VALUES("Novo Edificio"),
 ("Antigo Edificio");
+
 CREATE TABLE tbSala (
     Id_Sala INT AUTO_INCREMENT PRIMARY KEY,
     NomeSala VARCHAR(120),
     Id_Edificio INT,
     FOREIGN KEY (Id_Edificio) REFERENCES tbEdificio(Id_Edificio)
 );
--- SELECT tbSala.DescricaoSala
--- FROM tbSala
--- INNER JOIN tbEdificio ON tbSala.Id_Edificio = tbEdificio.Id_Edificio
--- WHERE tbEdificio.NomeEdificio = 'Nome do tal edificio';
+
 
 CREATE TABLE tbTipo(
     Id_Tipo INT AUTO_INCREMENT PRIMARY KEY,
@@ -53,12 +56,13 @@ CREATE TABLE tbEquipamento(
     Modelo VARCHAR(150),
     NrDeSerie VARCHAR(150),
     Estado VARCHAR(150),
-    Localizacao VARCHAR(150),
+    Localizacao INT,
     Fornecedor VARCHAR(150),
     DataFornecimento VARCHAR(50),
     DescricaoEquipamento TEXT,
     Observacoes TEXT,
-    FOREIGN KEY(Tipo) REFERENCES tbTipo(Id_Tipo)
+    FOREIGN KEY(Tipo) REFERENCES tbTipo(Id_Tipo),
+    FOREIGN KEY(Localizacao) REFERENCES tbSala(Id_Sala)
 );
 
 CREATE TABLE tbHardware (
