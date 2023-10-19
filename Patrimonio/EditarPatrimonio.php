@@ -86,7 +86,7 @@ try {
             <section class="right-content container-fluid bg-muted pt-4">
                 <div class="header d-flex justify-content-between text-muted">
                     <div class="system-name">
-                        <h3 class="text-uppercase mx-4 text-dark">Ict-patrimorio</h3>
+                        <h3 class="text-uppercase mx-4 text-dark">Gerentes do Património</h3>
                     </div>
 
                     <div class="manager-name">

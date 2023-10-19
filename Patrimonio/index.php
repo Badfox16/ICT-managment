@@ -58,7 +58,7 @@ if (isset($_SESSION['patrimonio_id']) && isset($_SESSION['patrimonio_email']) &&
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white mb-4" aria-current="page">
+                    <a href="../ICT/index.php" class="nav-link text-white mb-4" aria-current="page">
                         ICT
                     </a>
                 </li>
