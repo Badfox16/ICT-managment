@@ -1,44 +1,36 @@
 <?php
-session_start();
-if (isset($_SESSION['patrimonio_id']) && isset($_SESSION['patrimonio_email']) && isset($_SESSION['patrimonio_login'])) {
-  require_once 'Classes/Database/ConexaoBD.php';
-  require_once 'Classes/Components/EdificioDAO.php';
-  require_once 'Classes/Components/EdificioDTO.php';
-  require_once 'Classes/Components/SalaDAO.php';
-  require_once 'Classes/Components/SalaDTO.php';
-  require_once 'Classes/Components/EquipamentoDAO.php';
-  require_once 'Classes/Components/EquipamentoDTO.php';
-  require_once 'Classes/Components/SoftwareDAO.php';
-  require_once 'Classes/Components/SoftwareDTO.php';
-  require_once 'Classes/Components/HardwareDAO.php';
-  require_once 'Classes/Components/HardwareDTO.php';
-  require_once 'Classes/Components/ManutencaoDAO.php';
-  require_once 'Classes/Components/ManutencaoDTO.php';
-  require_once 'Classes/Components/TiposDAO.php';
-  require_once 'Classes/Components/TiposDTO.php';
 
+use PHPUnit\Framework\Constraint\Count;
 
-  $conexao = ConexaoBD::conectar();
+require_once 'Classes/Database/ConexaoBD.php';
+require_once 'Classes/Components/EquipamentoDAO.php';
+require_once 'Classes/Components/EquipamentoDTO.php';
+require_once 'Classes/Components/SoftwareDAO.php';
+require_once 'Classes/Components/SoftwareDTO.php';
+require_once 'Classes/Components/HardwareDAO.php';
+require_once 'Classes/Components/HardwareDTO.php';
+require_once 'Classes/Components/ManutencaoDAO.php';
+require_once 'Classes/Components/ManutencaoDTO.php';
 
-  $edificioDao = new EdificioDAO($conexao);
-  $salaDao = new SalaDAO($conexao);
-  $equipamentoDao = new EquipamentoDAO($conexao);
-  $softwareDao = new SoftwareDAO($conexao);
-  $hardwareDao = new HardwareDAO($conexao);
-  $manutencaoDao = new ManutencaoDAO($conexao);
-  $tiposDao = new TiposDAO($conexao);
+$conexao = ConexaoBD::conectar();
 
-  $edificios[] = $edificioDao->listarTodos();
-  $salas[] = $salaDao->listarTodos();
-  $equipamentos[] = $equipamentoDao->listarTodos();
-  $softwares[] = $softwareDao->listarTodos();
-  $hardwares = $hardwareDao->contarHardwares();
-  $manutencoes[] = $manutencaoDao->listarTodos();
-  $tipos[] = $tiposDao->listarTodos();
-} else {
-  header("Location: ./Login.php");
-  exit();
-}
+$equipamentoDao = new EquipamentoDAO($conexao);
+$softwareDao = new SoftwareDAO($conexao);
+$hardwareDao = new HardwareDAO($conexao);
+$manutencaoDao = new ManutencaoDAO($conexao);
+
+$softwares = $softwareDao->listarTodos();
+$hardwares = $hardwareDao->listarTodos();
+$manutencoes = $manutencaoDao->listarTodos();
+
+// Contagem de equipamentos
+$countHardware = count($hardwares);
+$countSoftware = count($softwares);
+$countManutencao = count($manutencoes);
+$totalEquipamentos = (count($hardwares) + count($softwares) + count($manutencoes));
+
+// Equipamentos por sala
+$equipamentos = $equipamentoDao->countEquipamentoSala();
 ?>
 
 <!DOCTYPE html>
@@ -130,34 +122,39 @@ if (isset($_SESSION['patrimonio_id']) && isset($_SESSION['patrimonio_email']) &&
                 <img src="./img/software.png" alt="Imagem do software">
               </div>
               <h5>software</h5>
-              <p>85</p>
+              <p><?php echo $countSoftware ?></p>
             </div>
             <div class="card-equipment">
               <div class="card-equimpment-img">
                 <img src="./img/hardware.png" alt="Imagem do Hardware">
               </div>
               <h5>Hardware</h5>
-              <p>
-                <?= $hardwares ?>
-              </p>
+              <p><?php echo $countHardware ?></p>
             </div>
             <div class="card-equipment">
               <div class="card-equimpment-img">
                 <img src="./img/manutation.png" alt="Imagem da manutenção">
               </div>
               <h5>manutenção</h5>
-              <p>85</p>
+              <p><?php echo $countManutencao ?></p>
             </div>
             <div class="card-equipment">
               <div class="card-equimpment-img">
                 <img src="./img/equipment.png" alt="Imagem de todos os equipamentos">
               </div>
               <h5>Todos Equipamentos</h5>
-              <p>85</p>
+              <p><?php echo $totalEquipamentos ?></p>
             </div>
           </div>
 
           <!-- Grafico -->
+          <?php foreach ($equipamentos as $equipamento) {
+            $nomeSala = $equipamento['NomeSala'];
+            $contagemEquipamentos = $equipamento['ContagemEquipamentos'];
+            echo "<p class='nomeSala' hidden>$nomeSala</p>";
+            echo "<p class='contagemEquipamentos' hidden>$contagemEquipamentos</p>";
+          } ?>
+
           <div class="graphic">
             <canvas id="grafico"></canvas>
           </div>

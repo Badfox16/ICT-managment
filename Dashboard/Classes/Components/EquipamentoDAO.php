@@ -12,54 +12,6 @@ class EquipamentoDAO
         $this->conexao = $conexao;
     }
 
-    public function inserir(EquipamentoDTO $equipamento)
-    {
-        $sql = "INSERT INTO tbEquipamento (Tipo, Marca, Modelo, NrDeSerie, Estado, Localizacao, Fornecedor, DataFornecimento, DescricaoEquipamento, Observacoes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $stmt = $this->conexao->prepare($sql);
-        $stmt->execute([$equipamento->getTipo(), $equipamento->getMarca(), $equipamento->getModelo(), $equipamento->getNrDeSerie(), $equipamento->getEstado(), $equipamento->getLocalizacao(), $equipamento->getFornecedor(), $equipamento->getDataFornecimento(), $equipamento->getDescricaoEquipamento(), $equipamento->getObservacoes()]);
-    }
-
-    public function atualizar(EquipamentoDTO $equipamento)
-    {
-        $sql = "UPDATE tbEquipamento SET Tipo = ?, Marca = ?, Modelo = ?, NrDeSerie = ?, Estado = ?, Localizacao = ?, Fornecedor = ?, DataFornecimento = ?, DescricaoEquipamento = ?, Observacoes = ? WHERE Id_Equipamento = ?";
-        $stmt = $this->conexao->prepare($sql);
-        $stmt->execute([$equipamento->getTipo(), $equipamento->getMarca(), $equipamento->getModelo(), $equipamento->getNrDeSerie(), $equipamento->getEstado(), $equipamento->getLocalizacao(), $equipamento->getFornecedor(), $equipamento->getDataFornecimento(), $equipamento->getDescricaoEquipamento(), $equipamento->getObservacoes(), $equipamento->getIdEquipamento()]);
-    }
-
-    public function remover($id)
-    {
-        $sql = "DELETE FROM tbEquipamento WHERE Id_Equipamento = ?";
-        $stmt = $this->conexao->prepare($sql);
-        $stmt->execute([$id]);
-    }
-
-    public function buscarPorId($id)
-    {
-        $sql = "SELECT 
-        e.Id_Equipamento, 
-        t.Tipo, 
-        e.Marca, 
-        e.Modelo, 
-        e.NrDeSerie, 
-        e.Estado, 
-        s.NomeSala as Localizacao, 
-        e.Fornecedor, 
-        e.DataFornecimento, 
-        e.DescricaoEquipamento, 
-        e.Observacoes
-    FROM 
-        tbEquipamento e
-    JOIN 
-        tbTipo t ON e.Tipo = t.Id_Tipo
-    JOIN 
-        tbSala s ON e.Localizacao = s.Id_Sala WHERE e.Id_Equipamento = ?";
-        $stmt = $this->conexao->prepare($sql);
-        $stmt->execute([$id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-
-
-
     public function listarTodos()
     {
         $sql = "SELECT 
@@ -104,7 +56,15 @@ class EquipamentoDAO
             // Adicionando o objeto ao array
             $equipamentos[] = $equipamento;
         }
-
         return $equipamentos;
+    }
+
+    public function countEquipamentoSala()
+    {
+        $sql = "SELECT tbSala.NomeSala, COUNT(tbEquipamento.Id_Equipamento) AS ContagemEquipamentos FROM tbSala
+        LEFT JOIN tbEquipamento ON tbSala.Id_Sala = tbEquipamento.Localizacao GROUP BY tbSala.Id_Sala";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

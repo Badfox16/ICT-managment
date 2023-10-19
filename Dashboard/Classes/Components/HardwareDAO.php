@@ -49,25 +49,4 @@ class HardwareDAO
         return $hardwares;
     }
 
-    public function buscarPorId($id)
-    {
-        $sql = "SELECT * FROM tbHardware WHERE Id_Hardware = ?";
-        $stmt = $this->conexao->prepare($sql);
-        $stmt->execute([$id]);
-        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($resultado) {
-            return new HardwareDTO($resultado['Id_Hardware'], $resultado['Id_Equipamento']);
-        } else {
-            return null;
-        }
-    }
-
-    public function contarHardwares()
-    {
-        $sql = "SELECT COUNT(*) FROM tbHardware";
-        $stmt = $this->conexao->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
 }
