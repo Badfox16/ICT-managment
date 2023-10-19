@@ -2,13 +2,39 @@
 session_start();
 if (isset($_SESSION['patrimonio_id']) && isset($_SESSION['patrimonio_email']) && isset($_SESSION['patrimonio_login'])) {
   require_once 'Classes/Database/ConexaoBD.php';
-  require_once 'Classes/Patrimonio/PatrimonioDAO.php';
-  require_once 'Classes/Patrimonio/PatrimonioDTO.php';
+  require_once 'Classes/Components/EdificioDAO.php';
+  require_once 'Classes/Components/EdificioDTO.php';
+  require_once 'Classes/Components/SalaDAO.php';
+  require_once 'Classes/Components/SalaDTO.php';
+  require_once 'Classes/Components/EquipamentoDAO.php';
+  require_once 'Classes/Components/EquipamentoDTO.php';
+  require_once 'Classes/Components/SoftwareDAO.php';
+  require_once 'Classes/Components/SoftwareDTO.php';
+  require_once 'Classes/Components/HardwareDAO.php';
+  require_once 'Classes/Components/HardwareDTO.php';
+  require_once 'Classes/Components/ManutencaoDAO.php';
+  require_once 'Classes/Components/ManutencaoDTO.php';
+  require_once 'Classes/Components/TiposDAO.php';
+  require_once 'Classes/Components/TiposDTO.php';
+
 
   $conexao = ConexaoBD::conectar();
-  $PatrimonioDAO = new PatrimonioDAO($conexao);
 
-  $Patrimonios = $PatrimonioDAO->listarTodos();
+  $edificioDao = new EdificioDAO($conexao);
+  $salaDao = new SalaDAO($conexao);
+  $equipamentoDao = new EquipamentoDAO($conexao);
+  $softwareDao = new SoftwareDAO($conexao);
+  $hardwareDao = new HardwareDAO($conexao);
+  $manutencaoDao = new ManutencaoDAO($conexao);
+  $tiposDao = new TiposDAO($conexao);
+
+  $edificios[] = $edificioDao->listarTodos();
+  $salas[] = $salaDao->listarTodos();
+  $equipamentos[] = $equipamentoDao->listarTodos();
+  $softwares[] = $softwareDao->listarTodos();
+  $hardwares[] = $hardwareDao->listarTodos();
+  $manutencoes[] = $manutencaoDao->listarTodos();
+  $tipos[] = $tiposDao->listarTodos();
 } else {
   header("Location: ./Login.php");
   exit();
@@ -133,7 +159,7 @@ if (isset($_SESSION['patrimonio_id']) && isset($_SESSION['patrimonio_email']) &&
           <div class="graphic">
             <canvas id="grafico"></canvas>
           </div>
-          
+
           <!-- Membros do patrimonio -->
           <div class="management d-flex">
             <div class="managers container-fluid p-1">
