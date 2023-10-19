@@ -8,6 +8,7 @@ new Chart(ctx, {
       {
         label: "# of Votes",
         data: [12, 19, 3, 5, 2, 3],
+        backgroundColor: "#c3d7f9",
         borderWidth: 1,
       },
     ],

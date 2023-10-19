@@ -133,6 +133,7 @@ if (isset($_SESSION['patrimonio_id']) && isset($_SESSION['patrimonio_email']) &&
           <div class="graphic">
             <canvas id="grafico"></canvas>
           </div>
+          
           <!-- Membros do patrimonio -->
           <div class="management d-flex">
             <div class="managers container-fluid p-1">
