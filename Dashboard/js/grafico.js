@@ -1,13 +1,13 @@
-const ctx = document.getElementById("grafico");
+const ctx = document.getElementById("grafico").getContext("2d");
 const nomesDaSala = document.querySelectorAll(".nomeSala");
 const totalEquipamentos = document.querySelectorAll(".contagemEquipamentos");
 
-// Converte os valores NodeList em arrays
+// Converte os valores da NodeList em arrays
 const nomesDaSalaArray = Array.from(nomesDaSala).map(
   (element) => element.textContent
 );
-const totalEquipamentosArray = Array.from(totalEquipamentos).map((element) =>
-  parseInt(element.textContent)
+const totalEquipamentosArray = Array.from(totalEquipamentos).map(
+  (element) => element.textContent
 );
 
 new Chart(ctx, {

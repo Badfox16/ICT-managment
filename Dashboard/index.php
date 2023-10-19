@@ -22,6 +22,7 @@ $manutencaoDao = new ManutencaoDAO($conexao);
 $softwares = $softwareDao->listarTodos();
 $hardwares = $hardwareDao->listarTodos();
 $manutencoes = $manutencaoDao->listarTodos();
+$listarEquipamentos = $equipamentoDao->listarTodos();
 
 // Contagem de equipamentos
 $countHardware = count($hardwares);
@@ -31,6 +32,7 @@ $totalEquipamentos = (count($hardwares) + count($softwares) + count($manutencoes
 
 // Equipamentos por sala
 $equipamentos = $equipamentoDao->countEquipamentoSala();
+$count = 0;
 ?>
 
 <!DOCTYPE html>
@@ -159,90 +161,44 @@ $equipamentos = $equipamentoDao->countEquipamentoSala();
             <canvas id="grafico"></canvas>
           </div>
 
-          <!-- Membros do patrimonio -->
-          <div class="management d-flex">
-            <div class="managers container-fluid p-1">
-              <div class="managers-title-add">
-                <div class="manager-title text-uppercase">
-                  <p>Membros do Património</p>
-                </div>
-              </div>
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>Id</th>
-                    <th>Nome</th>
-                    <th>Apelido</th>
-                    <th>Contacto</th>
-                    <th>Email</th>
-                    <th>Nome de Usuário</th>
-                    <th>Estado</th>
-                    <th>Ações</th>
-                  </tr>
-                </thead>
+          <!-- Todos os equipamentos -->
+          <div class="container-fluid my-5">
+            <table class="table table-hover ">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Número de Série</th>
+                  <th>Tipo</th>
+                  <th>Marca</th>
+                  <th>Modelo</th>
+                  <th>Estado</th>
+                  <th>Localização</th>
+                </tr>
+              </thead>
+              <?php foreach ($listarEquipamentos as $listagemEquipamentos) : ?>
                 <tbody>
-                  <?php foreach ($Patrimonios as $patrimonio) : ?>
-                    <tr>
-                      <td><?= $patrimonio["Id_Patrimonio"] ?></td>
-                      <td><?= $patrimonio["Nome"] ?></td>
-                      <td><?= $patrimonio["Apelido"] ?></td>
-                      <td><?= $patrimonio["Contacto"] ?></td>
-                      <td><?= $patrimonio["Email"] ?></td>
-                      <td><?= $patrimonio["UsrLogin"] ?></td>
-                      <td>
-                        <?php
-                        if ($patrimonio["Estado"]) {
-                          echo "<button disabled class='manager-actived'>Ativo</button>";
-                        } else {
-                          echo "<button disabled class='manager-disabled'>Inativo</button>";
-                        }
-                        ?>
-                      </td>
-                      <td>
-                        <a href="./EditarPatrimonio.php?id=<?= $patrimonio["Id_Patrimonio"] ?>">
-                          <span style="font-size: 1.5rem; color:#343A40;" aria-hidden="true">
-                            <i class="fa fa-edit"></i>
-                          </span>
-                        </a>
-                        <a href="#" data-toggle="modal" data-target="#userInfoModal<?= $patrimonio['Id_Patrimonio']; ?>">
-                          <span style="font-size: 1.5rem; color:#343A40; padding-left: 16px;" aria-hidden="true">
-                            <i class="fa fa-info-circle"></i>
-                          </span>
-                        </a>
-                      </td>
-                    </tr>
-                  <?php endforeach; ?>
+                  <tr>
+                    <td><?= ++$count ?></td>
+                    <td><?= $listagemEquipamentos->getNrDeSerie() ?></td>
+                    <td><?= $listagemEquipamentos->getTipo() ?></td>
+                    <td><?= $listagemEquipamentos->getMarca() ?></td>
+                    <td><?= $listagemEquipamentos->getModelo() ?></td>
+                    <td>
+                      <?php
+                      $estado = $listagemEquipamentos->getEstado();
+                      if ($estado == "Ativo" || $estado == "Activo") {
+                        echo '<span class="badge rounded-pill bg-info p-2 px-3">' . $estado . '</span>';
+                      } else {
+                        echo '<span class="badge rounded-pill bg-secondary p-2">' . $estado . '</span>';
+                      }
+                      ?>
+                    </td>
+                    <td><?= $listagemEquipamentos->getLocalizacao() ?></td>
+                  </tr>
                 </tbody>
-              </table>
-              <!-- Modal -->
-              <?php foreach ($Patrimonios as $patrimonio) : ?>
-                <div class="modal fade" id="userInfoModal<?= $patrimonio['Id_Patrimonio']; ?>" tabindex="-1" role="dialog" aria-labelledby="userInfoModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="userInfoModalLabel">Informações do Usuário</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        <p><b>Nome: </b><?= $patrimonio['Nome']; ?></p>
-                        <p><b>Apelido: </b><?= $patrimonio['Apelido']; ?></p>
-                        <p><b>Email: </b><?= $patrimonio['Email']; ?></p>
-                        <p><b>Nome de Usuário: </b><?= $patrimonio['UsrLogin']; ?></p>
-                        <?php
-                        if ($patrimonio["Estado"]) {
-                          echo "<p><b>Estado: </b>Ativo</p>";
-                        } else {
-                          echo "<p><b>Estado: </b>Inativo</p>";
-                        }
-                        ?>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              <?php endforeach; ?>
-            </div>
+              <?php endforeach ?>
+            </table>
+          </div>
         </section>
       </div>
     </div>
