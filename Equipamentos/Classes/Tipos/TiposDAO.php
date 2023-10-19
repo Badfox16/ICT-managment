@@ -65,4 +65,26 @@ class TiposDAO
 
         return $count > 0;
     }
+
+    public function existeTipoComNome2($novoTipo)
+    {
+        $sql = "SELECT COUNT(*) FROM tipos WHERE nome = :nome";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bindValue(':nome', $novoTipo);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+
+        // Se count for maior que 0, significa que o tipo já existe
+        return $count > 0;
+    }
+
+
+    // Na classe TiposDAO, adicione a função deletarTipoPorNome
+    public function deletarTipoPorNome($nomeTipo)
+    {
+        $sql = "DELETE FROM tbTipo WHERE Tipo = :nomeTipo";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bindParam(':nomeTipo', $nomeTipo, PDO::PARAM_STR);
+        return $stmt->execute();
+    }
 }

@@ -5,17 +5,21 @@ require 'dompdf/vendor/autoload.php';
 use Dompdf\Dompdf;
 use Dompdf\Options;
 // variáveis para conexão em LOCALHOST
-$conexao = mysqli_connect('localhost:3306', 'root', 'Jeremias1', 'bdICT');
+$conexao = mysqli_connect('localhost:3306', 'root', 'pedrinho2003', 'bdICT');
 
 if (mysqli_connect_errno()) {
    echo "falha ao conectar: " . mysqli_connect_error();
    die();
 }
 
+// Nome do Arquivo do Excel que será gerado
+
 $tipoEquipamentos = $_POST["tipoEquipamentos"];
 $dataInicio = $_POST["dataInicio"];
 $dataFinal = $_POST["dataFinal"];
 $opcoesEstado = $_POST["opcoesEstado"];
+
+$arquivo = 'Relatorio_Equipamentos.pdf';
 
 $tabela = '<table border="1" style="border-collapse: collapse; width: 100%; margin-right:5rem;">';
 $tabela .= '<tr>';

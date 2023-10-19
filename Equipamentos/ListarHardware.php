@@ -235,8 +235,8 @@ $tipos = $tiposDAO->listarTodos()
                 <form action="./Controllers/pdf/RelatórioICT_Equipamentos.php" method="POST">
                   <div class="mb-3">
                     <div class="d-flex flex-column">
-                      <label for="novoTipo" class="form-label">Tipo:</label>
-                      <select class="form-select" name="tipoEquipamentos" id="novoTipo" required>
+                      <label for="todosTiposImprimir" class="form-label">Tipo:</label>
+                      <select class="form-select" name="tipoEquipamentos" id="todosTiposImprimir" required>
                         <!-- Opções para tipos de equipamento -->
                         <option value="todosEquipamentos" selected>Todos</option>
                         <?php foreach ($tipos as $tipo) { ?>
