@@ -7,6 +7,9 @@ $novoTipo = $_POST['novoTipo'];
 
 // Instancie seu TiposDAO (substitua 'SuaConexao' pelo objeto de conexão real)
 $tiposDAO = new TiposDAO(ConexaoBD::conectar());
+$tiposDAO2 = new TiposDAO(ConexaoBD::conectar());
+
+$tiposDAO2->deletarTipoPorNome("todosEquipamentos");
 
 // Verifique se já existe um tipo com o mesmo nome
 if ($tiposDAO->existeTipoComNome($novoTipo)) {
@@ -16,6 +19,8 @@ if ($tiposDAO->existeTipoComNome($novoTipo)) {
     try {
         $sucesso = $tiposDAO->inserirTipo($novoTipo);
 
+         // Deleta o tipo pelo nome
+     
         // Verifique se o tipo foi adicionado com sucesso
         if ($sucesso) {
             $response['success'] = true;
