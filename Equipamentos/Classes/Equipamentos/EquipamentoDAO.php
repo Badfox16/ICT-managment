@@ -35,22 +35,57 @@ class EquipamentoDAO
 
     public function buscarPorId($id)
     {
-        $sql = "SELECT e.*, t.Tipo as NomeTipo FROM tbEquipamento e JOIN tbTipo t ON e.Tipo = t.Id_Tipo WHERE e.Id_Equipamento = ?";
+        $sql = "SELECT 
+        e.Id_Equipamento, 
+        t.Tipo, 
+        e.Marca, 
+        e.Modelo, 
+        e.NrDeSerie, 
+        e.Estado, 
+        s.NomeSala as Localizacao, 
+        e.Fornecedor, 
+        e.DataFornecimento, 
+        e.DescricaoEquipamento, 
+        e.Observacoes
+    FROM 
+        tbEquipamento e
+    JOIN 
+        tbTipo t ON e.Tipo = t.Id_Tipo
+    JOIN 
+        tbSala s ON e.Localizacao = s.Id_Sala WHERE e.Id_Equipamento = ?";
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    
-    
+
+
 
     public function listarTodos()
     {
-        $sql = "SELECT e.*, t.Tipo FROM tbEquipamento e JOIN tbTipo t ON e.Tipo = t.Id_Tipo";
+        $sql = "SELECT 
+        e.Id_Equipamento, 
+        t.Tipo, 
+        e.Marca, 
+        e.Modelo, 
+        e.NrDeSerie, 
+        e.Estado, 
+        s.NomeSala as Localizacao, 
+        e.Fornecedor, 
+        e.DataFornecimento, 
+        e.DescricaoEquipamento, 
+        e.Observacoes
+    FROM 
+        tbEquipamento e
+    JOIN 
+        tbTipo t ON e.Tipo = t.Id_Tipo
+    JOIN 
+        tbSala s ON e.Localizacao = s.Id_Sala
+    ";
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute();
-    
+
         $equipamentos = [];
-    
+
         while ($resultado = $stmt->fetch(PDO::FETCH_ASSOC)) {
             // Criando um novo objeto EquipamentoDTO com os atributos básicos
             $equipamento = new EquipamentoDTO();
@@ -65,12 +100,11 @@ class EquipamentoDAO
             $equipamento->setDataFornecimento($resultado['DataFornecimento']);
             $equipamento->setDescricaoEquipamento($resultado['DescricaoEquipamento']);
             $equipamento->setObservacoes($resultado['Observacoes']);
-    
+
             // Adicionando o objeto ao array
             $equipamentos[] = $equipamento;
         }
-    
+
         return $equipamentos;
     }
-    
 }

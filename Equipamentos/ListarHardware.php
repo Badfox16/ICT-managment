@@ -31,7 +31,7 @@ $SalaDAO = new SalaDAO($conexao);
 // Chamar o método para listar todos os equipamentos com informações extras
 $equipamentos = $equipamentoDAO->listarTodos();
 $tipos = $tiposDAO->listarTodos();
-$Salas = $SalaDAO->listarTodos(); 
+$Salas = $SalaDAO->listarTodos();
 
 ?>
 
@@ -199,7 +199,12 @@ $Salas = $SalaDAO->listarTodos();
                   </div>
                   <div class="mb-3">
                     <label for="localizacaoNovo" class="form-label">Localização:</label>
-                    <input type="text" class="form-control" id="localizacaoNovo" name="localizacaoNovo" required>
+                    <select class="form-select" id="localizacaoNovo" name="localizacaoNovo" required>
+                      <option value="" disabled selected>Selecione a Localização</option>
+                      <?php foreach ($Salas as $Sala) : ?>
+                        <option value="<?= $Sala['Id_Sala']; ?>"><?= $Sala['NomeSala']; ?></option>
+                      <?php endforeach; ?>
+                    </select>
                   </div>
                   <div class="mb-3">
                     <label for="fornecedorNovo" class="form-label">Fornecedor:</label>
@@ -439,7 +444,6 @@ $Salas = $SalaDAO->listarTodos();
                                   <?= $tipo->getTipo() ?>
                                 </option>
                               <?php } ?>
-
                             </select>
                           </div>
                           <div class="mb-3">
@@ -463,7 +467,12 @@ $Salas = $SalaDAO->listarTodos();
                           </div>
                           <div class="mb-3">
                             <label for="localizacaoEdit" class="form-label">Localização:</label>
-                            <input type="text" class="form-control" id="localizacaoEdit" name="localizacaoEdit" required>
+                            <select class="form-select" id="localizacaoEdit" name="localizacaoEdit" required>
+                              <option value="" disabled selected>Selecione a Localização</option>
+                              <?php foreach ($Salas as $Sala) : ?>
+                                <option value="<?= $Sala['Id_Sala']; ?>"><?= $Sala['NomeSala']; ?></option>
+                              <?php endforeach; ?>
+                            </select>
                           </div>
                           <div class="mb-3">
                             <label for="fornecedorEdit" class="form-label">Fornecedor:</label>
@@ -564,7 +573,10 @@ $Salas = $SalaDAO->listarTodos();
 
   <!-- Se preferir, você pode baixar o Bootstrap e hospedá-lo localmente -->
   <!-- <script src="./caminho/para/bootstrap.bundle.min.js"></script> -->
-
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
   <script defer src="./js/FiltroEquipamentos.js"></script>
   <script defer src="./js/pesquisar.js"></script>
   <script defer src="./js/modal.js"></script>

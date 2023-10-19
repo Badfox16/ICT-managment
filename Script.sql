@@ -65,11 +65,6 @@ CREATE TABLE tbEquipamento(
     FOREIGN KEY(Localizacao) REFERENCES tbSala(Id_Sala)
 );
 
-CREATE TABLE tbHardware (
-    Id_Hardware INT AUTO_INCREMENT PRIMARY KEY,
-    Id_Equipamento INT,
-    FOREIGN KEY (Id_Equipamento) REFERENCES tbEquipamento(Id_Equipamento)
-);
 CREATE TABLE tbSoftware (
     Id_Software INT AUTO_INCREMENT PRIMARY KEY,
     Id_Equipamento INT,
