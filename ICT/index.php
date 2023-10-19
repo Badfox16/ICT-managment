@@ -49,8 +49,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_email']) && isset($_SES
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item flex ">
-                    <a href="../Patrimonio/index.php" class="nav-link my-4 text-white">
-                        Patrimonio
+                    <a href="#" class="nav-link my-4 text-white">
+                        Menu Principal
                     </a>
                 </li>
                 <li>
@@ -60,7 +60,17 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_email']) && isset($_SES
                 </li>
                 <li>
                     <a href="#" class="nav-link text-white mb-4">
+                       Patrimonio
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link text-white mb-4">
                         Relatórios
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link text-white mb-4">
+                        Manutenção
                     </a>
                 </li>
                 <li>
