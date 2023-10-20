@@ -54,32 +54,32 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_email']) && isset($_SES
                     </a>
                 </li>
                 <li>
-                    <a href="../Equipamentos/ListarHardware.php" class="nav-link text-white mb-4">
+                    <a href="../Equipamentos/index.php" class="nav-link text-white mb-4">
                         Equipamentos
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white mb-4">
+                    <a href="../Softwares/index.php" class="nav-link text-white mb-4">
                         Software
                     </a>
                 </li>
                 <li>
-                    <a href="../Patrimonio/index.php" class="nav-link text-white mb-4">
+                    <a href="../Patrimonio/index.php" class="nav-link text-white  mb-4">
                         Patrimonio
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link active mb-4">
+                    <a href="../ICT/index.php" class="nav-link active mb-4">
                         ICT
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white mb-4">
+                    <a href="../Registros/index.php" class="nav-link text-white mb-4">
                         Registros
                     </a>
                 </li>
                 <li>
-                    <a href="../Localizacao/index.php" class="nav-link text-white  mb-4" aria-current="page">
+                    <a href="../Localizacao/index.php" class="nav-link text-white mb-4" aria-current="page">
                         Localizações
                     </a>
                 </li>

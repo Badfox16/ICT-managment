@@ -1,4 +1,6 @@
 <?php
+session_start();
+if (isset($_SESSION['user_id']) && isset($_SESSION['user_email']) && isset($_SESSION['user_login'])) {
 //Conexao
 require_once 'Classes/Database/ConexaoBD.php';
 //Equipamentos
@@ -32,7 +34,10 @@ $SalaDAO = new SalaDAO($conexao);
 $equipamentos = $equipamentoDAO->listarTodos();
 $tipos = $tiposDAO->listarTodos();
 $Salas = $SalaDAO->listarTodos();
-
+} else {
+  header("Location: ../ICT/LoginICT.php");
+  exit();
+}
 ?>
 
 
@@ -65,12 +70,12 @@ $Salas = $SalaDAO->listarTodos();
                     </a>
                 </li>
                 <li>
-                    <a href="../Equipamentos/ListarHardware.php" class="nav-link text-white mb-4">
+                    <a href="../Equipamentos/index.php" class="nav-link active  mb-4">
                         Equipamentos
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white mb-4">
+                    <a href="../Softwares/index.php" class="nav-link text-white mb-4">
                         Software
                     </a>
                 </li>
@@ -80,17 +85,17 @@ $Salas = $SalaDAO->listarTodos();
                     </a>
                 </li>
                 <li>
-                    <a href="../ICT/index.php" class="nav-link active mb-4">
+                    <a href="../ICT/index.php" class="nav-link text-white mb-4">
                         ICT
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white mb-4">
+                    <a href="../Registros/index.php" class="nav-link text-white mb-4">
                         Registros
                     </a>
                 </li>
                 <li>
-                    <a href="../Localizacao/index.php" class="nav-link text-white  mb-4" aria-current="page">
+                    <a href="../Localizacao/index.php" class="nav-link text-white mb-4" aria-current="page">
                         Localizações
                     </a>
                 </li>
@@ -123,7 +128,7 @@ $Salas = $SalaDAO->listarTodos();
 
         <div class="manager-name">
           <h5 class="text-black">Seja bem vindo</h5>
-          <p class="text-end text-dark">Felizardo Carlos</p>
+          <p class="text-end text-dark"><?= $_SESSION['user_login'] ?></strong></p>
         </div>
       </div>
 

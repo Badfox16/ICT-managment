@@ -1,4 +1,6 @@
 <?php
+session_start();
+if (isset($_SESSION['user_id']) && isset($_SESSION['user_email']) && isset($_SESSION['user_login'])) {
 require_once 'Classes/Database/ConexaoBD.php';
 require_once 'Classes/Sala/SalaDAO.php';
 require_once 'Classes/Sala/SalaDTO.php';
@@ -20,7 +22,10 @@ if (isset($_GET['filtroSala'])) {
 } else {
     $Salas = $SalaDAO->listarTodos();
 }
-
+} else {
+    header("Location: ../ICT/LoginICT.php");
+    exit();
+  }
 
 ?>
 
@@ -36,7 +41,7 @@ if (isset($_GET['filtroSala'])) {
 
 <body>
     <section class="d-flex">
-        <div class="d-flex flex-column p-3 text-white bg-dark position-fixed" style="width: 300px; height:100vh;">
+    <div class="d-flex flex-column p-3 text-white bg-dark position-fixed" style="width: 300px; height:100vh;">
             <a href="/" class="d-flex flex-column align-items-center mb-3 text-white text-decoration-none">
                 <span class="fs-4">Equipamentos</span>
                 <span class="fs-4">ICT</span>
@@ -49,33 +54,33 @@ if (isset($_GET['filtroSala'])) {
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white mb-4">
+                    <a href="../Equipamentos/index.php" class="nav-link text-white mb-4">
                         Equipamentos
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white mb-4">
+                    <a href="../Softwares/index.php" class="nav-link text-white mb-4">
+                        Software
+                    </a>
+                </li>
+                <li>
+                    <a href="../Patrimonio/index.php" class="nav-link text-white mb-4">
                         Patrimonio
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white mb-4">
-                        Relatórios
+                    <a href="../ICT/index.php" class="nav-link text-white mb-4">
+                        ICT
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white mb-4">
-                        Manutenção
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link text-white mb-4">
+                    <a href="../Registros/index.php" class="nav-link text-white mb-4">
                         Registros
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link active mb-4" aria-current="page">
-                        Sala
+                    <a href="../Localizacao/index.php" class="nav-link active  mb-4" aria-current="page">
+                        Localizações
                     </a>
                 </li>
             </ul>
