@@ -84,22 +84,21 @@ $Manutencoes = $ManutencaoDAO->listarTodos();
             <h2 class="pd-4 m-5">Controle de Manutenção</h2>
             <div class="d-flex">
                 <div class="mx-5">
-                    <h3>Insira o numero de série do Equipamento</h3>
+                    <h3>Cadastro de Manutenção</h3>
                     <form method="post" action="./Controllers/Cadastrar.php">
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control largura" name="email" placeholder="Insira o email" required>
+                        <div class="d-flex">
+                            <div class="">
+                                <label for="nrSerie" class="form-label">Número de Série:</label>
+                                <input type="text" id="nrSerie" class="form-control largura" name="email" placeholder="Insira o numero de série" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Titulo:</label>
+                                <input type="text" class="form-control largura" name="username" placeholder="Insira o titulo da manutenção" required>
+                            </div>
                         </div>
                         <div class="mb-3">
-                            <label for="username" class="form-label">Nome de Usuário</label>
-                            <input type="text" class="form-control largura" name="username" placeholder="Insira o nome de usuário" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="estado" class="form-label ">Estado</label>
-                            <select class="form-select largura" name="estado" required>
-                                <option value="Ativo" selected>Ativo</option>
-                                <option value="Inativo">Inativo</option>
-                            </select>
+                            <label for="descricao" class="form-label ">Estado</label>
+                            <textarea name="descricao" id="descricao" rows="8" class="form-control largura"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Cadastrar</button>
                     </form>
@@ -136,7 +135,7 @@ $Manutencoes = $ManutencaoDAO->listarTodos();
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($Manutencao as $manutencao) : ?>
+                        <?php foreach ($Manutencoes as $manutencao) : ?>
                             <tr style="height: 16px;">
                                 <td>
                                     <span><b><?= $manutencao['Titulo']; ?></b></span>
@@ -153,7 +152,7 @@ $Manutencoes = $ManutencaoDAO->listarTodos();
                     </tbody>
                 </table>
                 <!-- Modal -->
-                <?php foreach ($Manutencao as $manutencao) : ?>
+                <?php foreach ($Manutencoes as $manutencao) : ?>
                     <div class="modal fade" id="userInfoModal<?= $manutencao['Id_Manutencao']; ?>" tabindex="-1" role="dialog" aria-labelledby="userInfoModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
