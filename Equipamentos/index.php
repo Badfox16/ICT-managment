@@ -65,7 +65,7 @@ $Salas = $SalaDAO->listarTodos();
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item flex ">
-                    <a href="#" class="nav-link my-4 text-white">
+                    <a href="../Dashboard/index.php" class="nav-link my-4 text-white">
                         Menu Principal
                     </a>
                 </li>
