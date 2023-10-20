@@ -5,6 +5,6 @@ session_start();
 
 session_destroy();
 
-header("Location: ../Login.php");
+header("Location: ../LoginICT.php");
 exit();
 ?>

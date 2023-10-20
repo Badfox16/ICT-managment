@@ -39,7 +39,7 @@ if (isset($_GET['filtroSala'])) {
         <div class="d-flex flex-column p-3 text-white bg-dark position-fixed" style="width: 300px; height:100vh;">
             <a href="/" class="d-flex flex-column align-items-center mb-3 text-white text-decoration-none">
                 <span class="fs-4">Equipamentos</span>
-                <span class="fs-4">Sala</span>
+                <span class="fs-4">ICT</span>
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">

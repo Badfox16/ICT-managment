@@ -41,7 +41,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_email']) && isset($_SES
 
 <body>
     <section class="d-flex">
-        <div class="d-flex flex-column p-3 text-white bg-dark position-fixed" style="width: 300px; height:100vh;">
+    <div class="d-flex flex-column p-3 text-white bg-dark position-fixed" style="width: 300px; height:100vh;">
             <a href="/" class="d-flex flex-column align-items-center mb-3 text-white text-decoration-none">
                 <span class="fs-4">Equipamentos</span>
                 <span class="fs-4">ICT</span>
@@ -54,23 +54,23 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_email']) && isset($_SES
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white mb-4">
+                    <a href="../Equipamentos/ListarHardware.php" class="nav-link text-white mb-4">
                         Equipamentos
                     </a>
                 </li>
                 <li>
                     <a href="#" class="nav-link text-white mb-4">
-                       Patrimonio
+                        Software
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white mb-4">
-                        Relatórios
+                    <a href="../Patrimonio/index.php" class="nav-link text-white mb-4">
+                        Patrimonio
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white mb-4">
-                        Manutenção
+                    <a href="#" class="nav-link active mb-4">
+                        ICT
                     </a>
                 </li>
                 <li>
@@ -79,8 +79,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_email']) && isset($_SES
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link active mb-4" aria-current="page">
-                        ICT
+                    <a href="../Localizacao/index.php" class="nav-link text-white  mb-4" aria-current="page">
+                        Localizações
                     </a>
                 </li>
             </ul>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['patrimonio_id']) && isset($_SESSION['patrimonio_email']) && isset($_SESSION['patrimonio_login'])) {
+if (isset($_SESSION['user_id']) && isset($_SESSION['user_email']) && isset($_SESSION['user_login'])) {
   require_once 'Classes/Database/ConexaoBD.php';
   require_once 'Classes/Patrimonio/PatrimonioDAO.php';
   require_once 'Classes/Patrimonio/PatrimonioDTO.php';
@@ -89,7 +89,7 @@ if (isset($_SESSION['patrimonio_id']) && isset($_SESSION['patrimonio_email']) &&
 
           <div class="manager-name">
             <h5 class="text-black">Bem vindo</h5>
-            <h6 class="text-end bold text-dark"><strong><?= $_SESSION['patrimonio_login'] ?></strong></h6>
+            <h6 class="text-end bold text-dark"><strong><?= $_SESSION['user_login'] ?></strong></h6>
           </div>
         </div>
 

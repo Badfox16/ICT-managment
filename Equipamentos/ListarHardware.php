@@ -52,57 +52,65 @@ $Salas = $SalaDAO->listarTodos();
   <main class="main container-fluid d-flex">
     <!-- Dashboard/ left content -->
     <section class="left-dashboard col-2">
-      <div class="d-flex flex-column p-3 text-white bg-dark fixed-top" style="width: 300px; height:100vh;">
-        <a href="/" class="d-flex flex-column align-items-center mb-3 text-white text-decoration-none">
-          <span class="fs-4">Equipamentos</span>
-          <span class="fs-4">ICT</span>
-        </a>
-        <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item">
-            <a href="#" class="nav-link text-white mt-4 mb-4" aria-current="page">
-              <svg class="bi me-2" width="16" height="16">
-                <use xlink:href="#home"></use>
-              </svg>
-              Gerentes
+    <div class="d-flex flex-column p-3 text-white bg-dark position-fixed" style="width: 300px; height:100vh;">
+            <a href="/" class="d-flex flex-column align-items-center mb-3 text-white text-decoration-none">
+                <span class="fs-4">Equipamentos</span>
+                <span class="fs-4">ICT</span>
             </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link active text-white mb-4">
-              <svg class="bi me-2" width="16" height="16">
-                <use xlink:href="#speedometer2"></use>
-              </svg>
-              Equipamentos
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-white mb-4">
-              <svg class="bi me-2" width="16" height="16">
-                <use xlink:href="#table"></use>
-              </svg>
-              Relatórios
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-white mb-4">
-              <svg class="bi me-2" width="16" height="16">
-                <use xlink:href="#grid"></use>
-              </svg>
-              Registros
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-white">
-
-          </li>
-        </ul>
-        <hr>
-        <div class="dropdown">
-          <a href="./Controllers/Logout.php" class="d-flex align-items-center text-white text-decoration-none aria-expanded=" false">
-            <strong>Logout</strong>
-          </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item flex ">
+                    <a href="#" class="nav-link my-4 text-white">
+                        Menu Principal
+                    </a>
+                </li>
+                <li>
+                    <a href="../Equipamentos/ListarHardware.php" class="nav-link text-white mb-4">
+                        Equipamentos
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link text-white mb-4">
+                        Software
+                    </a>
+                </li>
+                <li>
+                    <a href="../Patrimonio/index.php" class="nav-link text-white mb-4">
+                        Patrimonio
+                    </a>
+                </li>
+                <li>
+                    <a href="../ICT/index.php" class="nav-link active mb-4">
+                        ICT
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link text-white mb-4">
+                        Registros
+                    </a>
+                </li>
+                <li>
+                    <a href="../Localizacao/index.php" class="nav-link text-white  mb-4" aria-current="page">
+                        Localizações
+                    </a>
+                </li>
+            </ul>
+            <hr>
+            <div class="d-flex flex-column">
+                <a href="./Perfil.php" class="d-flex align-items-center text-white text-decoration-none m-2" aria-expanded="false">
+                    <span>
+                        <i class="fa fa-user"></i>
+                        <strong>Perfil</strong>
+                    </span>
+                </a>
+                <a href="./Controllers/Logout.php" class="d-flex align-items-center text-white text-decoration-none m-2" aria-expanded="false">
+                    <span>
+                        <i class="fa fa-sign-out"></i>
+                        <strong>Logout</strong>
+                    </span>
+                </a>
+            </div>
         </div>
-      </div>
     </section>
 
     <!-- Right content -->
