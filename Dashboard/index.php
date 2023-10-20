@@ -150,16 +150,42 @@ $count = 0;
           </div>
 
           <!-- Grafico -->
-          <?php foreach ($equipamentos as $equipamento) {
-            $nomeSala = $equipamento['NomeSala'];
-            $contagemEquipamentos = $equipamento['ContagemEquipamentos'];
-            echo "<p class='nomeSala' hidden>$nomeSala</p>";
-            echo "<p class='contagemEquipamentos' hidden>$contagemEquipamentos</p>";
-          } ?>
-
+          <!-- Ok, esse codigo é sujo para caralho, mas ok.
+              Peço imensas desculpas ao leitor-->
           <div class="graphic">
             <canvas id="grafico"></canvas>
           </div>
+
+          <script>
+            const nomesSala = [];
+            const contagensEquipamentos = [];
+
+            <?php foreach ($equipamentos as $equipamento) : ?>
+              nomesSala.push('<?php echo $equipamento['NomeSala']; ?>');
+              contagensEquipamentos.push(<?php echo $equipamento['ContagemEquipamentos']; ?>);
+            <?php endforeach; ?>
+
+            var ctx = document.getElementById('grafico').getContext('2d');
+            var myChart = new Chart(ctx, {
+              type: 'bar',
+              data: {
+                labels: nomesSala,
+                datasets: [{
+                  label: 'Total de Equipamentos',
+                  data: contagensEquipamentos,
+                  backgroundColor: '#c3d7f9',
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+          </script>
 
           <!-- Todos os equipamentos -->
           <div class="container-fluid my-5">
@@ -211,6 +237,25 @@ $count = 0;
         </h6>
       </div>
       <h4 class="notification-title">Notificações</h4>
+      <div class="d-flex flex-column mt-5">
+        <?php foreach ($softwares as $software) {
+          $dataExpiracao = $software->getDiaExpiracao();
+
+          $dataAtual = new DateTime();
+          $dataExpiracaoObj = DateTime::createFromFormat('Y-m-d', $dataExpiracao);
+
+          if ($dataExpiracaoObj->format('Y-m-d') == $dataAtual->format('Y-m-d')) {
+            echo '<h6 class="fw-bold text-uppercase text-info">O equipamento ' . $software->getNomeSoftware() . 'com o Id: (' . $software->getIdEquipamento()  . ') expira Hoje</h6>';
+          } elseif ($dataExpiracaoObj < $dataAtual) {
+            echo '<h6 class="fw-bold text-uppercase text-danger">O equipamento' . $software->getNomeSoftware() . 'com o Id: (' . $software->getIdEquipamento()  . ') expirou' . '</h6>';
+          } else {
+            $interval = $dataAtual->diff($dataExpiracaoObj);
+            $diferencaDias = $interval->days;
+            $diferencaDias++; // Adicionar 1 dia para contar o dia atual como parte dos dias restantes
+            echo '<h6 class="fw-bold text-uppercase text-dark"> O equipamento ' . $software->getNomeSoftware() . 'com o Id: (' . $software->getIdEquipamento()  . ') expira em ' . $diferencaDias . ' dia(s)</h6>';
+          }
+        } ?>
+      </div>
     </div>
   </section>
 

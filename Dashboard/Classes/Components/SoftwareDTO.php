@@ -10,11 +10,10 @@ class SoftwareDTO
     private $estado;
     private $observacoes;
     private $diaInstalacao;
-    private $prazoSoftware;
     private $diaExpiracao;
 
     // Construtor
-    public function __construct($idSoftware, $idEquipamento, $nomeSoftware, $fabricante, $versao, $estado, $observacoes, $diaInstalacao, $prazoSoftware, $diaExpiracao)
+    public function __construct($idSoftware, $idEquipamento, $nomeSoftware, $fabricante, $versao, $estado, $observacoes, $diaInstalacao, $diaExpiracao)
     {
         $this->idSoftware = $idSoftware;
         $this->idEquipamento = $idEquipamento;
@@ -24,7 +23,6 @@ class SoftwareDTO
         $this->estado = $estado;
         $this->observacoes = $observacoes;
         $this->diaInstalacao = $diaInstalacao;
-        $this->prazoSoftware = $prazoSoftware;
         $this->diaExpiracao = $diaExpiracao;
     }
 
@@ -107,16 +105,6 @@ class SoftwareDTO
     public function setDiaInstalacao($diaInstalacao)
     {
         $this->diaInstalacao = $diaInstalacao;
-    }
-
-    public function getPrazoSoftware()
-    {
-        return $this->prazoSoftware;
-    }
-
-    public function setPrazoSoftware($prazoSoftware)
-    {
-        $this->prazoSoftware = $prazoSoftware;
     }
 
     public function getDiaExpiracao()
