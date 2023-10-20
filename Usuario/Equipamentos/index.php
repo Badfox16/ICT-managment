@@ -75,7 +75,7 @@ $Salas = $SalaDAO->listarTodos();
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white mb-4">
+                    <a href="../Softwares/index.php" class="nav-link text-white mb-4">
                         Software
                     </a>
                 </li>
