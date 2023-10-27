@@ -6,23 +6,24 @@ CREATE TABLE tbPatrimonio (
     Id_Patrimonio INT AUTO_INCREMENT PRIMARY KEY,
     Nome VARCHAR (50),
     Apelido VARCHAR (50),
-    Contacto VARCHAR (13),
-    Email VARCHAR(120),
-    UsrLogin VARCHAR (20),
+    Contacto VARCHAR (15) UNIQUE,
+    Email VARCHAR(120) UNIQUE,
+    UsrLogin VARCHAR (120) UNIQUE,
     Estado VARCHAR (20),
     Senha VARCHAR (255)
 );
 
 CREATE TABLE tbICT(
     Id_ICT INT AUTO_INCREMENT PRIMARY KEY,
-    UsrLogin VARCHAR (120),
-    Email VARCHAR (255),
+    UsrLogin VARCHAR (120) UNIQUE,
+    Email VARCHAR (255) UNIQUE,
     Estado VARCHAR (20),
     Senha VARCHAR (255)
 );
 
 INSERT INTO tbICT(UsrLogin, Email, Estado, Senha)
-VALUES('admin', 'admin', 'Ativo', 'admin');
+VALUES('admin', 'admin@ucm.ac.mz', 'Ativo', SHA2('admin', 256));
+
 CREATE TABLE tbEdificio (
     Id_Edificio INT AUTO_INCREMENT PRIMARY KEY,
     NomeEdificio VARCHAR(120)
@@ -39,6 +40,8 @@ CREATE TABLE tbSala (
     FOREIGN KEY (Id_Edificio) REFERENCES tbEdificio(Id_Edificio)
 );
 
+INSERT INTO tbSala (NomeSala, Id_Edificio)
+VALUE('Algera Merici', 2), ('Santa Bakhita', 2), ('Santa Isabel', 1), ('Santa Rita',1);
 
 CREATE TABLE tbTipo(
     Id_Tipo INT AUTO_INCREMENT PRIMARY KEY,

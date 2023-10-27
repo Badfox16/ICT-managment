@@ -46,7 +46,7 @@ $computadores = $equipamentoDAO->listarComputadores();
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item flex ">
-                    <a href="#" class="nav-link my-4 text-white">
+                    <a  href="../Dashboard/index.php" class="nav-link my-4 text-white">
                         Menu Principal
                     </a>
                 </li>
@@ -60,21 +60,7 @@ $computadores = $equipamentoDAO->listarComputadores();
                         Software
                     </a>
                 </li>
-                <li>
-                    <a href="../Patrimonio/index.php" class="nav-link text-white  mb-4">
-                        Patrimonio
-                    </a>
-                </li>
-                <li>
-                    <a href="../ICT/index.php" class="nav-link text-white mb-4">
-                        ICT
-                    </a>
-                </li>
-                <li>
-                    <a href="../Registros/index.php" class="nav-link text-white mb-4">
-                        Registros
-                    </a>
-                </li>
+
                 <li>
                     <a href="../Localizacao/index.php" class="nav-link text-white mb-4" aria-current="page">
                         Localizações

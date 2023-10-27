@@ -74,21 +74,6 @@ $count = 0;
                     </a>
                 </li>
                 <li>
-                    <a href="../Patrimonio/index.php" class="nav-link text-white  mb-4">
-                        Patrimonio
-                    </a>
-                </li>
-                <li>
-                    <a href="../ICT/index.php" class="nav-link text-white mb-4">
-                        ICT
-                    </a>
-                </li>
-                <li>
-                    <a href="../Registros/index.php" class="nav-link text-white mb-4">
-                        Registros
-                    </a>
-                </li>
-                <li>
                     <a href="../Localizacao/index.php" class="nav-link text-white mb-4" aria-current="page">
                         Localizações
                     </a>

@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['patrimonio_email'] = $Patrimonio['Email'];
         $_SESSION['patrimonio_login'] = $Patrimonio['UsrLogin'];
 
-        header("Location: ../Equipamentos/ListarHardware.php");
+        header("Location: ../Equipamentos/index.php");
         exit();
     } else {
         echo "Credenciais inválidas";
