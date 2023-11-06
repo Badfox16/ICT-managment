@@ -45,12 +45,12 @@ $computadores = $equipamentoDAO->listarComputadores();
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item flex ">
-                    <a href="../Dashboard/index.php" class="nav-link my-4 text-white">
+                    <a href="../Dashboard/dashboard.php" class="nav-link my-4 text-white">
                         Menu Principal
                     </a>
                 </li>
                 <li>
-                    <a href="../Equipamentos/index.php" class="nav-link text-white  mb-4">
+                    <a href="../Equipamentos/equipamentos.php" class="nav-link text-white  mb-4">
                         Equipamentos
                     </a>
                 </li>
@@ -60,29 +60,29 @@ $computadores = $equipamentoDAO->listarComputadores();
                     </a>
                 </li>
                 <li>
-                    <a href="../Patrimonio/index.php" class="nav-link text-white  mb-4">
+                    <a href="../Patrimonio/patrimonio.php" class="nav-link text-white  mb-4">
                         Patrimonio
                     </a>
                 </li>
                 <li>
-                    <a href="../ICT/index.php" class="nav-link text-white mb-4">
+                    <a href="../ICT/ict.php" class="nav-link text-white mb-4">
                         ICT
                     </a>
                 </li>
                 <li>
-                    <a href="../Registros/index.php" class="nav-link text-white mb-4">
+                    <a href="../Registros/registros.php" class="nav-link text-white mb-4">
                         Registros
                     </a>
                 </li>
                 <li>
-                    <a href="../Localizacao/index.php" class="nav-link text-white mb-4" aria-current="page">
+                    <a href="../Localizacao/localizacao.php" class="nav-link text-white mb-4" aria-current="page">
                         Localizações
                     </a>
                 </li>
             </ul>
             <hr>
             <div class="d-flex flex-column">
-                <a href="./Perfil.php" class="d-flex align-items-center text-white text-decoration-none m-2" aria-expanded="false">
+                <a href="../ICT/Perfil.php" class="d-flex align-items-center text-white text-decoration-none m-2" aria-expanded="false">
                     <span>
                         <i class="fa fa-user"></i>
                         <strong>Perfil</strong>
@@ -104,27 +104,22 @@ $computadores = $equipamentoDAO->listarComputadores();
 
                 <div class="manager-name">
                     <h5 class="text-black">Seja bem vindo</h5>
-                    <p class="text-end text-dark">Felizardo Carlos</p>
+                    <p class="text-end text-dark"><?= $_SESSION['user_login'] ?></p>
                 </div>
             </div>
 
             <div class="main-content">
                 <div class="d-flex align-items-center justify-content-between mb-4">
-
                     <div class="w-25 ">
-
                         <div class="flex-grow-1 input-group">
                             <input type="text" class="form-control" id="searchInput" placeholder=' Pesquise... &#128269;'>
                         </div>
-
                     </div>
-
                     <div>
                         <button class="btn btn-success fw-bold" data-bs-toggle="modal" data-bs-target="#adicionarSoftwareModal">
                             <i class="bi bi-terminal"></i>
                             ADICIONAR SOFTWARE</button>
                     </div>
-
                     <!-- Imprimir membros do patrimonio -->
                     <div class="print  ">
                         <button class="btn bg-danger text-light fw-bold" data-bs-toggle="modal" data-bs-target="#imprimirModalLabel">
