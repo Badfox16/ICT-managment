@@ -1,15 +1,18 @@
 <title>RELATORIO ICT</title>
 <?php
 require 'dompdf/vendor/autoload.php';
+require_once __DIR__ . '/../../../db/ConexaoDB.php';
+
 
 use Dompdf\Dompdf;
-use Dompdf\Options;
-// variáveis para conexão em LOCALHOST
-$conexao = mysqli_connect('localhost:3306', 'root', 'B@dF0x16', 'bdICT');
+use Softwares\Softwares\Classes\Database\ConexaoBD;
+
+$connection = new ConexaoBD();
+$conexao = mysqli_connect($connection->getHost(), $connection->getUsername(), $connection->getPassword(), $connection->getDbName());
 
 if (mysqli_connect_errno()) {
-   echo "falha ao conectar: " . mysqli_connect_error();
-   die();
+    echo "falha ao conectar: " . mysqli_connect_error();
+    die();
 }
 
 // Nome do Arquivo do Excel que será gerado
@@ -39,11 +42,11 @@ $tabela .= '<th style="padding-left: 5px;"><b>Observações</b></th>';
 $tabela .= '</tr>';
 
 if ($dataInicio > date("Y-m-d H:i:s")) {
-   echo "<h1>Error: a data inserida é inválida!<h1>";
+    echo "<h1>Error: a data inserida é inválida!<h1>";
 } else {
-   // Puxando dados do Banco de dados
-   if ($tipoEquipamentos == "todosEquipamentos" && $opcoesEstado == "todos") {
-      $sql = "SELECT 
+    // Puxando dados do Banco de dados
+    if ($tipoEquipamentos == "todosEquipamentos" && $opcoesEstado == "todos") {
+        $sql = "SELECT 
       e.Id_Equipamento, 
       t.Tipo, 
       e.Marca, 
@@ -61,8 +64,8 @@ if ($dataInicio > date("Y-m-d H:i:s")) {
       tbTipo t ON e.Tipo = t.Id_Tipo
   JOIN 
       tbSala s ON e.Localizacao = s.Id_Sala WHERE DataFornecimento BETWEEN '$dataInicio' AND '$dataFinal'";
-   } else if ($tipoEquipamentos != "todosEquipamentos" && $opcoesEstado == "todos") {
-      $sql = "SELECT 
+    } else if ($tipoEquipamentos != "todosEquipamentos" && $opcoesEstado == "todos") {
+        $sql = "SELECT 
       e.Id_Equipamento, 
       t.Tipo, 
       e.Marca, 
@@ -80,8 +83,8 @@ if ($dataInicio > date("Y-m-d H:i:s")) {
       tbTipo t ON e.Tipo = t.Id_Tipo
   JOIN 
       tbSala s ON e.Localizacao = s.Id_Sala WHERE DataFornecimento BETWEEN '$dataInicio' AND '$dataFinal' AND t.Tipo='$tipoEquipamentos'";
-   } else if ($tipoEquipamentos == "todosEquipamentos" && $opcoesEstado != "todos") {
-      $sql = "SELECT 
+    } else if ($tipoEquipamentos == "todosEquipamentos" && $opcoesEstado != "todos") {
+        $sql = "SELECT 
       e.Id_Equipamento, 
       t.Tipo, 
       e.Marca, 
@@ -99,8 +102,8 @@ if ($dataInicio > date("Y-m-d H:i:s")) {
       tbTipo t ON e.Tipo = t.Id_Tipo
   JOIN 
       tbSala s ON e.Localizacao = s.Id_Sala WHERE DataFornecimento BETWEEN '$dataInicio' AND '$dataFinal' AND Estado='$opcoesEstado'";
-   } else {
-      $sql = "SELECT 
+    } else {
+        $sql = "SELECT 
       e.Id_Equipamento, 
       t.Tipo, 
       e.Marca, 
@@ -118,23 +121,23 @@ if ($dataInicio > date("Y-m-d H:i:s")) {
       tbTipo t ON e.Tipo = t.Id_Tipo
   JOIN 
       tbSala s ON e.Localizacao = s.Id_Sala WHERE DataFornecimento BETWEEN '$dataInicio' AND '$dataFinal' AND t.Tipo='$tipoEquipamentos'AND Estado='$opcoesEstado'";
-   }
+    }
 }
 $resultado = mysqli_query($conexao, $sql);
 
 while ($dados = mysqli_fetch_array($resultado)) {
-   $tabela .= '<tr>';
-   $tabela .= '<td>' . $dados['Id_Equipamento'] . '</td>';
-   $tabela .= '<td>' . $dados['Tipo'] . '</td>';
-   $tabela .= '<td>' . $dados['Marca'] . '</td>';
-   $tabela .= '<td>' . $dados['Modelo'] . '</td>';
-   $tabela .= '<td>' . $dados['Estado'] . '</td>';
-   $tabela .= '<td>' . $dados['Localizacao'] . '</td>';
-   $tabela .= '<td>' . $dados['Fornecedor'] . '</td>';
-   $tabela .= '<td>' . $dados['DataFornecimento'] . '</td>';
-   $tabela .= '<td>' . $dados['DescricaoEquipamento'] . '</td>';
-   $tabela .= '<td>' . $dados['Observacoes'] . '</td>';
-   $tabela .= '</tr>';
+    $tabela .= '<tr>';
+    $tabela .= '<td>' . $dados['Id_Equipamento'] . '</td>';
+    $tabela .= '<td>' . $dados['Tipo'] . '</td>';
+    $tabela .= '<td>' . $dados['Marca'] . '</td>';
+    $tabela .= '<td>' . $dados['Modelo'] . '</td>';
+    $tabela .= '<td>' . $dados['Estado'] . '</td>';
+    $tabela .= '<td>' . $dados['Localizacao'] . '</td>';
+    $tabela .= '<td>' . $dados['Fornecedor'] . '</td>';
+    $tabela .= '<td>' . $dados['DataFornecimento'] . '</td>';
+    $tabela .= '<td>' . $dados['DescricaoEquipamento'] . '</td>';
+    $tabela .= '<td>' . $dados['Observacoes'] . '</td>';
+    $tabela .= '</tr>';
 }
 
 $tabela .= '</table>';

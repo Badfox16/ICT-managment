@@ -1,6 +1,11 @@
 <?php
+session_start();
+if (!isset($_SESSION['user_id']) && !isset($_SESSION['user_email']) && !isset($_SESSION['user_login'])) {
+    header("Location: ../ICT/LoginICT.php");
+    exit();
+}
 //Conexao
-require_once 'Classes/Database/ConexaoBD.php';
+require_once __DIR__ .'/../db/ConexaoDB.php';
 //Softwares
 require_once 'Classes/Softwares/SoftwareDAO.php';
 require_once 'Classes/Softwares/SoftwareDTO.php';

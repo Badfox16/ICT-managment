@@ -1,6 +1,6 @@
 <?php
 
-require_once '../Classes/Database/ConexaoBD.php';
+require_once '../../db/ConexaoDB.php';
 require_once '../Classes/Sala/SalaDAO.php';
 require_once '../Classes/Sala/SalaDTO.php';
 
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $SalaDAO->atualizar($SalaDTO);
         
-        header("Location: ../index.php");
+        header("Location: ../equipamentos.php");
         exit();
     } catch (Exception $e) {
         echo "Erro ao atualizar dados do Sala: " . $e->getMessage();

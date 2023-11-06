@@ -1,6 +1,5 @@
 <?php
-
-require_once '../Classes/Database/ConexaoBD.php';
+require_once __DIR__ .'/../../db/ConexaoDB.php';
 require_once '../Classes/Patrimonio/PatrimonioDAO.php';
 require_once '../Classes/Patrimonio/PatrimonioDTO.php';
 require_once '../Classes/Logs/LogsDTO.php';
@@ -36,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $LogsDTO->setHora(date("Y-m-d H:i:s"));
 
         $PatrimonioDAO->atualizar($PatrimonioDTO, $LogsDTO);
-        header("Location: ../index.php");
+        header("Location: ../equipamentos.php");
         exit();
     } catch (Exception $e) {
         echo "Erro ao atualizar dados do Patrimonio: " . $e->getMessage();

@@ -1,5 +1,6 @@
 <?php
-require_once '../Classes/Database/ConexaoBD.php';
+
+require_once __DIR__ .'/../../db/ConexaoDB.php';
 require_once '../Classes/Patrimonio/PatrimonioDAO.php';
 require_once '../Classes/Patrimonio/PatrimonioDTO.php';
 require_once '../Classes/Logs/LogsDTO.php';
@@ -26,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['patrimonio_email'] = $Patrimonio['Email'];
         $_SESSION['patrimonio_login'] = $Patrimonio['UsrLogin'];
 
-        header("Location: ../index.php");
+        header("Location: ../equipamentos.php");
         exit();
     } else {
         echo "Credenciais inválidas";

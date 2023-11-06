@@ -1,8 +1,6 @@
 <?php
 
-use PHPUnit\Framework\Constraint\Count;
-
-require_once 'Classes/Database/ConexaoBD.php';
+require_once __DIR__ .'/../../db/ConexaoDB.php';
 require_once 'Classes/Components/EquipamentoDAO.php';
 require_once 'Classes/Components/EquipamentoDTO.php';
 require_once 'Classes/Components/SoftwareDAO.php';

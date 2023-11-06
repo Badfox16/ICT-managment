@@ -1,6 +1,8 @@
 <?php
+
 require_once '../Classes/Equipamentos/EquipamentoDAO.php';
-require_once '../Classes/Database/ConexaoBD.php';
+require_once __DIR__ .'/../../../db/ConexaoDB.php';
+
 
 // getEquipamentos.php
 header('Content-Type: application/json');

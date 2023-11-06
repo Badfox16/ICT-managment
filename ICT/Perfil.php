@@ -1,8 +1,9 @@
 <?php
+
 session_start();
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
-    require_once 'Classes/Database/ConexaoBD.php';
+    require_once __DIR__ .'/../db/ConexaoDB.php';
     require_once 'Classes/ICT/ICTDAO.php';
     require_once 'Classes/ICT/ICTDTO.php';
 
@@ -43,12 +44,12 @@ if (isset($_SESSION['user_id'])) {
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item flex ">
-                    <a href="../Dashboard/index.php" class="nav-link my-4 text-white">
+                    <a href="../Dashboard/dashboard.php" class="nav-link my-4 text-white">
                         Menu Principal
                     </a>
                 </li>
                 <li>
-                    <a href="../Equipamentos/index.php" class="nav-link text-white  mb-4">
+                    <a href="../Equipamentos/equipamentos.php" class="nav-link text-white  mb-4">
                         Equipamentos
                     </a>
                 </li>
@@ -58,22 +59,22 @@ if (isset($_SESSION['user_id'])) {
                     </a>
                 </li>
                 <li>
-                    <a href="../Patrimonio/index.php" class="nav-link text-white  mb-4">
+                    <a href="../Patrimonio/patrimonio.php" class="nav-link text-white  mb-4">
                         Patrimonio
                     </a>
                 </li>
                 <li>
-                    <a href="../ICT/index.php" class="nav-link text-white mb-4">
+                    <a href="ict.php" class="nav-link text-white mb-4">
                         ICT
                     </a>
                 </li>
                 <li>
-                    <a href="../Registros/index.php" class="nav-link text-white mb-4">
+                    <a href="../Registros/registros.php" class="nav-link text-white mb-4">
                         Registros
                     </a>
                 </li>
                 <li>
-                    <a href="../Localizacao/index.php" class="nav-link text-white mb-4" aria-current="page">
+                    <a href="../Localizacao/localizacao.php" class="nav-link text-white mb-4" aria-current="page">
                         Localizações
                     </a>
                 </li>

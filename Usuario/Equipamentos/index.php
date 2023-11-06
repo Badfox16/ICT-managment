@@ -1,8 +1,9 @@
 <?php
+
 session_start();
 if (isset($_SESSION['patrimonio_id']) && isset($_SESSION['patrimonio_email']) && isset($_SESSION['patrimonio_login'])) {
 //Conexao
-require_once 'Classes/Database/ConexaoBD.php';
+require_once __DIR__ .'/../../db/ConexaoDB.php';
 //Equipamentos
 require_once 'Classes/Equipamentos/EquipamentoDAO.php';
 require_once 'Classes/Equipamentos/EquipamentoDTO.php';

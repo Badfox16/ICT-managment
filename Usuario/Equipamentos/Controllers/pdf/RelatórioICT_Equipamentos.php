@@ -1,11 +1,12 @@
 <title>RELATORIO ICT</title>
 <?php
 require 'dompdf/vendor/autoload.php';
+require_once __DIR__ . '/../../../../db/ConexaoDB.php';
 
 use Dompdf\Dompdf;
 use Dompdf\Options;
-// variáveis para conexão em LOCALHOST
-$conexao = mysqli_connect('localhost:3306', 'root', 'B@dF0x16', 'bdICT');
+$connection = new ConexaoBD();
+$conexao = mysqli_connect($connection->getHost(), $connection->getUsername(), $connection->getPassword(), $connection->getDbName());
 
 if (mysqli_connect_errno()) {
    echo "falha ao conectar: " . mysqli_connect_error();

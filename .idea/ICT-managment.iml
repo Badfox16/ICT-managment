@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/Equipamentos/Controllers/pdf/dompdf/lib" isTestSource="false" packagePrefix="Dompdf" />
+      <sourceFolder url="file://$MODULE_DIR$/Equipamentos/Controllers/pdf/dompdf/src" isTestSource="false" packagePrefix="Dompdf" />
+      <sourceFolder url="file://$MODULE_DIR$/Patrimonio/Controllers/pdf/dompdf/lib" isTestSource="false" packagePrefix="Dompdf" />
+      <sourceFolder url="file://$MODULE_DIR$/Patrimonio/Controllers/pdf/dompdf/src" isTestSource="false" packagePrefix="Dompdf" />
+      <sourceFolder url="file://$MODULE_DIR$/Usuario/Controllers/pdf/dompdf/lib" isTestSource="false" packagePrefix="Dompdf" />
+      <sourceFolder url="file://$MODULE_DIR$/Usuario/Controllers/pdf/dompdf/src" isTestSource="false" packagePrefix="Dompdf" />
+      <sourceFolder url="file://$MODULE_DIR$/Usuario/Equipamentos/Controllers/pdf/dompdf/lib" isTestSource="false" packagePrefix="Dompdf" />
+      <sourceFolder url="file://$MODULE_DIR$/Usuario/Equipamentos/Controllers/pdf/dompdf/src" isTestSource="false" packagePrefix="Dompdf" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

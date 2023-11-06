@@ -1,7 +1,9 @@
 <?php
 
-require_once 'ICTDTO.php'; 
-require_once __DIR__ . '/../Database/ConexaoBD.php';  
+use Softwares\Softwares\Classes\ICT\ICTDTO;
+
+require_once 'ICTDTO.php';
+require_once __DIR__ .'/../../../db/ConexaoDB.php';
 
 
 class ICTDAO {

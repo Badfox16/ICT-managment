@@ -1,7 +1,6 @@
 <?php
-
 require_once 'EquipamentoDTO.php'; // Inclua o arquivo com a definição da classe EquipamentoDTO
-require_once __DIR__ . '/../Database/ConexaoBD.php';
+require_once __DIR__ .'/../../../../db/ConexaoDB.php';
 
 class EquipamentoDAO
 {

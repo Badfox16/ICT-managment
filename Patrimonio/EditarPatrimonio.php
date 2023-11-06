@@ -1,7 +1,8 @@
 <?php
+
 session_start();
-if (isset($_SESSION['patrimonio_id']) && isset($_SESSION['patrimonio_email']) && isset($_SESSION['patrimonio_login'])) {
-require_once 'Classes/Database/ConexaoBD.php';
+if (isset($_SESSION['user_id']) && isset($_SESSION['user_email']) && isset($_SESSION['user_login'])) {
+require_once __DIR__ .'/../db/ConexaoDB.php';
 require_once 'Classes/Patrimonio/PatrimonioDAO.php';
 require_once 'Classes/Patrimonio/PatrimonioDTO.php';
 
@@ -14,7 +15,7 @@ try {
     echo "Erro no banco de dados: " . $e->getMessage();
 }
 } else {
-    header("Location: ./Login.php");
+    header("Location: ../ICT/LoginICT.php");
     exit();
   }
 ?>
@@ -91,7 +92,7 @@ try {
 
                     <div class="manager-name">
                         <h5 class="text-black">Administrador</h5>
-                        <p class="text-end text-dark"><strong><?= $_SESSION['patrimonio_login'] ?></strong></p>
+                        <p class="text-end text-dark"><strong><?= $_SESSION['user_login'] ?></strong></p>
                     </div>
                 </div>
 
@@ -118,7 +119,7 @@ try {
                                     <input type="text" name="login" value="<?= $Patrimonio["UsrLogin"] ?>" class="form-control" placeholder="Nome de Usuário" required>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="text" name="senha" value="<?= $Patrimonio["Senha"] ?>" class="form-control" placeholder="Senha" required>
+                                    <input type="text" name="senha" class="form-control" placeholder="*********" minlength="8" required>
                                 </div>
                                 <div class="mb-3">
                                     <?php if ($Patrimonio["Estado"]) {

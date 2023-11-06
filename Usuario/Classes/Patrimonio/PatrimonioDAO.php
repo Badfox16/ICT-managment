@@ -2,7 +2,8 @@
 
 require_once 'PatrimonioDTO.php';
 require_once __DIR__ . '/../Logs/LogsDTO.php';
-require_once __DIR__ . '/../Database/ConexaoBD.php';
+require_once __DIR__ .'/../../../db/ConexaoDB.php';
+
 
 
 class PatrimonioDAO

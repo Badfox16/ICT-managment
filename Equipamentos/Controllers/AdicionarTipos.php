@@ -1,6 +1,6 @@
 <?php
 require_once '../Classes/Tipos/TiposDAO.php';
-require_once '../Classes/Database/ConexaoBD.php';
+require_once '../../db/ConexaoDB.php';
 
 // Receba os dados do formulário
 $novoTipo = $_POST['novoTipo'];

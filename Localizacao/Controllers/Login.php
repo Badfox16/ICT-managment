@@ -1,5 +1,6 @@
 <?php
-require_once '../Classes/Database/ConexaoBD.php';
+
+require_once '../../db/ConexaoDB.php';
 require_once '../Classes/ICT/ICTDAO.php';
 require_once '../Classes/ICT/ICTDTO.php';
 
@@ -19,10 +20,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['user_email'] = $ICT['Email'];
         $_SESSION['user_login'] = $ICT['UsrLogin'];
 
-        header("Location: ../index.php");
+        header("Location: ../equipamentos.php");
         exit();
     } else {
-        header("Location: ../index.php");
+        header("Location: ../equipamentos.php");
         exit();
     }
 }

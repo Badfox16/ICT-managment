@@ -1,7 +1,7 @@
 <?php
 
-require_once 'SalaDTO.php'; 
-require_once __DIR__ . '/../Database/ConexaoBD.php';  
+require_once 'SalaDTO.php';
+require_once __DIR__ .'/../../../db/ConexaoDB.php';
 
 
 class SalaDAO {

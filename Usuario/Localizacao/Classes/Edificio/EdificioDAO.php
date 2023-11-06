@@ -1,7 +1,8 @@
 <?php
 
-require_once 'EdificioDTO.php'; 
-require_once __DIR__ . '/../Database/ConexaoBD.php';  
+require_once 'EdificioDTO.php';
+require_once __DIR__ .'/../../../../db/ConexaoDB.php';
+
 
 
 class EdificioDAO {

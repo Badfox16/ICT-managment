@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 
-require_once '../Classes/Database/ConexaoBD.php';
+require_once __DIR__ .'/../../../db/ConexaoDB.php';
 require_once '../Classes/Softwares/SoftwareDAO.php';
 
 // Verifica se a requisição é do tipo POST

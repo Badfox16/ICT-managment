@@ -1,7 +1,7 @@
 <?php
 
 require_once 'SoftwareDTO.php';
-require_once __DIR__ . '/../Database/ConexaoBD.php';
+require_once __DIR__ .'/../../../db/ConexaoDB.php';
 
 class SoftwareDAO
 {
